@@ -1,0 +1,12 @@
+HTTrack3.49-2+htsswf+htsjava launched on Wed, 21 Mar 2018 13:37:03 at http://foxythemes.net/preview/products/beagle/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" http://foxythemes.net/preview/products/beagle/ -O1 "C:\Users\johnperry.carpio.LAZADA\Documents\Downloaded Sites\Boostrap Beagle Responsive Admin" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+13:41:35	Error: 	"Not Found" (404) at link foxythemes.net/preview/products/beagle/charts.html (from foxythemes.net/preview/products/beagle/)
+
+HTTrack Website Copier/3.49-2 mirror complete in 7 minutes 55 seconds : 265 links scanned, 263 files written (24500510 bytes overall) [19368882 bytes received at 40776 bytes/sec], 7886852 bytes transferred using HTTP compression in 159 files, ratio 34%, 6.1 requests per connection
+(1 errors, 0 warnings, 0 messages)
