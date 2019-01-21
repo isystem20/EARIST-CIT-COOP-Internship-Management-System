@@ -28,6 +28,12 @@
     <?php if (!empty($datatable)) { ?>
     <link rel="stylesheet" type="text/css" href="<?=base_url('themes/beagle/'); ?>assets/lib/datatables/datatables.net-bs4/css/dataTables.bootstrap4.css"/>
     <?php } ?>    
+    <?php if (!empty($formelements)) { ?>
+    <link rel="stylesheet" type="text/css" href="<?=base_url('themes/beagle/'); ?>assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+    <link rel="stylesheet" type="text/css" href="<?=base_url('themes/beagle/'); ?>assets/lib/select2/css/select2.min.css"/>
+    <link rel="stylesheet" type="text/css" href="<?=base_url('themes/beagle/'); ?>assets/lib/bootstrap-slider/css/bootstrap-slider.min.css"/>
+    <?php } ?>  
+
     <link rel="stylesheet" type="text/css" href="<?=base_url('themes/beagle/'); ?>assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
     <link rel="stylesheet" href="<?=base_url('themes/beagle/'); ?>assets/css/app.css" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="<?=base_url('themes/beagle/'); ?>assets/lib/jquery.gritter/css/jquery.gritter.css"/>

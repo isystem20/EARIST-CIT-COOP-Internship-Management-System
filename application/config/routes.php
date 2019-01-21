@@ -50,13 +50,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'MainController';
-$route['404_override'] = 'ErrorController';
+// $route['404_override'] = 'ErrorController';
 $route['translate_uri_dashes'] = FALSE;
 
+// $route['404'] = 'ErrorController/index';
 
+$route['manage/students'] = 'StudentController/LoadStudentMasterlist';
 
-$route['manage/students'] = 'StudentController/LoadMasterlist';
-$route['manage/documents'] = 'DocumentController/LoadMasterlist';
+$route['monitor/internship'] = 'InternshipController/LoadStudentMasterlist';
+
+$route['student/register'] = 'StudentController/RegisterStudent';
+$route['student/edit/(:any)'] = 'StudentController/UpdateStudent/$1';
+$route['student/view/(:any)'] = 'StudentController/ViewStudent/$1';
+
+$route['student/add'] = 'StudentController/Create';
+$route['student/update'] = 'StudentController/Update';
+$route['student/del'] = 'StudentController/Delete';
+
 
 $route['login'] = 'AuthController/LoginPage';
 $route['login/auth'] = 'AuthController/Authenticate';

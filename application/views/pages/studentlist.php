@@ -1,109 +1,57 @@
+
 <div class="be-content">
- <!--  <div class="page-head">
+  <div class="page-head">
     <h2 class="page-head-title">Student Masterlist</h2>
     <nav aria-label="breadcrumb" role="navigation">
       <ol class="breadcrumb page-head-nav">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Maintenance</a></li>
-        <li class="breadcrumb-item active">Student List</li>
+        <li class="breadcrumb-item"><a href="#">Administration</a></li>
+        <li class="breadcrumb-item"><a href="#">Masterlist</a></li>
+        <li class="breadcrumb-item active">Students</li>
       </ol>
     </nav>
-  </div> -->
+  </div>
   <div class="main-content container-fluid">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-sm-12">
         <div class="card card-table">
-          <div class="row table-filters-container">
-            <div class="col-12 col-lg-12 col-xl-6">
-              <div class="row">
-                <div class="col-12 col-lg-6 table-filters pb-0 pb-xl-4"><span class="table-filter-title">OJT progress</span>
-                  <div class="filter-container">
-                    <form>
-                      <label class="control-label d-block"><span id="slider-value">10% - 60%</span></label>
-                      <input id="milestone_slider" type="text" data-slider-value="[10,60]" data-slider-step="5" data-slider-max="100" data-slider-min="0" value="50" class="bslider form-control">
-                    </form>
-                  </div>
-                </div>
-                <div class="col-12 col-lg-6 table-filters pb-0 pb-xl-4"><span class="table-filter-title">Company</span>
-                  <div class="filter-container">
-                    <label class="control-label" data-toggle="tooltip" data-original-title="I am a Tooltip">Select a company:</label>
-                    <form>
-                      <select class="select2">
-                        <option value="Bootstrap">Accenture</option>
-                        <option value="CLI">IBM</option>
-                      </select>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-lg-12 col-xl-6">
-              <div class="row">
-                <div class="col-12 col-lg-6 table-filters pb-0 pb-xl-4"><span class="table-filter-title">Date</span>
-                  <div class="filter-container">
-                    <form>
-                      <div class="row">
-                        <div class="col-6">
-                          <label class="control-label">Since:</label>
-                          <input type="text" class="form-control form-control-sm datetimepicker">
-                        </div>
-                        <div class="col-6">
-                          <label class="control-label">To:</label>
-                          <input type="text" class="form-control form-control-sm datetimepicker">
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                <div class="col-12 col-lg-6 table-filters pb-xl-4"><span class="table-filter-title">Status</span>
-                  <div class="filter-container">
-                    <form>
-                      <div class="row">
-                        <div class="col-6">
-                          <div class="custom-controls-stacked">
-                            <label class="custom-control custom-checkbox">
-                              <input type="checkbox" checked="" class="custom-control-input"><span class="custom-control-label">No Company</span>
-                            </label>
-                            <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input"><span class="custom-control-label">On-going</span>
-                            </label>
-                          </div>
-                        </div>
-                        <div class="col-6">
-                          <div class="custom-controls-stacked">
-                            <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Completed</span>
-                            </label>
-                            <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Dropped</span>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
+          <div class="card-header">
+            <a href="<?=base_url('student/register'); ?>" class="btn btn-space btn-primary">
+              <i class="icon icon-left mdi mdi-account-add"></i> Add
+            </a>
+            <button class="btn btn-space btn-success" id="StudentUpdateSelectButton" data-url="<?=base_url('student/edit/'); ?>" >
+              <i class="icon icon-left mdi mdi-account-add"></i> Update
+            </button>
+            <button class="btn btn-space btn-danger">
+              <i class="icon icon-left mdi mdi-account-add"></i> Delete
+            </button>
+
+
+            <div class="tools dropdown"><span class="icon mdi mdi-download"></span><a href="#" role="button" data-toggle="dropdown" class="dropdown-toggle"><span class="icon mdi mdi-more-vert"></span></a>
+              <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
+                <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
               </div>
             </div>
           </div>
           <div class="card-body">
-            <div class="table-responsive noSwipe">
-              <table class="table table-striped table-hover">
-                <thead>
+            <table id="table3" class="table table-striped table-hover table-fw-widget">
+              <thead>
                   <tr>
                     <th style="width:5%;">
                       <label class="custom-control custom-control-sm custom-checkbox">
                         <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
                       </label>
                     </th>
-                    <th style="width:20%;">Student Name</th>
-                    <th style="width:17%;">Last Action</th>
-                    <th style="width:15%;">Current Status</th>
-                    <th style="width:10%;">Company</th>
-                    <th style="width:10%;">Date Started</th>
-                    <th style="width:10%;"></th>
+                    <th>S.N</th>
+                    <th>Photo</th>
+                    <th>Last Name</th>
+                    <th>First Name</th>
+                    <th>Year</th>
+                    <th>Course</th>
+                    <th>Section</th>
+                    
+                    <th style="width:80px;">Action</th>
                   </tr>
-                </thead>
+              </thead>
                 <tbody>
 
                   <?php
@@ -114,24 +62,37 @@
 
                     <tr>
                       <td>
+                        
                         <label class="custom-control custom-control-sm custom-checkbox">
-                          <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
+                          <input type="checkbox" dataclass="studentids" class="custom-control-input studentids" data-id="<?=$row->Id; ?>">
+                          <span class="custom-control-label"></span>
                         </label>
+                        
                       </td>
-                      <td class="user-avatar cell-detail user-info"><img src="<?=base_url('themes/beagle/')?><?=$row->Photopath; ?>" alt="Avatar" class="mt-0 mt-md-2 mt-lg-0"><span><?=$row->FirstName.' '.$row->LastName; ?></span><span class="cell-detail-description">Section 1</span></td>
-                      <td class="cell-detail"> <span>Endorsement</span><span class="cell-detail-description">May 1, 2018</span></td>
-                      <td class="milestone"><span class="completed">8 / 15</span><span class="version">OJT Progress</span>
-                        <div class="progress">
-                          <div style="width: 45%" class="progress-bar progress-bar-primary"></div>
-                        </div>
+                      <td class="cell-detail"> <span><?=$row->Code; ?></span></td>
+                      <td class="user-avatar cell-detail user-info">
+                        <img src="<?=base_url($row->Photopath)?>" alt="Avatar" class="mt-0 mt-md-2 mt-lg-0">
                       </td>
-                      <td class="cell-detail"><span>Accenture</span><span class="cell-detail-description">63e8ec3</span></td>
-                      <td class="cell-detail"><span>May 6, 2018</span><span class="cell-detail-description">8:30</span></td>
+                      <td class="cell-detail"> <span><?=$row->LastName; ?></span></td> 
+                      <td class="cell-detail"> <span><?=$row->FirstName; ?></span></td>
+                      <td class="cell-detail"> <span><?=$row->YearLevelName; ?></span>
+                      </td>
+                      <td class="cell-detail"> <span><?=$row->CourseName; ?></td>
+                      <td class="cell-detail"> <span><?=$row->SectionName; ?></td>
                       <td class="text-right">
-                        <div class="btn-group btn-hspace">
-                          <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">On-going <span class="icon-dropdown mdi mdi-chevron-down"></span></button>
-                          <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
-                            <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
+                        <div class="btn-group btn-space ">
+                          <a href="<?=base_url('student/view/'.$row->Id); ?>" class="btn btn-secondary">Open</a>
+                          <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">
+                            <span class="mdi mdi-chevron-down"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+                          <div role="menu" class="dropdown-menu">
+                            <a href="#" class="dropdown-item">Update</a>
+                            <a href="#" class="dropdown-item">Disable</a>
+                            <a href="#" class="dropdown-item">Delete</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">Assign Company</a>
+                            <a href="#" class="dropdown-item">Check Progress</a>
                           </div>
                         </div>
                       </td>
@@ -145,7 +106,7 @@
                   ?>
 
 
-                  <tr class="online">
+     <!--              <tr class="online">
                     <td>
                       <label class="custom-control custom-control-sm custom-checkbox">
                         <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
@@ -240,10 +201,9 @@
                         </div>
                       </div>
                     </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
-              </table>
-            </div>
+            </table>
           </div>
         </div>
       </div>
