@@ -25,6 +25,9 @@
     <?php if (!empty($slider)) { ?>
     <link rel="stylesheet" type="text/css" href="<?=base_url('themes/beagle/'); ?>assets/lib/bootstrap-slider/css/bootstrap-slider.min.css"/>
     <?php } ?>
+    <?php if (!empty($datatable)) { ?>
+    <link rel="stylesheet" type="text/css" href="<?=base_url('themes/beagle/'); ?>assets/lib/datatables/datatables.net-bs4/css/dataTables.bootstrap4.css"/>
+    <?php } ?>    
     <link rel="stylesheet" type="text/css" href="<?=base_url('themes/beagle/'); ?>assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
     <link rel="stylesheet" href="<?=base_url('themes/beagle/'); ?>assets/css/app.css" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="<?=base_url('themes/beagle/'); ?>assets/lib/jquery.gritter/css/jquery.gritter.css"/>

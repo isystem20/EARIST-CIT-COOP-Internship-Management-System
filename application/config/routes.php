@@ -55,8 +55,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 
-$route['manage/students'] = 'StudentController/LoadStudentMasterlist';
-
+$route['manage/students'] = 'StudentController/LoadMasterlist';
+$route['manage/documents'] = 'DocumentController/LoadMasterlist';
 
 $route['login'] = 'AuthController/LoginPage';
 $route['login/auth'] = 'AuthController/Authenticate';

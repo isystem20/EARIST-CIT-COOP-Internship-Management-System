@@ -26,7 +26,7 @@
                 </div>
                 <div class="col-12 col-lg-6 table-filters pb-0 pb-xl-4"><span class="table-filter-title">Company</span>
                   <div class="filter-container">
-                    <label class="control-label">Select a company:</label>
+                    <label class="control-label" data-toggle="tooltip" data-original-title="I am a Tooltip">Select a company:</label>
                     <form>
                       <select class="select2">
                         <option value="Bootstrap">Accenture</option>
