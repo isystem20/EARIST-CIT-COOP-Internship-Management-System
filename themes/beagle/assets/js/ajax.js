@@ -215,4 +215,156 @@ $(document).ready(function() {
         }
     });   
   });
+
+
+
+//[GENERIC REGISTER]
+  $('#generic_reg_form').submit(function(e){ 
+    e.preventDefault();       
+    $("#generic_reg_btn").prop("disabled", true);  
+    $("#generic_reg_btn").text("Processing..");  
+    var newURL = $(this).attr('action');    
+    var newData = new FormData(this); 
+    var EditMode = 0;
+    for(var pair of newData.entries()) {
+       console.log(pair[0]+ ', '+ pair[1]); 
+    }
+    $.ajax({
+        url: newURL,
+        type:'POST',
+        dataType: "json",   
+        data: newData,
+        contentType: false,
+        cache: false,  
+        processData:false,  
+        success: function(data) {
+          console.log(data);            
+            if($.isEmptyObject(data.error)){ 
+              $.gritter.add({title:"Success",text:"Record Update Successful. Redirecting...",class_name:"color success"});
+              window.setTimeout(function(){
+                window.location.href = data.redirect;  
+              }, 1000);
+            }
+            else {
+              $c = 0;
+              $.each(data.responses, function(key,value) {
+                $c = $c + 1;
+                var element = $('[name='+key+']');
+                element.next('.parsley-errors-list').remove();
+                element.removeClass('parsley-error');
+                element.addClass(value.length > 0 ? 'parsley-error' : '');
+                if (element.closest('.datetimepicker').length > 0) {
+                  element.closest('.datetimepicker').after(value);
+                }else{
+                  element.after(value);
+                } 
+              });
+              if ($c == 0) {
+                $.gritter.add({title:"Error",text:"Record Update Unsuccessful.",class_name:"color danger"});
+              }
+            }
+        $("#generic_reg_btn").prop("disabled", false);  
+        $("#generic_reg_btn").text("Submit");           
+        }
+    });   
+  });
+
+
+
+
+//EDIT BUTTON IN TABLE
+  $('.table-generic').delegate(".generic_edit_btn", "click", function() {
+    $('#generic_add_edit_title').text('Edit Record');
+    $('input[name=Id]').val($(this).data('id'));
+    $('input[name=Code]').val($(this).data('code'));
+    $('input[name=Name]').val($(this).data('name'));
+    $('textarea[name=Description]').val($(this).data('desc'));
+    $('#generic_reg_form').attr('action',$(this).data('action'));
+    if ($(this).data('status') == '1') {
+       $('#Inactive').attr('checked',false);      
+       $('#Active').attr('checked',true);
+    }else{
+      $('#Active').attr('checked',false);
+      $('#Inactive').attr('checked',true);
+    }
+    $('#generic_add_edit').modal();
+  });
+
+//DEL BUTTON IN TABLE
+  $('.table-generic').delegate(".generic_del_btn", "click", function() {
+    $('input[name=Id]').val($(this).data('id'));
+    $('span[id=itemname]').text($(this).data('name'));
+    $('#generic_del').modal();
+  });
+
+
+
+//[GENERIC REGISTER]
+  $('#generic_del_form').submit(function(e){ 
+    e.preventDefault();       
+    $("#generic_del_btn").prop("disabled", true);  
+    $("#generic_del_btn").text("Processing..");  
+    var newURL = $(this).attr('action');    
+    var newData = new FormData(this); 
+    var EditMode = 0;
+    for(var pair of newData.entries()) {
+       console.log(pair[0]+ ', '+ pair[1]); 
+    }
+    $.ajax({
+        url: newURL,
+        type:'POST',
+        dataType: "json",   
+        data: newData,
+        contentType: false,
+        cache: false,  
+        processData:false,  
+        success: function(data) {
+          console.log(data);            
+            if($.isEmptyObject(data.error)){ 
+              $.gritter.add({title:"Success",text:"Record Update Successful. Redirecting...",class_name:"color success"});
+              window.setTimeout(function(){
+                window.location.href = data.redirect;  
+              }, 1000);
+              // var Id = data.id;
+              // var table = $('#table3').DataTable();
+              // table.row($('#row'+data.id))
+              // .remove()
+              // .draw();
+            }
+            else {
+              $c = 0;
+              $.each(data.responses, function(key,value) {
+                $c = $c + 1;
+                var element = $('[name='+key+']');
+                element.next('.parsley-errors-list').remove();
+                element.removeClass('parsley-error');
+                element.addClass(value.length > 0 ? 'parsley-error' : '');
+                if (element.closest('.datetimepicker').length > 0) {
+                  element.closest('.datetimepicker').after(value);
+                }else{
+                  element.after(value);
+                } 
+              });
+              if ($c == 0) {
+                $.gritter.add({title:"Error",text:"Record Update Unsuccessful.",class_name:"color danger"});
+              }
+            }
+        $("#generic_del_btn").prop("disabled", false);  
+        $("#generic_del_btn").text("Yes");           
+        }
+    });   
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
 });

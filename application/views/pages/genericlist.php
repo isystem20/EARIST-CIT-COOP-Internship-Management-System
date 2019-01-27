@@ -1,7 +1,7 @@
 
 <div class="be-content">
   <div class="page-head">
-    <h2 class="page-head-title">My Applications</h2>
+    <h2 class="page-head-title"><?=$labels['title']; ?></h2>
     <nav aria-label="breadcrumb" role="navigation">
       <ol class="breadcrumb page-head-nav">
         <li class="breadcrumb-item"><a href="#">Menu</a></li>
@@ -14,9 +14,9 @@
       <div class="col-sm-12">
         <div class="card card-table">
           <div class="card-header">
-            <a href="<?=base_url('applications/register'); ?>" class="btn btn-space btn-primary">
+            <button data-toggle="modal" data-target="#generic_add_edit" class="btn btn-space btn-primary">
               <i class="icon icon-left mdi mdi-account-add"></i> Add
-            </a>
+            </button>
             <button class="btn btn-space btn-success" id="StudentUpdateSelectButton" data-url="<?=base_url('student/edit/'); ?>" >
               <i class="icon icon-left mdi mdi-account-add"></i> Update
             </button>
@@ -32,7 +32,7 @@
             </div>
           </div>
           <div class="card-body">
-            <table id="table3" class="table table-striped table-hover table-fw-widget">
+            <table id="table3" class="table table-generic table-striped table-hover table-fw-widget">
               <thead>
                   <tr>
                     <th style="width:5%;">
@@ -40,11 +40,13 @@
                         <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
                       </label>
                     </th>
+                    <th>Code</th>
                     <th>Name</th>
-                    <th>Company Name</th>
-                    <th>Contact Person</th>
-                    <th>Address</th>            
-                    <th style="width:80px;">Action</th>
+                    <th>Description</th>
+                    <th>Last Modified</th> 
+                    <th style="width:10px;">Status </th> 
+
+                    <th style="width:60px;">Action</th>
                   </tr>
               </thead>
                 <tbody>
@@ -55,7 +57,7 @@
                         foreach ($all_list->result() as $row) { ?>
 
 
-                    <tr>
+                    <tr id="row">
                       <td>
                         
                         <label class="custom-control custom-control-sm custom-checkbox">
@@ -64,23 +66,15 @@
                         </label>
                         
                       </td>
-                      <td class="cell-detail"> <span><?=date('Y-m-d',strtotime($row->LabelDate)); ?></span></td>
-                      <td class="cell-detail"> <span><?=$row->CompanyName; ?></span></td> 
-                      <td class="cell-detail"> <span><?=$row->ContactPerson; ?></span></td>
-                      <td class="cell-detail"> <span><?=$row->Address1; ?></span></td>
+                      <td class="cell-detail"> <span><?=$row->Code; ?></span></td>
+                      <td class="cell-detail"> <span><?=character_limiter($row->Name, 40); ?></span></td> 
+                      <td class="cell-detail"> <span><?=character_limiter($row->Description, 40); ?></span></td>
+                      <td class="cell-detail"> <span><?=date('Y-m-d',strtotime($row->ModifiedAt)); ?></span></td>
+                      <td class="text-right"> <span><?php if($row->IsActive == '1') {echo '<span class="badge badge-success">Active</span>';}else {echo '<span class="badge badge-default">Inactive</span>';} ?></span></td>
                       <td class="text-right">
 
-                        <div class="btn-group btn-space ">
-                          <a href="<?=base_url('student/view/'.$row->Id); ?>" class="btn btn-secondary">Open</a>
-                          <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">
-                            <span class="mdi mdi-chevron-down"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                          </button>
-                          <div role="menu" class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Request to Print</a>
-                            <a href="#" class="dropdown-item">Delete</a>
-                          </div>
-                        </div>
+                        <button class="btn btn-secondary generic_edit_btn" data-id="<?=$row->Id; ?>" data-code="<?=$row->Code; ?>" data-name="<?=$row->Name; ?>" data-desc="<?=$row->Description; ?>" data-status="<?=$row->IsActive; ?>" data-action="<?=base_url('manage/generic/'.$labels['class'].'/update'); ?>"><i class="mdi mdi-edit"></i></button>
+                        <button class="btn btn-warning generic_del_btn" data-id="<?=$row->Id; ?>" data-name="<?=$row->Name; ?>"><i class="mdi mdi-delete"></i></button>
                       </td>
                     </tr>
 
@@ -96,6 +90,137 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="generic_add_edit" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-colored">
+        <h3 class="modal-title" id="generic_add_edit_title">Add Record</h3>
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close">       </span></button>
+      </div>
+      <?php $hidden = array('Id' => '', ); ?>
+      <?=form_open_multipart('manage/generic/'.$labels['class'].'/add','id="generic_reg_form"',$hidden); ?>
+      <div class="modal-body">
+        <div class="form-group row mt-2">
+          <label for="code" class="col-3 col-lg-2 col-form-label text-right">Code</label>
+          <div class="col-9 col-lg-10">
+            <input id="code" name="Code" type="text" placeholder="Item Code" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row mt-2">
+          <label for="itemname" class="col-3 col-lg-2 col-form-label text-right">Name</label>
+          <div class="col-9 col-lg-10">
+            <input id="itemname" name="Name" type="text" placeholder="Item Name" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row mt-2">
+          <label for="itemdesc" class="col-3 col-lg-2 col-form-label text-right">Description</label>
+          <div class="col-9 col-lg-10">
+            <textarea id="itemdesc" name="Description" class="form-control" placeholder="Short Description"></textarea>
+          </div>
+        </div>
+        <div class="form-group row pt-0 pb-0">
+          <label class="col-3 col-lg-2 col-form-label text-right">Status</label>
+          <div class="col-9 col-lg-10">
+            <div class="form-group">
+              <label class="custom-control custom-radio custom-control-inline">
+                <input type="radio" checked="" name="IsActive" value="1" id="Active" class="custom-control-input is-valid"><span class="custom-control-label">Active</span>
+              </label>
+              <label class="custom-control custom-radio custom-control-inline">
+                <input type="radio" name="IsActive" value="0" id="Inactive" class="custom-control-input is-invalid"><span class="custom-control-label">Inactive</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-secondary md-close">Cancel</button>
+        <button type="submit" id="generic_reg_btn" class="btn btn-primary md-close">Submit</button>
+      </div>
+      <?=form_close(); ?>  
+    </div>
+  </div>
+</div>
+
+
+
+<div id="generic_add_edit" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-header-colored">
+        <h3 class="modal-title" id="generic_add_edit_title">Add Record</h3>
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close md-close"><span class="mdi mdi-close">       </span></button>
+      </div>
+      <?php $hidden = array('Id' => '', ); ?>
+      <?=form_open_multipart('manage/generic/'.$labels['class'].'/add','id="generic_reg_form"',$hidden); ?>
+      <div class="modal-body">
+        <div class="form-group row mt-2">
+          <label for="code" class="col-3 col-lg-2 col-form-label text-right">Code</label>
+          <div class="col-9 col-lg-10">
+            <input id="code" name="Code" type="text" placeholder="Item Code" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row mt-2">
+          <label for="itemname" class="col-3 col-lg-2 col-form-label text-right">Name</label>
+          <div class="col-9 col-lg-10">
+            <input id="itemname" name="Name" type="text" placeholder="Item Name" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row mt-2">
+          <label for="itemdesc" class="col-3 col-lg-2 col-form-label text-right">Description</label>
+          <div class="col-9 col-lg-10">
+            <textarea id="itemdesc" name="Description" class="form-control" placeholder="Short Description"></textarea>
+          </div>
+        </div>
+        <div class="form-group row pt-0 pb-0">
+          <label class="col-3 col-lg-2 col-form-label text-right">Status</label>
+          <div class="col-9 col-lg-10">
+            <div class="form-group">
+              <label class="custom-control custom-radio custom-control-inline">
+                <input type="radio" checked="" name="IsActive" value="1" id="Active" class="custom-control-input is-valid"><span class="custom-control-label">Active</span>
+              </label>
+              <label class="custom-control custom-radio custom-control-inline">
+                <input type="radio" name="IsActive" value="0" id="Inactive" class="custom-control-input is-invalid"><span class="custom-control-label">Inactive</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" class="btn btn-secondary md-close">Cancel</button>
+        <button type="submit" id="generic_reg_btn" class="btn btn-primary md-close">Submit</button>
+      </div>
+      <?=form_close(); ?>  
+    </div>
+  </div>
+</div>
+
+<div id="generic_del" tabindex="-1" role="dialog" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span class="mdi mdi-close"></span></button>
+      </div>
+      <div class="modal-body">
+      <?php $hidden = array('Id' => '', ); ?>
+      <?=form_open_multipart('manage/generic/'.$labels['class'].'/delete','id="generic_del_form"',$hidden); ?>
+        <div class="text-center">
+          <div class="text-danger"><span class="modal-main-icon mdi mdi-close-circle-o"></span></div>
+          <h3>Warning!</h3>
+          <p>You are about to delete this record: <strong><span id="itemname"></span></strong></p>
+          <p>Are you sure?</p>
+          <div class="mt-8">
+            <button type="button" data-dismiss="modal" class="btn btn-space btn-secondary">No</button>
+            <button type="submit" id="generic_del_btn" class="btn btn-space btn-danger">Yes</button>
+          </div>
+        </div>
+      <?=form_close(); ?>  
+      </div>
+      <div class="modal-footer"></div>
     </div>
   </div>
 </div>

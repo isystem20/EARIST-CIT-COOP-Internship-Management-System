@@ -114,62 +114,31 @@
                     <thead>
                       <tr>
                         <th style="width:40%;">User</th>
-                        <th class="number">Action</th>
-                        <th style="width:20%;">Date</th>
-                        <th style="width:20%;">Item</th>
-                        <th style="width:5%;" class="actions"></th>
+                        <th style="width:20%;">Action</th>
+                        <th style="width:30%;">Date</th>
+                        <th style="width:10%;" class="actions"></th>
                       </tr>
                     </thead>
                     <tbody class="no-border-x">
+
+                  <?php
+                  if (!empty($recent_acts)) {
+                     if ($recent_acts->num_rows() > 0) {
+                        foreach ($recent_acts->result() as $row) { ?>
+
                       <tr>
-                        <td>Penelope Thornton</td>
-                        <td class="number">Edit</td>
-                        <td>Aug 23, 2016</td>
-                        <td class="text-success">Profile</td>
+                        <td><?=$row->FirstName.' '.$row->LastName ?></td>
+                        <td class="number"><?=$row->Action; ?></td>
+                        <td><?php if(date('Y-m-d',strtotime($row->Timestamp)) != date('Y-m-d')) { echo date('M d, y h:i A',strtotime($row->Timestamp)); } else { echo 'Today '.date('h:i A',strtotime($row->Timestamp)); }; ?></td>
                         <td class="actions"><a href="#" class="icon"><i class="mdi mdi-plus-circle-o"></i></a></td>
                       </tr>
-                      <tr>
-                        <td>Penelope Thornton</td>
-                        <td class="number">Add</td>
-                        <td>Aug 20, 2016</td>
-                        <td class="text-success">Company</td>
-                        <td class="actions"><a href="#" class="icon"><i class="mdi mdi-plus-circle-o"></i></a></td>
-                      </tr>
-                      <tr>
-                        <td>Penelope Thornton</td>
-                        <td class="number">Add</td>
-                        <td>Aug 18, 2016</td>
-                        <td class="text-warning">Company</td>
-                        <td class="actions"><a href="#" class="icon"><i class="mdi mdi-plus-circle-o"></i></a></td>
-                      </tr>
-                      <tr>
-                        <td>Penelope Thornton</td>
-                        <td class="number">Add</td>
-                        <td>Aug 15, 2016</td>
-                        <td class="text-warning">Company</td>
-                        <td class="actions"><a href="#" class="icon"><i class="mdi mdi-plus-circle-o"></i></a></td>
-                      </tr>
-                      <tr>
-                        <td>Justine Myranda</td>
-                        <td class="number">Generate</td>
-                        <td>Aug 13, 2016</td>
-                        <td class="text-danger">Acceptance L</td>
-                        <td class="actions"><a href="#" class="icon"><i class="mdi mdi-plus-circle-o"></i></a></td>
-                      </tr>
-                      <tr>
-                        <td>Penelope Thornton</td>
-                        <td class="number">Add</td>
-                        <td>Aug 15, 2016</td>
-                        <td class="text-warning">Company</td>
-                        <td class="actions"><a href="#" class="icon"><i class="mdi mdi-plus-circle-o"></i></a></td>
-                      </tr>
-                      <tr>
-                        <td>Justine Myranda</td>
-                        <td class="number">Generate</td>
-                        <td>Aug 13, 2016</td>
-                        <td class="text-danger">Acceptance L</td>
-                        <td class="actions"><a href="#" class="icon"><i class="mdi mdi-plus-circle-o"></i></a></td>
-                      </tr>
+
+
+                  <?php
+                        }
+                     }
+                  }
+                  ?>
 
                     </tbody>
                   </table>

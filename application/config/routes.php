@@ -78,6 +78,9 @@ $route['document/add'] = 'DocumentController/Create';
 $route['document/update'] = 'DocumentController/Update';
 $route['document/del'] = 'DocumentController/Delete';
 
+$route['manage/companies'] = 'CompanyController/LoadMasterlist';
+
+
 
 $route['profile'] = 'StudentAccountController/LoadProfile';
 $route['applications'] = 'StudentAccountController/LoadMyApplications';
@@ -95,4 +98,4 @@ $route['logout'] = 'AuthController/Logout';
 $route['manage/generic/(:any)'] = 'GenericController/LoadMasterlist/$1';
 $route['manage/generic/(:any)/add'] = 'GenericController/Create/$1';
 $route['manage/generic/(:any)/update'] = 'GenericController/Update/$1';
-$route['manage/generic/(:any)/de'] = 'GenericController/Delete/$1';
+$route['manage/generic/(:any)/delete'] = 'GenericController/Delete/$1';

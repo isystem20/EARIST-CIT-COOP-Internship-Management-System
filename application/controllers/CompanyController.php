@@ -19,11 +19,11 @@ class CompanyController extends MY_Controller {
 		$this->load->view('layout/wrapper');
 		$this->load->view('layout/topbar');
 		$this->load->view('layout/leftbar');
-		$this->load->view('pages/genericlist',$data);
+		$this->load->view('pages/companylist',$data);
 		// $this->load->view('layout/rightbar');
 		$this->load->view('layout/scripts',$layout);
 		$json = json_encode($data); //log
-        $this->logger->log('Load','Companies',$json); //Log 
+        $this->logger->log('Load Companies','Companies',$json); //Log 
     }
 
 

@@ -15,19 +15,20 @@
                       <li><a href="<?=base_url('manage/students');?>">Students</a></li>
                       <li><a href="<?=base_url('manage/accounts');?>">User Accounts</a></li>
                       <li><a href="<?=base_url('manage/documents');?>">Documents</a></li>
+                      <li><a href="<?=base_url('manage/companies');?>">Companies</a></li>
+                      <li><a href="<?=base_url('manage/advisors');?>">Advisors</a></li>
                     </ul>
                   </li>
-                  <li class="parent"><a href="#"><i class="icon mdi mdi-accounts-list-alt"></i><span>Maintenance</span></a>
+                  <li class="parent"><a href="#"><i class="icon mdi mdi-view-list"></i><span>Maintenance</span></a>
                     <ul class="sub-menu">
-                      <li><a href="<?=base_url('manage/companies');?>">Companies</a></li>
-                      <li><a href="<?=base_url('manage/sections');?>">Sections</a></li>
-                      <li><a href="<?=base_url('manage/semesters');?>">Semesters</a></li>
-                      <li><a href="<?=base_url('manage/courses');?>">Courses</a></li>
-                      <li><a href="<?=base_url('manage/courses');?>">School Levels</a></li>
+                      <li><a href="<?=base_url('manage/generic/sections');?>">Sections</a></li>
+                      <li><a href="<?=base_url('manage/generic/semesters');?>">Semesters</a></li>
+                      <li><a href="<?=base_url('manage/generic/courses');?>">Courses</a></li>
+                      <li><a href="<?=base_url('manage/generic/levels');?>">School Levels</a></li>
                       <li class="dropdown-divider"></li>  
-                      <li><a href="<?=base_url('manage/semesters');?>">Nationalities</a></li>
-                      <li><a href="<?=base_url('manage/courses');?>">Cities</a></li>
-                      <li><a href="<?=base_url('manage/courses');?>">Regions</a></li>
+                      <li><a href="<?=base_url('manage/generic/nationalities');?>">Nationalities</a></li>
+                      <li><a href="<?=base_url('manage/generic/cities');?>">Cities</a></li>
+                      <li><a href="<?=base_url('manage/generic/regions');?>">Regions</a></li>
                     </ul>
                   </li>
                   <li><a href="<?=base_url('monitor/internship');?>"><i class="icon mdi mdi-chart"></i><span>Progress Monitor</span></a>
