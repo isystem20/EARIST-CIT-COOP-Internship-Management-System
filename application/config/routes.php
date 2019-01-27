@@ -92,19 +92,7 @@ $route['logout'] = 'AuthController/Logout';
 
 //Generic Forms
 //SECTION
-$route['manage/sections'] = 'SectionController/LoadMasterlist';
-$route['manage/sections/add'] = 'SectionController/Create';
-$route['manage/sections/update'] = 'SectionController/Update';
-$route['manage/sections/de'] = 'SectionController/Delete';
-
-//SEMESTER
-$route['manage/semester'] = 'SemesterController/LoadMasterlist';
-$route['manage/semester/add'] = 'SemesterController/Create';
-$route['manage/semester/update'] = 'SemesterController/Update';
-$route['manage/semester/de'] = 'SemesterController/Delete';
-
-//COURSES
-$route['manage/course'] = 'CourseController/LoadMasterlist';
-$route['manage/course/add'] = 'CourseController/Create';
-$route['manage/course/update'] = 'CourseController/Update';
-$route['manage/course/de'] = 'CourseController/Delete';
+$route['manage/generic/(:any)'] = 'GenericController/LoadMasterlist/$1';
+$route['manage/generic/(:any)/add'] = 'GenericController/Create/$1';
+$route['manage/generic/(:any)/update'] = 'GenericController/Update/$1';
+$route['manage/generic/(:any)/de'] = 'GenericController/Delete/$1';
