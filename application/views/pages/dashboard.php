@@ -4,44 +4,44 @@
         <div class="main-content container-fluid">
           <div class="row">
             <div class="col-12 col-lg-6 col-xl-3">
-                        <div class="widget widget-tile">
-                          <div id="spark1" class="chart sparkline"></div>
-                          <div class="data-info">
-                            <div class="desc">Total Students</div>
-                            <div class="value"><span class="indicator indicator-equal mdi mdi-chevron-right"></span><span data-toggle="counter" data-end="113" class="number">0</span>
-                            </div>
-                          </div>
-                        </div>
+                <div class="widget widget-tile">
+                  <div id="spark1" class="chart sparkline"></div>
+                  <div class="data-info">
+                    <div class="desc">Active Students</div>
+                    <div class="value"><span class="indicator indicator-equal mdi mdi-chevron-right"></span><span data-toggle="counter" data-end="<?=$counters['active_students']; ?>" class="number">0</span>
+                    </div>
+                  </div>
+                </div>
             </div>
             <div class="col-12 col-lg-6 col-xl-3">
-                        <div class="widget widget-tile">
-                          <div id="spark2" class="chart sparkline"></div>
-                          <div class="data-info">
-                            <div class="desc">Monthly Active</div>
-                            <div class="value"><span class="indicator indicator-positive mdi mdi-chevron-up"></span><span data-toggle="counter" data-end="80" data-suffix="%" class="number">0</span>
-                            </div>
-                          </div>
-                        </div>
+                <div class="widget widget-tile">
+                  <div id="spark2" class="chart sparkline"></div>
+                  <div class="data-info">
+                    <div class="desc">Monthly Active</div>
+                    <div class="value"><span class="indicator indicator-positive mdi mdi-chevron-up"></span><span data-toggle="counter" data-end="80" data-suffix="%" class="number">0</span>
+                    </div>
+                  </div>
+                </div>
             </div>
             <div class="col-12 col-lg-6 col-xl-3">
-                        <div class="widget widget-tile">
-                          <div id="spark3" class="chart sparkline"></div>
-                          <div class="data-info">
-                            <div class="desc">Average Progress</div>
-                            <div class="value"><span class="indicator indicator-positive mdi mdi-chevron-up"></span><span data-toggle="counter" data-end="532" class="number">0</span>
-                            </div>
-                          </div>
-                        </div>
+                <div class="widget widget-tile">
+                  <div id="spark3" class="chart sparkline"></div>
+                  <div class="data-info">
+                    <div class="desc">Average Progress</div>
+                    <div class="value"><span class="indicator indicator-positive mdi mdi-chevron-up"></span><span data-toggle="counter" data-end="532" class="number">0</span>
+                    </div>
+                  </div>
+                </div>
             </div>
             <div class="col-12 col-lg-6 col-xl-3">
-                        <div class="widget widget-tile">
-                          <div id="spark4" class="chart sparkline"></div>
-                          <div class="data-info">
-                            <div class="desc">Completed OJT</div>
-                            <div class="value"><span class="indicator indicator-negative mdi mdi-chevron-down"></span><span data-toggle="counter" data-end="113" class="number">0</span>
-                            </div>
-                          </div>
-                        </div>
+                <div class="widget widget-tile">
+                  <div id="spark4" class="chart sparkline"></div>
+                  <div class="data-info">
+                    <div class="desc">Completed OJT</div>
+                    <div class="value"><span class="indicator indicator-negative mdi mdi-chevron-down"></span><span data-toggle="counter" data-end="113" class="number">0</span>
+                    </div>
+                  </div>
+                </div>
             </div>
           </div>
 <!--           <div class="row">
@@ -109,7 +109,7 @@
                   </div>
                   <div class="title">Recent Activities</div>
                 </div>
-                <div class="card-body table-responsive">
+                <div class="card-body table-responsive" style="overflow-y: auto;height:255px;">
                   <table class="table table-striped table-borderless">
                     <thead>
                       <tr>
@@ -156,6 +156,21 @@
                         <td class="text-danger">Acceptance L</td>
                         <td class="actions"><a href="#" class="icon"><i class="mdi mdi-plus-circle-o"></i></a></td>
                       </tr>
+                      <tr>
+                        <td>Penelope Thornton</td>
+                        <td class="number">Add</td>
+                        <td>Aug 15, 2016</td>
+                        <td class="text-warning">Company</td>
+                        <td class="actions"><a href="#" class="icon"><i class="mdi mdi-plus-circle-o"></i></a></td>
+                      </tr>
+                      <tr>
+                        <td>Justine Myranda</td>
+                        <td class="number">Generate</td>
+                        <td>Aug 13, 2016</td>
+                        <td class="text-danger">Acceptance L</td>
+                        <td class="actions"><a href="#" class="icon"><i class="mdi mdi-plus-circle-o"></i></a></td>
+                      </tr>
+
                     </tbody>
                   </table>
                 </div>

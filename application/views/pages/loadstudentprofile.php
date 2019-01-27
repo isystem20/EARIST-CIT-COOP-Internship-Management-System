@@ -186,7 +186,7 @@
                         <div class="col-sm-2">
                             <div class="form-group">
                               <label for="inputUserName">Student Number</label>
-                              <input id="inputUserName" type="text" name="Code"  placeholder="Enter Student No." autocomplete="off" class="form-control">
+                              <input id="inputUserName" type="text" name="Code" value="<?=$profile[0]->Code; ?>" placeholder="Enter Student No." autocomplete="off" class="form-control">
                             </div>                        
                         </div>
                         <div class="col-sm-10 row">

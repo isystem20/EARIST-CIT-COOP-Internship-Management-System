@@ -1,443 +1,207 @@
-      <div class="be-content">
-        <div class="main-content container-fluid">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="card card-table">
-                <div class="card-header">Masterlist of Document Templates
-                  <div class="tools dropdown"><span class="icon mdi mdi-download"></span><a href="#" role="button" data-toggle="dropdown" class="dropdown-toggle"><span class="icon mdi mdi-more-vert"></span></a>
-                    <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
-                      <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-body">
-                  <table id="table3" class="table table-striped table-hover table-fw-widget">
-                    <thead>
-                      <tr>
-                        <th>Rendering engine</th>
-                        <th>Browser</th>
-                        <th>Platform(s)</th>
-                        <th>Engine version</th>
-                        <th>CSS grade</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr class="odd gradeX">
-                        <td>Trident</td>
-                        <td>
-                          Internet
-                          Explorer 4.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td class="center"> 4</td>
-                        <td class="center"></td>
-                      </tr>
-                      <tr class="even gradeC">
-                        <td>Trident</td>
-                        <td>
-                          Internet
-                          Explorer 5.0
-                        </td>
-                        <td>Win 95+</td>
-                        <td class="center">5</td>
-                        <td class="center">C</td>
-                      </tr>
-                      <tr class="odd gradeA">
-                        <td>Trident</td>
-                        <td>
-                          Internet
-                          Explorer 5.5
-                        </td>
-                        <td>Win 95+</td>
-                        <td class="center">5.5</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="even gradeA">
-                        <td>Trident</td>
-                        <td>
-                          Internet
-                          Explorer 6
-                        </td>
-                        <td>Win 98+</td>
-                        <td class="center">6</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="odd gradeA">
-                        <td>Trident</td>
-                        <td>Internet Explorer 7</td>
-                        <td>Win XP SP2+</td>
-                        <td class="center">7</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="even gradeA">
-                        <td>Trident</td>
-                        <td>AOL browser (AOL desktop)</td>
-                        <td>Win XP</td>
-                        <td class="center">6</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Firefox 1.0</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td class="center">1.7</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Firefox 1.5</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td class="center">1.8</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Firefox 2.0</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td class="center">1.8</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Firefox 3.0</td>
-                        <td>Win 2k+ / OSX.3+</td>
-                        <td class="center">1.9</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Camino 1.0</td>
-                        <td>OSX.2+</td>
-                        <td class="center">1.8</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Camino 1.5</td>
-                        <td>OSX.3+</td>
-                        <td class="center">1.8</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Netscape 7.2</td>
-                        <td>Win 95+ / Mac OS 8.6-9.2</td>
-                        <td class="center">1.7</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Netscape Browser 8</td>
-                        <td>Win 98SE+</td>
-                        <td class="center">1.7</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Netscape Navigator 9</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td class="center">1.8</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Mozilla 1.0</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td class="center">1</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Mozilla 1.1</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td class="center">1.1</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Mozilla 1.2</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td class="center">1.2</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Mozilla 1.3</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td class="center">1.3</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Mozilla 1.4</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td class="center">1.4</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Mozilla 1.5</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td class="center">1.5</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Mozilla 1.6</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td class="center">1.6</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Mozilla 1.7</td>
-                        <td>Win 98+ / OSX.1+</td>
-                        <td class="center">1.7</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Mozilla 1.8</td>
-                        <td>Win 98+ / OSX.1+</td>
-                        <td class="center">1.8</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Seamonkey 1.1</td>
-                        <td>Win 98+ / OSX.2+</td>
-                        <td class="center">1.8</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Gecko</td>
-                        <td>Epiphany 2.20</td>
-                        <td>Gnome</td>
-                        <td class="center">1.8</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Webkit</td>
-                        <td>Safari 1.2</td>
-                        <td>OSX.3</td>
-                        <td class="center">125.5</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Webkit</td>
-                        <td>Safari 1.3</td>
-                        <td>OSX.3</td>
-                        <td class="center">312.8</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Webkit</td>
-                        <td>Safari 2.0</td>
-                        <td>OSX.4+</td>
-                        <td class="center">419.3</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Webkit</td>
-                        <td>Safari 3.0</td>
-                        <td>OSX.4+</td>
-                        <td class="center">522.1</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Webkit</td>
-                        <td>OmniWeb 5.5</td>
-                        <td>OSX.4+</td>
-                        <td class="center">420</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Webkit</td>
-                        <td>iPod Touch / iPhone</td>
-                        <td>iPod</td>
-                        <td class="center">420.1</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Webkit</td>
-                        <td>S60</td>
-                        <td>S60</td>
-                        <td class="center">413</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Presto</td>
-                        <td>Opera 7.0</td>
-                        <td>Win 95+ / OSX.1+</td>
-                        <td class="center">-</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Presto</td>
-                        <td>Opera 7.5</td>
-                        <td>Win 95+ / OSX.2+</td>
-                        <td class="center">-</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Presto</td>
-                        <td>Opera 8.0</td>
-                        <td>Win 95+ / OSX.2+</td>
-                        <td class="center">-</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Presto</td>
-                        <td>Opera 8.5</td>
-                        <td>Win 95+ / OSX.2+</td>
-                        <td class="center">-</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Presto</td>
-                        <td>Opera 9.0</td>
-                        <td>Win 95+ / OSX.3+</td>
-                        <td class="center">-</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Presto</td>
-                        <td>Opera 9.2</td>
-                        <td>Win 88+ / OSX.3+</td>
-                        <td class="center">-</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Presto</td>
-                        <td>Opera 9.5</td>
-                        <td>Win 88+ / OSX.3+</td>
-                        <td class="center">-</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Presto</td>
-                        <td>Opera for Wii</td>
-                        <td>Wii</td>
-                        <td class="center">-</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Presto</td>
-                        <td>Nokia N800</td>
-                        <td>N800</td>
-                        <td class="center">-</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Presto</td>
-                        <td>Nintendo DS browser</td>
-                        <td>Nintendo DS</td>
-                        <td class="center">8.5</td>
-                        <td class="center">C/A<sup>1</sup></td>
-                      </tr>
-                      <tr class="gradeC">
-                        <td>KHTML</td>
-                        <td>Konqureror 3.1</td>
-                        <td>KDE 3.1</td>
-                        <td class="center">3.1</td>
-                        <td class="center">C</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>KHTML</td>
-                        <td>Konqureror 3.3</td>
-                        <td>KDE 3.3</td>
-                        <td class="center">3.3</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>KHTML</td>
-                        <td>Konqureror 3.5</td>
-                        <td>KDE 3.5</td>
-                        <td class="center">3.5</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeX">
-                        <td>Tasman</td>
-                        <td>Internet Explorer 4.5</td>
-                        <td>Mac OS 8-9</td>
-                        <td class="center">-</td>
-                        <td class="center">X</td>
-                      </tr>
-                      <tr class="gradeC">
-                        <td>Tasman</td>
-                        <td>Internet Explorer 5.1</td>
-                        <td>Mac OS 7.6-9</td>
-                        <td class="center">1</td>
-                        <td class="center">C</td>
-                      </tr>
-                      <tr class="gradeC">
-                        <td>Tasman</td>
-                        <td>Internet Explorer 5.2</td>
-                        <td>Mac OS 8-X</td>
-                        <td class="center">1</td>
-                        <td class="center">C</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Misc</td>
-                        <td>NetFront 3.1</td>
-                        <td>Embedded devices</td>
-                        <td class="center">-</td>
-                        <td class="center">C</td>
-                      </tr>
-                      <tr class="gradeA">
-                        <td>Misc</td>
-                        <td>NetFront 3.4</td>
-                        <td>Embedded devices</td>
-                        <td class="center">-</td>
-                        <td class="center">A</td>
-                      </tr>
-                      <tr class="gradeX">
-                        <td>Misc</td>
-                        <td>Dillo 0.8</td>
-                        <td>Embedded devices</td>
-                        <td class="center">-</td>
-                        <td class="center">X</td>
-                      </tr>
-                      <tr class="gradeX">
-                        <td>Misc</td>
-                        <td>Links</td>
-                        <td>Text only</td>
-                        <td class="center">-</td>
-                        <td class="center">X</td>
-                      </tr>
-                      <tr class="gradeX">
-                        <td>Misc</td>
-                        <td>Lynx</td>
-                        <td>Text only</td>
-                        <td class="center">-</td>
-                        <td class="center">X</td>
-                      </tr>
-                      <tr class="gradeC">
-                        <td>Misc</td>
-                        <td>IE Mobile</td>
-                        <td>Windows Mobile 6</td>
-                        <td class="center">-</td>
-                        <td class="center">C</td>
-                      </tr>
-                      <tr class="gradeC">
-                        <td>Misc</td>
-                        <td>PSP browser</td>
-                        <td>PSP</td>
-                        <td class="center">-</td>
-                        <td class="center">C</td>
-                      </tr>
-                      <tr class="gradeU">
-                        <td>Other browsers</td>
-                        <td>All others</td>
-                        <td>-</td>
-                        <td class="center">-</td>
-                        <td class="center">U</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+
+<div class="be-content">
+  <div class="page-head">
+    <h2 class="page-head-title">Document Masterlist</h2>
+    <nav aria-label="breadcrumb" role="navigation">
+      <ol class="breadcrumb page-head-nav">
+        <li class="breadcrumb-item"><a href="#">Administration</a></li>
+        <li class="breadcrumb-item"><a href="#">Masterlist</a></li>
+        <li class="breadcrumb-item active">Documents</li>
+      </ol>
+    </nav>
+  </div>
+  <div class="main-content container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card card-table">
+          <div class="card-header">
+            <a href="<?=base_url('document/register'); ?>" class="btn btn-space btn-primary">
+              <i class="icon icon-left mdi mdi-account-add"></i> Add
+            </a>
+            <button class="btn btn-space btn-success" id="StudentUpdateSelectButton" data-url="<?=base_url('student/edit/'); ?>" >
+              <i class="icon icon-left mdi mdi-account-add"></i> Update
+            </button>
+            <button class="btn btn-space btn-warning">
+              <i class="icon icon-left mdi mdi-account-add"></i> Delete
+            </button>
+
+
+            <div class="tools dropdown"><span class="icon mdi mdi-download"></span><a href="#" role="button" data-toggle="dropdown" class="dropdown-toggle"><span class="icon mdi mdi-more-vert"></span></a>
+              <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
+                <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
               </div>
             </div>
           </div>
+          <div class="card-body">
+            <table id="table3" class="table table-striped table-hover table-fw-widget">
+              <thead>
+                  <tr>
+                    <th style="width:5%;">
+                      <label class="custom-control custom-control-sm custom-checkbox">
+                        <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
+                      </label>
+                    </th>
+                    <th>Code</th>
+                    <th>Document Name</th>
+                    <th>Prerequisite</th>
+                    <th>Description</th>
+                    <th>Last Modified</th>
+                    <th>Status</th>
+                    <th style="width:80px;">Action</th>
+                  </tr>
+              </thead>
+                <tbody>
+
+                  <?php
+                  if (!empty($all_list)) {
+                     if ($all_list->num_rows() > 0) {
+                        foreach ($all_list->result() as $row) { ?>
+
+
+                    <tr>
+                      <td>
+                        
+                        <label class="custom-control custom-control-sm custom-checkbox">
+                          <input type="checkbox" dataclass="studentids" class="custom-control-input studentids" data-id="<?=$row->Id; ?>">
+                          <span class="custom-control-label"></span>
+                        </label>
+                        
+                      </td>
+                      <td class="cell-detail"> <span><?=$row->Code; ?></span></td>
+                      <td class="cell-detail"> <span><?=$row->DocumentName; ?></span></td> 
+                      <td class="cell-detail"> <span><?=$row->PrerequisiteDocument; ?></span></td>
+                      <td class="cell-detail"> <span><?=character_limiter($row->Description, 30); ?></span>
+                      </td>
+                      <td class="cell-detail"> <span><?=date('Y-m-d',strtotime($row->ModifiedAt)); ?></span></td>
+                      <td class="cell-detail"> <span><?php if ($row->IsActive == '1') { echo '<label class="label label-success">Active</label>'; } else {  echo '<span class="label label-light-inverse">Inactive</span>';} ?></span></td>
+                      <td class="text-right">
+                        <div class="btn-group btn-space ">
+                          <a href="<?=base_url('document/view/'.$row->Id); ?>" class="btn btn-secondary">Open</a>
+                          <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">
+                            <span class="mdi mdi-chevron-down"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+                          <div role="menu" class="dropdown-menu">
+                            <a href="#" class="dropdown-item">Update</a>
+                            <a href="#" class="dropdown-item">Disable</a>
+                            <a href="#" class="dropdown-item">Delete</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">Assign Company</a>
+                            <a href="#" class="dropdown-item">Check Progress</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+
+
+                  <?php
+                        }
+                     }
+                  }
+                  ?>
+
+
+     <!--              <tr class="online">
+                    <td>
+                      <label class="custom-control custom-control-sm custom-checkbox">
+                        <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
+                      </label>
+                    </td>
+                    <td class="user-avatar cell-detail user-info"><img src="<?=base_url('themes/beagle/')?>assets/img/avatar4.png" alt="Avatar" class="mt-0 mt-md-2 mt-lg-0"><span>Benji Harper</span><span class="cell-detail-description">Section 1</span></td>
+                    <td class="cell-detail"> <span>Main structure markup</span><span class="cell-detail-description">CLI Connector</span></td>
+                    <td class="milestone"><span class="completed">22 / 30</span><span class="version">v1.1.5</span>
+                      <div class="progress">
+                        <div style="width: 75%" class="progress-bar progress-bar-primary"></div>
+                      </div>
+                    </td>
+                    <td class="cell-detail"><span>develop</span><span class="cell-detail-description">4cc1bc2</span></td>
+                    <td class="cell-detail"><span>April 22, 2016</span><span class="cell-detail-description">14:45</span></td>
+                    <td class="text-right">
+                      <div class="btn-group btn-hspace">
+                        <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">Open <span class="icon-dropdown mdi mdi-chevron-down"></span></button>
+                        <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
+                          <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="custom-control custom-control-sm custom-checkbox">
+                        <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
+                      </label>
+                    </td>
+                    <td class="user-avatar cell-detail user-info"><img src="<?=base_url('themes/beagle/')?>assets/img/avatar5.png" alt="Avatar" class="mt-0 mt-md-2 mt-lg-0"><span>Justine Myranda</span><span class="cell-detail-description">Section 2</span></td>
+                    <td class="cell-detail"> <span>Left sidebar adjusments</span><span class="cell-detail-description">Back-end Manager</span></td>
+                    <td class="milestone"><span class="completed">10 / 30</span><span class="version">v1.1.3</span>
+                      <div class="progress">
+                        <div style="width: 33%" class="progress-bar progress-bar-primary"></div>
+                      </div>
+                    </td>
+                    <td class="cell-detail"><span>develop</span><span class="cell-detail-description">5477993</span></td>
+                    <td class="cell-detail"><span>April 15, 2016</span><span class="cell-detail-description">10:00</span></td>
+                    <td class="text-right">
+                      <div class="btn-group btn-hspace">
+                        <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">Open <span class="icon-dropdown mdi mdi-chevron-down"></span></button>
+                        <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
+                          <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label class="custom-control custom-control-sm custom-checkbox">
+                        <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
+                      </label>
+                    </td>
+                    <td class="user-avatar cell-detail user-info"><img src="<?=base_url('themes/beagle/')?>assets/img/avatar3.png" alt="Avatar" class="mt-0 mt-md-2 mt-lg-0"><span>Sherwood Clifford</span><span class="cell-detail-description">Section 3</span></td>
+                    <td class="cell-detail"> <span>Topbar dropdown style</span><span class="cell-detail-description">Bootstrap Admin</span></td>
+                    <td class="milestone"><span class="completed">25 / 40</span><span class="version">v1.0.4</span>
+                      <div class="progress">
+                        <div style="width: 55%" class="progress-bar progress-bar-primary"></div>
+                      </div>
+                    </td>
+                    <td class="cell-detail"><span>master</span><span class="cell-detail-description">8cb98ec</span></td>
+                    <td class="cell-detail"><span>April 8, 2016</span><span class="cell-detail-description">17:24</span></td>
+                    <td class="text-right">
+                      <div class="btn-group btn-hspace">
+                        <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">Open <span class="icon-dropdown mdi mdi-chevron-down"></span></button>
+                        <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
+                          <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="online">
+                    <td>
+                      <label class="custom-control custom-control-sm custom-checkbox">
+                        <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
+                      </label>
+                    </td>
+                    <td class="user-avatar cell-detail user-info"><img src="<?=base_url('themes/beagle/')?>assets/img/avatar.png" alt="Avatar" class="mt-0 mt-md-2 mt-lg-0"><span>Kristopher Donny</span><span class="cell-detail-description">Section 1</span></td>
+                    <td class="cell-detail"> <span>Right sidebar adjusments</span><span class="cell-detail-description">CLI Connector</span></td>
+                    <td class="milestone"><span class="completed">38 / 40</span><span class="version">v1.0.1</span>
+                      <div class="progress">
+                        <div style="width: 98%" class="progress-bar progress-bar-primary"></div>
+                      </div>
+                    </td>
+                    <td class="cell-detail"><span>master</span><span class="cell-detail-description">65bc2da</span></td>
+                    <td class="cell-detail"><span>Mars 18, 2016</span><span class="cell-detail-description">13:02</span></td>
+                    <td class="text-right">
+                      <div class="btn-group btn-hspace">
+                        <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">Open <span class="icon-dropdown mdi mdi-chevron-down"></span></button>
+                        <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
+                          <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr> -->
+                </tbody>
+            </table>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>

@@ -6,6 +6,7 @@ class AuthController extends Public_Controller {
 	function __construct()
     {
         parent::__construct();
+        $this->load->model('LoggerModel','logger'); 
         $this->load->model('AuthModel','auth');
     }
 
@@ -45,13 +46,13 @@ class AuthController extends Public_Controller {
         	if ($login != FALSE) {
 
         		if ($login->Active == '0' || $login->AccountStatus == '0') {
-        			$json = json_encode($login); //log
-        			// $this->logger->log('Account Disabled','Authentication',$json); //Log 
+        			$json = json_encode($login) . 'inputs:' . json_encode($postdata); //log
+        			$this->logger->log('Account Disabled','Authentication',$json); //Log 
         			echo json_encode(['error'=>'Account Disabled.']);
         		}
         		elseif ($login->PasswordHash != $hashed_password) {
-        			$json = json_encode($login); //log
-        			// $this->logger->log('Incorect Password','Authentication',$json); //Log
+        			$json = json_encode($login) . 'inputs:' . json_encode($postdata); //log
+        			$this->logger->log('Incorect Password','Authentication',$json); //Log
         			echo json_encode(['error'=>'Incorrect Password']);
         		}
         		else {
@@ -63,19 +64,25 @@ class AuthController extends Public_Controller {
 	        			'active' => $login->Active,
 	        			'security_id' =>$login->SecurityUserLevelId,
 	        			'usertype' => $login->UserType,
-	        			'AccountId' => $login->AccountId,
+	        			'account_id' => $login->AccountId,
+	        			'photo' => $login->Photopath,
+	        			'username' => $login->LoginName,
+	        			'email'=>$login->PersonalEmail,
 	        		);  
 	        		
 	        		$this->session->set_userdata($session_data);
 	        		$json = json_encode($session_data); //log
-        			// $this->logger->log('Success Login','Authentication',$json); //Log
+        			$this->logger->log('Success Login','Authentication',$json); //Log
         			echo json_encode(['success'=>TRUE,'url'=>base_url()]);	        		
 
         		}
 
         	}
         	else {
+        		$json = json_encode($postdata); //log
+    			$this->logger->log('Account not found.','Authentication',$json); //Log
         		echo json_encode(['error'=>'Account not found.']);
+
         	}
 
         }
@@ -86,6 +93,7 @@ class AuthController extends Public_Controller {
 	public function Logout() {
 		$this->session->unset_userdata('userid');
 		$this->session->sess_destroy();
+		$this->logger->log('Logout','Authentication',json_encode($this->session->userdata())); //Log
 		return redirect(base_url());	
 	}
 

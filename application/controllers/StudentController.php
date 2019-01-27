@@ -5,6 +5,7 @@ class StudentController extends MY_Controller {
 
 	function __construct() {
         parent::__construct();
+        $this->load->model('LoggerModel','logger'); 
         $this->load->model('StudentModel','students');
         $this->load->model('CityModel','city');
         $this->load->model('RegionModel','region');
@@ -25,8 +26,10 @@ class StudentController extends MY_Controller {
 		$this->load->view('layout/topbar');
 		$this->load->view('layout/leftbar');
 		$this->load->view('pages/studentlist',$data);
-		$this->load->view('layout/rightbar');
+		// $this->load->view('layout/rightbar');
 		$this->load->view('layout/scripts',$layout);
+		$json = json_encode($data); //log
+        $this->logger->log('Load Masterlist','Students',$json); //Log  
 	}
 
 
@@ -45,12 +48,14 @@ class StudentController extends MY_Controller {
 		$this->load->view('layout/topbar');
 		$this->load->view('layout/leftbar');
 		$this->load->view('pages/studentregister',$data);
-		$this->load->view('layout/rightbar');
+		// $this->load->view('layout/rightbar');
 		$this->load->view('layout/scripts',$layout);
+		$json = json_encode($data); //log
+        $this->logger->log('Register Form','Students',$json); //Log  
 	}
 
 	public function ViewStudent($id){ 
-		$layout = array('form'=>TRUE,'formelements'=>TRUE, 'page_title'=>'Student Registration');
+		$layout = array('form'=>TRUE,'formelements'=>TRUE, 'page_title'=>'Student Details');
 		$data['cities'] = $this->city->LoadMasterlist('Id,Name');
 		$data['regions'] = $this->region->LoadMasterlist('Id,Name');
 		$data['courses'] = $this->course->LoadMasterlist('Id,Name');
@@ -69,12 +74,14 @@ class StudentController extends MY_Controller {
 		$this->load->view('layout/topbar');
 		$this->load->view('layout/leftbar');
 		$this->load->view('pages/loadstudentprofile',$data);
-		$this->load->view('layout/rightbar');
+		// $this->load->view('layout/rightbar');
 		$this->load->view('layout/scripts',$layout);
+		$json = json_encode($data); //log
+        $this->logger->log('View Form','Students',$json); //Log  
 	}
 
 	public function UpdateStudent($id){ 
-		$layout = array('form'=>TRUE,'formelements'=>TRUE, 'page_title'=>'Student Registration');
+		$layout = array('form'=>TRUE,'formelements'=>TRUE, 'page_title'=>'Student Update');
 		$data['cities'] = $this->city->LoadMasterlist('Id,Name');
 		$data['regions'] = $this->region->LoadMasterlist('Id,Name');
 		$data['courses'] = $this->course->LoadMasterlist('Id,Name');
@@ -93,24 +100,26 @@ class StudentController extends MY_Controller {
 		$this->load->view('layout/topbar');
 		$this->load->view('layout/leftbar');
 		$this->load->view('pages/loadstudentprofile',$data);
-		$this->load->view('layout/rightbar');
+		// $this->load->view('layout/rightbar');
 		$this->load->view('layout/scripts',$layout);
+		$json = json_encode($data); //log
+        $this->logger->log('Edit Form','Students',$json); //Log  
 	}
 
 
 	public function Create() {
 		$postdata = $this->input->post();
 		$this->form_validation->set_rules('FirstName', 'Given Name', 'required');
-        // $this->form_validation->set_rules('LastName', 'Family Name', 'required');
-        // $this->form_validation->set_rules('Birthdate', 'Date of birth', 'required');
-        // $this->form_validation->set_rules('PersonalEmail', 'Email', 'required|email');
-        // $this->form_validation->set_rules('MobileNo', 'Mobile', 'required');
-        // $this->form_validation->set_rules('Code', 'Student Number', 'required|unique[tbl_students.Code]');
-        // $this->form_validation->set_rules('CourseId', 'Course', 'required');
-        // $this->form_validation->set_rules('YearLevelId', 'Year Level', 'required');
-        // $this->form_validation->set_rules('SemesterId', 'Semester', 'required');
-        // $this->form_validation->set_rules('SectionId', 'Section', 'required');
-        // $this->form_validation->set_rules('Advisor', 'Advisor', 'required');
+        $this->form_validation->set_rules('LastName', 'Family Name', 'required');
+        $this->form_validation->set_rules('Birthdate', 'Date of birth', 'required');
+        $this->form_validation->set_rules('PersonalEmail', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('MobileNo', 'Mobile', 'required');
+        $this->form_validation->set_rules('Code', 'Student Number', 'required|is_unique[tbl_students.Code]');
+        $this->form_validation->set_rules('CourseId', 'Course', 'required');
+        $this->form_validation->set_rules('YearLevelId', 'Year Level', 'required');
+        $this->form_validation->set_rules('SemesterId', 'Semester', 'required');
+        $this->form_validation->set_rules('SectionId', 'Section', 'required');
+        $this->form_validation->set_rules('Advisor', 'Advisor', 'required');
         $this->form_validation->set_error_delimiters('<ul class="parsley-errors-list filled" id="parsley-id-5"><li class="parsley-required">','</li></ul>');
         if ($this->form_validation->run() == FALSE){
         	foreach ($postdata as $key => $value) {
@@ -118,7 +127,8 @@ class StudentController extends MY_Controller {
         	}
             $errors = validation_errors();
             $data['error'] = $errors;
-            // array_push($data, ['error'=>$errors]);
+            $json = json_encode($postdata); //log
+	        $this->logger->log('Invalid Register','Students',$json); //Log  
             echo json_encode($data);
         }else{
 	        $path = dirname(BASEPATH).'/uploads/public/';
@@ -135,7 +145,9 @@ class StudentController extends MY_Controller {
             		$postdata['PhotoPath'] = 'uploads/public/' . $photo_file['file_name'];
 		        }		 
 		        else {
-		            $errors = $this->upload->display_errors();
+		        	$errors = $this->upload->display_errors();
+		            $json = json_encode($errors); //log
+			        $this->logger->log('Invalid Upload','Students',$json); //Log  
 		            $senderror = TRUE;
 		        }
 
@@ -150,6 +162,8 @@ class StudentController extends MY_Controller {
 		        }		
 		        else {
 		            $errors = $this->upload->display_errors();
+		            $json = json_encode($errors); //log
+			        $this->logger->log('Invalid Upload','Students',$json); //Log  
 		            $senderror = TRUE;	
 		        }   
 		        
@@ -162,9 +176,13 @@ class StudentController extends MY_Controller {
 
 		        $result = $this->students->AddStudent($postdata);
 	     		if ($result != FALSE) {	
+					$json = json_encode($result); //log
+			        $this->logger->log('Success Register','Studdents',$json); //Log  
 	        		echo json_encode(['redirect'=>base_url('manage/students')]);
 	     		}
 	     		else {
+		            $json = json_encode($postdata); //log
+			        $this->logger->log('Invalid Register','Students',$json); //Log  
 	        		echo json_encode(['error'=>'Failed to save.']);
 	     		}
 
@@ -181,16 +199,16 @@ class StudentController extends MY_Controller {
 
 		$this->form_validation->set_rules('Id', 'Selected Account', 'required');
 		$this->form_validation->set_rules('FirstName', 'Given Name', 'required');
-        // $this->form_validation->set_rules('LastName', 'Family Name', 'required');
-        // $this->form_validation->set_rules('Birthdate', 'Date of birth', 'required');
-        // $this->form_validation->set_rules('PersonalEmail', 'Email', 'required|email');
-        // $this->form_validation->set_rules('MobileNo', 'Mobile', 'required');
-        // $this->form_validation->set_rules('Code', 'Student Number', 'required|unique[tbl_students.Code]');
-        // $this->form_validation->set_rules('CourseId', 'Course', 'required');
-        // $this->form_validation->set_rules('YearLevelId', 'Year Level', 'required');
-        // $this->form_validation->set_rules('SemesterId', 'Semester', 'required');
-        // $this->form_validation->set_rules('SectionId', 'Section', 'required');
-        // $this->form_validation->set_rules('Advisor', 'Advisor', 'required');
+        $this->form_validation->set_rules('LastName', 'Family Name', 'required');
+        $this->form_validation->set_rules('Birthdate', 'Date of birth', 'required');
+        $this->form_validation->set_rules('PersonalEmail', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('MobileNo', 'Mobile', 'required');
+        $this->form_validation->set_rules('Code', 'Student Number', 'required');
+        $this->form_validation->set_rules('CourseId', 'Course', 'required');
+        $this->form_validation->set_rules('YearLevelId', 'Year Level', 'required');
+        $this->form_validation->set_rules('SemesterId', 'Semester', 'required');
+        $this->form_validation->set_rules('SectionId', 'Section', 'required');
+        $this->form_validation->set_rules('Advisor', 'Advisor', 'required');
         $this->form_validation->set_error_delimiters('<ul class="parsley-errors-list filled" id="parsley-id-5"><li class="parsley-required">','</li></ul>');
         if ($this->form_validation->run() == FALSE){
         	foreach ($postdata as $key => $value) {
@@ -198,7 +216,8 @@ class StudentController extends MY_Controller {
         	}
             $errors = validation_errors();
             $data['error'] = $errors;
-            // array_push($data, ['error'=>$errors]);
+            $json = json_encode($postdata); //log
+	        $this->logger->log('Invalid Update','Students',$json); //Log  
             echo json_encode($data);
         }else{
 	        $path = dirname(BASEPATH).'/uploads/public/';
@@ -216,6 +235,8 @@ class StudentController extends MY_Controller {
 		        }		 
 		        else {
 		            $errors = $this->upload->display_errors();
+		            $json = json_encode($errors); //log
+			        $this->logger->log('Invalid Upload','Students',$json); //Log  
 		            $senderror = TRUE;
 		        }
 
@@ -230,6 +251,8 @@ class StudentController extends MY_Controller {
 		        }		
 		        else {
 		            $errors = $this->upload->display_errors();
+		            $json = json_encode($errors); //log
+			        $this->logger->log('Invalid Upload','Students',$json); //Log  
 		            $senderror = TRUE;	
 		        }   
 		        
@@ -243,9 +266,13 @@ class StudentController extends MY_Controller {
     			unset($postdata['Id']);
 		        $result = $this->students->UpdateStudent($id,$postdata);
 	     		if ($result != FALSE) {	
-	        		echo json_encode(['redirect'=>base_url('student/students')]);
+					$json = json_encode($result); //log
+			        $this->logger->log('Success Update','Studdents',$json); //Log  
+	        		echo json_encode(['redirect'=>$_SERVER['HTTP_REFERER']]);
 	     		}
 	     		else {
+		            $json = json_encode($postdata); //log
+			        $this->logger->log('Invalid Update','Students',$json); //Log  
 	        		echo json_encode(['error'=>'Failed to save.']);
 	     		}
 

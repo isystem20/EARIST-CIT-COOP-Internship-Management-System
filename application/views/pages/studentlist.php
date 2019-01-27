@@ -21,7 +21,7 @@
             <button class="btn btn-space btn-success" id="StudentUpdateSelectButton" data-url="<?=base_url('student/edit/'); ?>" >
               <i class="icon icon-left mdi mdi-account-add"></i> Update
             </button>
-            <button class="btn btn-space btn-danger">
+            <button class="btn btn-space btn-warning">
               <i class="icon icon-left mdi mdi-account-add"></i> Delete
             </button>
 
@@ -71,7 +71,7 @@
                       </td>
                       <td class="cell-detail"> <span><?=$row->Code; ?></span></td>
                       <td class="user-avatar cell-detail user-info">
-                        <img src="<?=base_url($row->Photopath)?>" alt="Avatar" class="mt-0 mt-md-2 mt-lg-0">
+                        <img src="<?=base_url($row->Photopath)?>" alt="" class="mt-0 mt-md-2 mt-lg-0">
                       </td>
                       <td class="cell-detail"> <span><?=$row->LastName; ?></span></td> 
                       <td class="cell-detail"> <span><?=$row->FirstName; ?></span></td>

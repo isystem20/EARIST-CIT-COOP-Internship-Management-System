@@ -75,10 +75,15 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
+	// 'hostname' => '50.62.176.163',
+	// 'username' => 'yeye_citcms',
+	// 'password' => 's?@M(SCve8a,',
+	// 'database' => 'citcoopdb',
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
 	'database' => 'citcoopdb',
+	
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

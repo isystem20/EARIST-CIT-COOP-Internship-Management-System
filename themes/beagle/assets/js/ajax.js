@@ -1,5 +1,12 @@
 $(document).ready(function() {
 
+  if ($('#pre-loaded-content').length > 0 && $('.note-editable').length > 0) {
+    $document_content = $('#pre-loaded-content').val();
+    $('.note-editable').html($document_content);
+  }
+
+
+
 //[LOGIN SUBMIT]
   $('#loginform').submit(function(e){ 
     e.preventDefault();       
@@ -39,9 +46,9 @@ $(document).ready(function() {
     var newURL = $(this).attr('action');    
     var newData = new FormData(this); 
     var EditMode = 0;
-    for(var pair of newData.entries()) {
-       console.log(pair[0]+ ', '+ pair[1]); 
-    }
+    // for(var pair of newData.entries()) {
+    //    console.log(pair[0]+ ', '+ pair[1]); 
+    // }
     $.ajax({
         url: newURL,
         type:'POST',
@@ -53,7 +60,7 @@ $(document).ready(function() {
         success: function(data) {
           console.log(data);            
           if($.isEmptyObject(data.error)){ 
-              $.gritter.add({title:"Success",text:"Authentication Successful. Redirecting...",class_name:"color success"});
+              $.gritter.add({title:"Success",text:"Record Update Successful. Redirecting...",class_name:"color success"});
               window.setTimeout(function(){
                 window.location.href = data.redirect;  
               }, 1000);
@@ -106,6 +113,106 @@ $(document).ready(function() {
 
 
 
+//[DOCUMENT REGISTER]
+  $('#document_reg_form').submit(function(e){ 
+    e.preventDefault();       
+    $("#document_reg_btn").prop("disabled", true);  
+    $("#document_reg_btn").text("Processing..");  
+    var newURL = $(this).attr('action');    
+    var newData = new FormData(this); 
+    newData.append('Content', $('.note-editable').html());
+    newData.delete('files');
+    var EditMode = 0;
+    for(var pair of newData.entries()) {
+       console.log(pair[0]+ ', '+ pair[1]); 
+    }
+    $.ajax({
+        url: newURL,
+        type:'POST',
+        dataType: "json",   
+        data: newData,
+        contentType: false,
+        cache: false,  
+        processData:false,  
+        success: function(data) {
+          console.log(data);            
+          if($.isEmptyObject(data.error)){ 
+              $.gritter.add({title:"Success",text:"Record Update Successful. Redirecting...",class_name:"color success"});
+              window.setTimeout(function(){
+                window.location.href = data.redirect;  
+              }, 1000);
+            }
+            else{
+              $.each(data.responses, function(key,value) {
+                var element = $('[name='+key+']');
+                element.next('.parsley-errors-list').remove();
+                element.removeClass('parsley-error');
+                element.addClass(value.length > 0 ? 'parsley-error' : '');
+                if (element.closest('.datetimepicker').length > 0) {
+                  element.closest('.datetimepicker').after(value);
+                }else{
+                  element.after(value);
+                }
+                
+              });
+            }
+        $("#document_reg_btn").prop("disabled", false);  
+        $("#document_reg_btn").text("Submit");           
+        }
+    });   
+  });
 
 
+
+
+//[Application REGISTER]
+  $('#application_reg_form').submit(function(e){ 
+    e.preventDefault();       
+    $("#application_reg_btn").prop("disabled", true);  
+    $("#application_reg_btn").text("Processing..");  
+    var newURL = $(this).attr('action');    
+    var newData = new FormData(this); 
+    var EditMode = 0;
+    for(var pair of newData.entries()) {
+       console.log(pair[0]+ ', '+ pair[1]); 
+    }
+    $.ajax({
+        url: newURL,
+        type:'POST',
+        dataType: "json",   
+        data: newData,
+        contentType: false,
+        cache: false,  
+        processData:false,  
+        success: function(data) {
+          console.log(data);            
+            if($.isEmptyObject(data.error)){ 
+              $.gritter.add({title:"Success",text:"Record Update Successful. Redirecting...",class_name:"color success"});
+              window.setTimeout(function(){
+                window.location.href = data.redirect;  
+              }, 1000);
+            }
+            else {
+              $c = 0;
+              $.each(data.responses, function(key,value) {
+                $c = $c + 1;
+                var element = $('[name='+key+']');
+                element.next('.parsley-errors-list').remove();
+                element.removeClass('parsley-error');
+                element.addClass(value.length > 0 ? 'parsley-error' : '');
+                if (element.closest('.datetimepicker').length > 0) {
+                  element.closest('.datetimepicker').after(value);
+                }else{
+                  element.after(value);
+                } 
+              });
+              if ($c == 0) {
+                $.gritter.add({title:"Error",text:"Record Update Unsuccessful.",class_name:"color danger"});
+              }
+            }
+        $("#application_reg_btn").prop("disabled", false);  
+        $("#application_reg_btn").text("Submit");           
+        }
+    });   
+  });
 });

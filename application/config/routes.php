@@ -55,19 +55,56 @@ $route['translate_uri_dashes'] = FALSE;
 
 // $route['404'] = 'ErrorController/index';
 
-$route['manage/students'] = 'StudentController/LoadStudentMasterlist';
+
+$route['dashboard'] = 'DashboardController/Dashboard';
+
 
 $route['monitor/internship'] = 'InternshipController/LoadStudentMasterlist';
 
+
+$route['manage/students'] = 'StudentController/LoadStudentMasterlist';
 $route['student/register'] = 'StudentController/RegisterStudent';
 $route['student/edit/(:any)'] = 'StudentController/UpdateStudent/$1';
 $route['student/view/(:any)'] = 'StudentController/ViewStudent/$1';
-
 $route['student/add'] = 'StudentController/Create';
 $route['student/update'] = 'StudentController/Update';
 $route['student/del'] = 'StudentController/Delete';
 
+$route['manage/documents'] = 'DocumentController/LoadMasterlist';
+$route['document/register'] = 'DocumentController/RegisterDocument';
+$route['document/edit/(:any)'] = 'DocumentController/UpdateDocument/$1';
+$route['document/view/(:any)'] = 'DocumentController/ViewDocument/$1';
+$route['document/add'] = 'DocumentController/Create';
+$route['document/update'] = 'DocumentController/Update';
+$route['document/del'] = 'DocumentController/Delete';
+
+
+$route['profile'] = 'StudentAccountController/LoadProfile';
+$route['applications'] = 'StudentAccountController/LoadMyApplications';
+$route['applications/register'] = 'StudentAccountController/RegisterApplication';
+$route['applications/add'] = 'StudentAccountController/Create';
 
 $route['login'] = 'AuthController/LoginPage';
 $route['login/auth'] = 'AuthController/Authenticate';
 $route['logout'] = 'AuthController/Logout';
+
+
+
+//Generic Forms
+//SECTION
+$route['manage/sections'] = 'SectionController/LoadMasterlist';
+$route['manage/sections/add'] = 'SectionController/Create';
+$route['manage/sections/update'] = 'SectionController/Update';
+$route['manage/sections/de'] = 'SectionController/Delete';
+
+//SEMESTER
+$route['manage/semester'] = 'SemesterController/LoadMasterlist';
+$route['manage/semester/add'] = 'SemesterController/Create';
+$route['manage/semester/update'] = 'SemesterController/Update';
+$route['manage/semester/de'] = 'SemesterController/Delete';
+
+//COURSES
+$route['manage/course'] = 'CourseController/LoadMasterlist';
+$route['manage/course/add'] = 'CourseController/Create';
+$route['manage/course/update'] = 'CourseController/Update';
+$route['manage/course/de'] = 'CourseController/Delete';

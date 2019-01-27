@@ -44,7 +44,14 @@ class Admin_Controller extends MY_Controller {
     function __construct()
     {
         parent::__construct();
+
+        if ($this->session->userdata('usertype') != 'ADMIN') {
+            http_response_code(403);
+            die('Forbidden');
+        }
+
     }
+
 
 }
 

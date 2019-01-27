@@ -5,8 +5,7 @@
           <div class="splash-container">
             <div class="card card-border-color card-border-color-primary">
               <div class="card-header">
-                <!-- <img src="assets/img/logo-xx.png" alt="logo" width="102" height="27" class="logo-img"> -->
-                Logo
+                <img src="<?=base_url('themes/others/'); ?>defaultlogo.png" alt="logo" width="202" class="logo-img">
                 <span class="splash-description">Please enter your user information.</span></div>
               <div class="card-body">
                 <form action="<?=base_url('login/auth'); ?>" id="loginform">

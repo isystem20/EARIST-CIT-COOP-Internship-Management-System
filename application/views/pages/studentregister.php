@@ -8,7 +8,7 @@
             <ol class="breadcrumb page-head-nav">
               <li class="breadcrumb-item"><a href="#">Administration</a></li>
               <li class="breadcrumb-item"><a href="#">Masterlist</a></li>
-              <li class="breadcrumb-item"><a href="#">Students</a></li>
+              <li class="breadcrumb-item"><a href="<?=base_url('manage/students'); ?>">Students</a></li>
               <li class="breadcrumb-item active">Register</li>
             </ol>
           </nav>
@@ -110,11 +110,11 @@
                               </div>
                               <div class="form-group col-sm-4">
                                 <label for="inputUserName">Mobile</label>
-                                <input data-parsley-type="digits" name="MobileNo" type="text"  placeholder="Enter only digits" class="form-control parsley-error" data-parsley-id="63">
+                                <input data-parsley-type="digits" name="MobileNo" type="text"  placeholder="639XXXXXXXXX" class="form-control parsley-error" data-parsley-id="63">
                               </div>
                               <div class="form-group col-sm-4">
                                 <label for="inputUserName">Landline</label>
-                                <input data-parsley-type="digits" name="TelNo" type="text"  placeholder="Enter only digits" class="form-control parsley-error" data-parsley-id="63">
+                                <input data-parsley-type="digits" name="TelNo" type="text"  placeholder="Areacode + XXXXXXX" class="form-control parsley-error" data-parsley-id="63">
                               </div>
                           </div>
                       </div>

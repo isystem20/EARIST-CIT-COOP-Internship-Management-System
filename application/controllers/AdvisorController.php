@@ -6,6 +6,7 @@ class AdvisorController extends MY_Controller {
 	function __construct()
     {
         parent::__construct();
+        $this->load->model('LoggerModel','logger'); 
         $this->load->model('StudentModel','students');
         $this->load->model('CityModel','city');
         $this->load->model('RegionModel','region');
@@ -25,8 +26,9 @@ class AdvisorController extends MY_Controller {
 		$this->load->view('layout/topbar');
 		$this->load->view('layout/leftbar');
 		$this->load->view('pages/advisorlist',$data);
-		$this->load->view('layout/rightbar');
+		// $this->load->view('layout/rightbar');
 		$this->load->view('layout/scripts',$layout);
+
 	}
 
 

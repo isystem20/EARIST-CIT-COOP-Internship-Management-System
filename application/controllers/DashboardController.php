@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class MainController extends MY_Controller {
+class DashboardController extends Admin_Controller {
 
 	function __construct()
     {
@@ -9,19 +9,6 @@ class MainController extends MY_Controller {
         $this->load->model('LoggerModel','logger'); 
         $this->load->model('DashboardModel','dash'); 
     }
-    // public $usertype = $this->session->userdata('usertype');
-
-	public function index()
-	{
-		$usertype = $this->session->userdata('usertype');
-		if ($usertype == 'ADMIN') {
-			return redirect(base_url('dashboard'));
-		}
-		elseif ($usertype == 'STUDENT') {
-			return redirect(base_url('profile'));
-		}
-		
-	}
 
 	public function Dashboard() {
 		$usertype = $this->session->userdata('usertype');
@@ -38,15 +25,9 @@ class MainController extends MY_Controller {
 			$this->load->view('layout/scripts',$layout);
 			$json = json_encode($data); //log
 	        $this->logger->log('Load Dashboard','Dashboard',$json); //Log  			
-		}else {
-			http_response_code(403);
-			die('Forbidden');
 		}
 
 	}
-
-
-
 
 
 
