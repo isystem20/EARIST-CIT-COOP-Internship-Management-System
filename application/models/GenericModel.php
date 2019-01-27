@@ -42,7 +42,7 @@ class GenericModel extends CI_Model {
 	}
 
 	function Edit($id,$data,$table) {
-        $this->db->set('ModifiedAt', "'CURRENT_TIMESTAMP'", FALSE);
+        $this->db->set('ModifiedAt', "NOW()", FALSE);
         $this->db->set('ModifiedById', "'".$this->session->userdata('userid')."'", FALSE);
         $this->db->where('Id',$id);
 		$this->db->update($table,$data);

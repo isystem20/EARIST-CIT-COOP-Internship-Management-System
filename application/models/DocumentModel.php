@@ -54,7 +54,7 @@ class DocumentModel extends CI_Model {
 
 
 	function UpdateStudent($id,$data) {
-        $this->db->set('ModifiedAt', "'CURRENT_TIMESTAMP'", FALSE);
+        $this->db->set('ModifiedAt', "NOW()", FALSE);
         $this->db->set('ModifiedById', "'".$this->session->userdata('userid')."'", FALSE);
         $this->db->where('Id',$id);
 		$this->db->update('tbl_documents',$data);
