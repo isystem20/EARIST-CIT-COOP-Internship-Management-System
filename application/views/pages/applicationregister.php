@@ -37,10 +37,9 @@
                               <option value="">[Add New Company]</option>  
                               <?php
                               if ($companies->num_rows() > 0) {
-                                
                                 foreach ($companies->result() as $row) {
                                  ?>
-                                <option <?=$str; ?> value="<?=$row->Id ?>"><?=$row->Name; ?></option>  
+                                <option value="<?=$row->Id ?>"><?=$row->CompanyName; ?></option>  
                               <?php
                                 }
                               }
@@ -94,19 +93,19 @@
                     <div class="form-group row">
                       <label for="inputPlaceholder3" class="col-12 col-sm-3 col-form-label text-sm-right">ZIP code</label>
                       <div class="col-12 col-sm-8 col-lg-6">
-                        <input id="inputPlaceholder3" type="text" name="Zip" placeholder="Placeholder text" class="form-control">
+                        <input id="inputPlaceholder3" type="text" name="Zip" placeholder="Company Zip Code" class="form-control">
                       </div>
                     </div>                    
                     <div class="form-group row">
                       <label for="inputPlaceholder3" class="col-12 col-sm-3 col-form-label text-sm-right">Contact Person</label>
                       <div class="col-12 col-sm-8 col-lg-6">
-                        <input id="inputPlaceholder3" type="text" name="ContactPerson" placeholder="Placeholder text" class="form-control">
+                        <input id="inputPlaceholder3" type="text" name="ContactPerson" placeholder="Contact Person" class="form-control">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="inputDisabled3" class="col-12 col-sm-3 col-form-label text-sm-right">Designation</label>
                       <div class="col-12 col-sm-8 col-lg-6">
-                        <input id="inputDisabled3" type="text" name="Designation" placeholder="Disabled input text" class="form-control">
+                        <input id="inputDisabled3" type="text" name="Designation" placeholder="Designation of Contact Person" class="form-control">
                       </div>
                     </div>
                     <div class="form-group row">

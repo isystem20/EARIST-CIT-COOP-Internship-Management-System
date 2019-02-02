@@ -209,7 +209,7 @@ $(document).ready(function() {
       }
       else {
         $('#all_delete_modal').modal();
-        $('input[name=Id]').val(ids);
+        $('input[name=Class]').val('documentids');
         $('#all_delete_form').attr('action',url);
       }
 
@@ -413,26 +413,30 @@ $(document).ready(function() {
     e.preventDefault();       
     $("#all_delete_btn").prop("disabled", true);  
     $("#all_delete_btn").text("Processing..");  
+    var ids = new Array();
+    $("input:checkbox[dataclass=" + $('input[name=Class]').val() + "]:checked").each(function() {
+       ids.push($(this).data('id'));
+    });
     var newURL = $(this).attr('action');    
-    var newData = new FormData(this); 
+    var newData = {
+        'Id' : ids,
+    }
+    console.log(ids);
     $.ajax({
         url: newURL,
         type:'POST',
         dataType: "json",   
         data: newData,
-        contentType: false,
-        cache: false,  
-        processData:false,  
         success: function(data) {
           console.log(data);            
             if($.isEmptyObject(data.error)){ 
               $.gritter.add({title:"Success",text:"Record Update Successful. Redirecting...",class_name:"color success"});
-              window.setTimeout(function(){
-                window.location.href = data.redirect;  
-              }, 1000);
+              // window.setTimeout(function(){
+              //   window.location.href = data.redirect;  
+              // }, 1000);
             }
             else {
-              $.gritter.add({title:"Error",text:"Record Update Unsuccessful.",class_name:"color danger"});
+              $.gritter.add({title:"Error",text:data.error,class_name:"color danger"});
             }
         $("#all_delete_btn").prop("disabled", false);  
         $("#all_delete_btn").text("Proceed");           

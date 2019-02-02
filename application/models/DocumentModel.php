@@ -43,32 +43,30 @@ class DocumentModel extends CI_Model {
 		$this->db->insert('tbl_documents',$data);
 		// die($this->db->last_query());
 		if ($this->db->affected_rows() > 0) {
-			return FALSE;
-			// return TRUE;
+			return $this->LoadSingle($id);	
 		}
 		else {
-			return $this->LoadSingle($id);			
-
+			return FALSE;					
 		}
 	}
 
 
-	function UpdateDocument($id) {
+	function UpdateDocument($id,$data) {
         $this->db->set('ModifiedAt', "NOW()", FALSE);
         $this->db->set('ModifiedById', "'".$this->session->userdata('userid')."'", FALSE);
         $this->db->where('Id',$id);
 		$this->db->update('tbl_documents',$data);
 		// die($this->db->last_query());
 		if ($this->db->affected_rows() > 0) {
-			return FALSE;
+			return $this->LoadSingle($id);	
 		}
 		else {
-			return $this->LoadSingle($id);			
+			return FALSE;					
 		}
 	}
 
 
-	function DeleteStudent($data) {
+	function DeleteDocument($data) {
 		$n = 0;
 		foreach ($data as $id) {
 			$n = $n + 1;
@@ -81,10 +79,10 @@ class DocumentModel extends CI_Model {
 		}
 		$this->db->delete('tbl_documents');
 		if ($this->db->affected_rows() > 0) {
-			return FALSE;
+			return TRUE;
 		}
 		else {
-			return $this->LoadSingle($id);			
+			return FALSE;
 		}
 
 	}

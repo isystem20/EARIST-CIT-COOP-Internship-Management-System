@@ -43,7 +43,7 @@ class StudentAccountController extends Student_Controller {
 
     public function RegisterApplication() {
 		$layout = array('form'=>TRUE,'formelements'=>TRUE, 'page_title'=>'Internship Application');
-		$data['companies'] = $this->com->LoadMasterlist('Id,CompanyName');
+		$data['companies'] = $this->com->LoadMasterlist('a.Id,a.CompanyName');
 		$data['cities'] = $this->city->LoadMasterlist('Id,Name');
 		$data['regions'] = $this->region->LoadMasterlist('Id,Name');
 		$this->load->view('layout/head',$layout);

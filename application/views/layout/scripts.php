@@ -6,7 +6,7 @@
           </div>
           <div class="modal-body">
             <div class="text-center"><span class="modal-main-icon mdi mdi-info-outline"></span>
-              <?php $hidden = array('Id' => '', ); ?>
+              <?php $hidden = array('Class' => '', ); ?>
               <?=form_open('','id="all_delete_form"',$hidden); ?>
               <h3>Warning!</h3>
               <p>You are about to delete selected records.<br>Do you wish to proceed?</p>

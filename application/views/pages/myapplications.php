@@ -77,7 +77,7 @@
                             <span class="sr-only">Toggle Dropdown</span>
                           </button>
                           <div role="menu" class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Request to Print</a>
+                            <a href="#" class="dropdown-item">Request with ...</a>
                             <a href="#" class="dropdown-item">Delete</a>
                           </div>
                         </div>
