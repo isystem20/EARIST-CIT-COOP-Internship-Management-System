@@ -53,23 +53,18 @@
                   if (!empty($all_list)) {
                      if ($all_list->num_rows() > 0) {
                         foreach ($all_list->result() as $row) { ?>
-
-
                     <tr>
                       <td>
-                        
                         <label class="custom-control custom-control-sm custom-checkbox">
                           <input type="checkbox" dataclass="studentids" class="custom-control-input studentids" data-id="<?=$row->Id; ?>">
                           <span class="custom-control-label"></span>
                         </label>
-                        
                       </td>
                       <td class="cell-detail"> <span><?=date('Y-m-d',strtotime($row->LabelDate)); ?></span></td>
                       <td class="cell-detail"> <span><?=$row->CompanyName; ?></span></td> 
                       <td class="cell-detail"> <span><?=$row->ContactPerson; ?></span></td>
                       <td class="cell-detail"> <span><?=$row->Address1; ?></span></td>
                       <td class="text-right">
-
                         <div class="btn-group btn-space ">
                           <a href="<?=base_url('student/view/'.$row->Id); ?>" class="btn btn-secondary">Open</a>
                           <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">
@@ -83,8 +78,6 @@
                         </div>
                       </td>
                     </tr>
-
-
                   <?php
                         }
                      }
