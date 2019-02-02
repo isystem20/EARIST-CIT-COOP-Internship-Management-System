@@ -113,6 +113,8 @@ $(document).ready(function() {
 
 
 
+
+
 //[DOCUMENT REGISTER]
   $('#document_reg_form').submit(function(e){ 
     e.preventDefault();       
@@ -161,6 +163,56 @@ $(document).ready(function() {
         }
     });   
   });
+
+
+
+
+
+//Document Update Button
+  $('#DocumentUpdateSelectButton').click(function(e){ 
+      var url = $(this).data('url');
+      var count = 0;
+      var n = '';
+      $("input:checkbox[dataclass=documentids]:checked").each(function() {
+         count = count + 1;
+         n = $(this).data('id');
+
+      });
+
+      if (count == 0) {
+        $.gritter.add({title:"",text:'Nothing is selected.',class_name:"color warning"});
+      }
+      else if(count == 1) {
+        window.location.href = url + n;
+      } else if (count > 1) {
+        $.gritter.add({title:"",text:'Please select single student.',class_name:"color warning"});
+      } else {
+        $.gritter.add({title:"",text:'Something went wrong.',class_name:"color warning"});
+      }
+
+  });
+
+
+//Document Delete Button
+  $('#DocumentDeleteSelectButton').click(function(e){ 
+      var url = $(this).data('url');
+      var count = 0;
+      var n = '';
+      $("input:checkbox[dataclass=documentids]:checked").each(function() {
+         count = count + 1;
+         n = $(this).data('id');
+
+      });
+      if (count == 0) {
+        $.gritter.add({title:"",text:'Nothing is selected.',class_name:"color warning"});
+      }
+      else {
+        $.gritter.add({title:"",text:'Something went wrong.',class_name:"color warning"});
+      }
+
+  });
+
+
 
 
 

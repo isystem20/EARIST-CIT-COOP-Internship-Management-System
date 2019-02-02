@@ -18,10 +18,10 @@
             <a href="<?=base_url('document/register'); ?>" class="btn btn-space btn-primary">
               <i class="icon icon-left mdi mdi-account-add"></i> Add
             </a>
-            <button class="btn btn-space btn-success" id="StudentUpdateSelectButton" data-url="<?=base_url('student/edit/'); ?>" >
+            <button class="btn btn-space btn-success" id="DocumentUpdateSelectButton" data-url="<?=base_url('document/view/'); ?>" >
               <i class="icon icon-left mdi mdi-account-add"></i> Update
             </button>
-            <button class="btn btn-space btn-warning">
+            <button class="btn btn-space btn-warning" id="DocumentDeleteSelectButton" data-url="<?=base_url('document/del'); ?>">
               <i class="icon icon-left mdi mdi-account-add"></i> Delete
             </button>
 
@@ -62,7 +62,7 @@
                       <td>
                         
                         <label class="custom-control custom-control-sm custom-checkbox">
-                          <input type="checkbox" dataclass="studentids" class="custom-control-input studentids" data-id="<?=$row->Id; ?>">
+                          <input type="checkbox" dataclass="documentids" class="custom-control-input studentids" data-id="<?=$row->Id; ?>">
                           <span class="custom-control-label"></span>
                         </label>
                         
