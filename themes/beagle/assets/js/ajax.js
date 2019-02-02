@@ -198,16 +198,19 @@ $(document).ready(function() {
       var url = $(this).data('url');
       var count = 0;
       var n = '';
+      var ids = new Array();
       $("input:checkbox[dataclass=documentids]:checked").each(function() {
          count = count + 1;
          n = $(this).data('id');
-
+         ids.push(n);
       });
       if (count == 0) {
         $.gritter.add({title:"",text:'Nothing is selected.',class_name:"color warning"});
       }
       else {
-        $.gritter.add({title:"",text:'Something went wrong.',class_name:"color warning"});
+        $('#all_delete_modal').modal();
+        $('input[name=Id]').val(ids);
+        $('#all_delete_form').attr('action',url);
       }
 
   });
@@ -351,7 +354,7 @@ $(document).ready(function() {
 
 
 
-//[GENERIC REGISTER]
+//[GENERIC DELETE]
   $('#generic_del_form').submit(function(e){ 
     e.preventDefault();       
     $("#generic_del_btn").prop("disabled", true);  
@@ -377,11 +380,6 @@ $(document).ready(function() {
               window.setTimeout(function(){
                 window.location.href = data.redirect;  
               }, 1000);
-              // var Id = data.id;
-              // var table = $('#table3').DataTable();
-              // table.row($('#row'+data.id))
-              // .remove()
-              // .draw();
             }
             else {
               $c = 0;
@@ -407,6 +405,40 @@ $(document).ready(function() {
     });   
   });
 
+
+
+
+//[ALL DELETE]
+  $('#all_delete_form').submit(function(e){ 
+    e.preventDefault();       
+    $("#all_delete_btn").prop("disabled", true);  
+    $("#all_delete_btn").text("Processing..");  
+    var newURL = $(this).attr('action');    
+    var newData = new FormData(this); 
+    $.ajax({
+        url: newURL,
+        type:'POST',
+        dataType: "json",   
+        data: newData,
+        contentType: false,
+        cache: false,  
+        processData:false,  
+        success: function(data) {
+          console.log(data);            
+            if($.isEmptyObject(data.error)){ 
+              $.gritter.add({title:"Success",text:"Record Update Successful. Redirecting...",class_name:"color success"});
+              window.setTimeout(function(){
+                window.location.href = data.redirect;  
+              }, 1000);
+            }
+            else {
+              $.gritter.add({title:"Error",text:"Record Update Unsuccessful.",class_name:"color danger"});
+            }
+        $("#all_delete_btn").prop("disabled", false);  
+        $("#all_delete_btn").text("Proceed");           
+        }
+    });   
+  });
 
 
 

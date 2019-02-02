@@ -110,7 +110,7 @@ class DocumentController extends MY_Controller {
         }else{
 			$id = $postdata['Id'];
 			unset($postdata['Id']);
-	        $result = $this->docs->UpdateStudent($id,$postdata);
+	        $result = $this->docs->UpdateDocument($id,$postdata);
 	 		if ($result != FALSE) {	
 				$json = json_encode($result); //log
 		        $this->logger->log('Success Register','Documents',$json); //Log  
@@ -126,6 +126,32 @@ class DocumentController extends MY_Controller {
 	}
 
 
+
+	public function Delete() {
+		$postdata = $this->input->post();
+		$this->form_validation->set_rules('Id', 'Selected Document', 'required');
+        if ($this->form_validation->run() == FALSE){
+            $errors = validation_errors();
+			$json = json_encode($postdata); //log
+	        $this->logger->log('Invalid Register','Documents',$json); //Log  
+            echo json_encode($errors);
+        }else{
+			$id = $postdata['Id'];
+			unset($postdata['Id']);
+	        $result = $this->docs->DeleteStudent($id);
+	 		if ($result != FALSE) {	
+				$json = json_encode($result); //log
+		        $this->logger->log('Success Delete','Documents',$json); //Log  
+	    		echo json_encode(['redirect'=>$_SERVER['HTTP_REFERER']]);
+	 		}
+	 		else {
+				$json = json_encode($postdata); //log
+		        $this->logger->log('Failed Delete','Documents',$json); //Log 
+	    		echo json_encode(['error'=>'Failed to save.']);
+	 		}
+
+        }
+	}
 
 
 

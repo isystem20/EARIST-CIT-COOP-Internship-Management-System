@@ -53,7 +53,7 @@ class DocumentModel extends CI_Model {
 	}
 
 
-	function UpdateStudent($id,$data) {
+	function UpdateDocument($id) {
         $this->db->set('ModifiedAt', "NOW()", FALSE);
         $this->db->set('ModifiedById', "'".$this->session->userdata('userid')."'", FALSE);
         $this->db->where('Id',$id);
@@ -64,8 +64,29 @@ class DocumentModel extends CI_Model {
 		}
 		else {
 			return $this->LoadSingle($id);			
-
 		}
+	}
+
+
+	function DeleteStudent($data) {
+		$n = 0;
+		foreach ($data as $id) {
+			$n = $n + 1;
+			if ($n == 1) {
+				$this->db->where('Id', $id);
+			}
+			else {
+				$this->db->or_where('Id', $id);
+			}
+		}
+		$this->db->delete('tbl_documents');
+		if ($this->db->affected_rows() > 0) {
+			return FALSE;
+		}
+		else {
+			return $this->LoadSingle($id);			
+		}
+
 	}
 
 

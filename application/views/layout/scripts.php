@@ -1,3 +1,30 @@
+    <div id="all_delete_modal" tabindex="-1" role="dialog" class="modal modal-full-color modal-full-color-danger fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span class="mdi mdi-close"></span></button>
+          </div>
+          <div class="modal-body">
+            <div class="text-center"><span class="modal-main-icon mdi mdi-info-outline"></span>
+              <?php $hidden = array('Id' => '', ); ?>
+              <?=form_open('','id="all_delete_form"',$hidden); ?>
+              <h3>Warning!</h3>
+              <p>You are about to delete selected records.<br>Do you wish to proceed?</p>
+              <div class="mt-8">
+                <button type="button" data-dismiss="modal" class="btn btn-secondary btn-space">Cancel</button>
+                <button type="submit" class="btn btn-primary btn-space" id="all_delete_btn">Proceed</button>
+              </div>
+              <?=form_close(); ?>  
+            </div>
+          </div>
+          <div class="modal-footer"></div>
+        </div>
+      </div>
+    </div>
+
+
+
+
     <script src="<?=base_url('themes/beagle/'); ?>assets/lib/jquery/jquery.min.js" type="text/javascript"></script>
     <script src="<?=base_url('themes/beagle/'); ?>assets/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
     <script src="<?=base_url('themes/beagle/'); ?>assets/lib/bootstrap/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
