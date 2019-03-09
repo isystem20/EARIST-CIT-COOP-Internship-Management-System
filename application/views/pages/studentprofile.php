@@ -29,7 +29,7 @@
             </div>
           </div>
           <div class="user-info-list card">
-            <div class="card-header card-header-divider">About Me<span class="card-subtitle">I am a web developer and designer based in Montreal - Canada, I like read books, good music and nature.</span></div>
+            <!-- <div class="card-header card-header-divider">About Me<span class="card-subtitle">I am a web developer and designer based in Montreal - Canada, I like read books, good music and nature.</span></div> -->
             <div class="card-body">
               <table class="no-border no-strip skills">
                 <tbody class="no-border-x no-border-y">
@@ -69,7 +69,7 @@
               <div class="tools"><span class="icon mdi mdi-chevron-down"></span><span class="icon mdi mdi-refresh-sync"></span><span class="icon mdi mdi-close"></span></div>
               <div class="title">Request Logs</div>
             </div>
-            <div class="widget-chart-container" style="height:700px;overflow-y: scroll;">
+            <div class="widget-chart-container" style="height:630px;overflow-y: scroll;">
               <!-- <div id="bar-chart1" style="height: 180px;"></div> -->
               <table class="table table-striped table-hover">
                 <thead>

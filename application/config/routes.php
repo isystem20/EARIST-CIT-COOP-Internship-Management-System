@@ -80,7 +80,7 @@ $route['document/del'] = 'DocumentController/Delete';
 
 $route['manage/companies'] = 'CompanyController/LoadMasterlist';
 
-
+$route['manage/accounts'] = 'UserController/LoadUserMasterlist';
 
 $route['profile'] = 'StudentAccountController/LoadProfile';
 $route['applications'] = 'StudentAccountController/LoadMyApplications';

@@ -16,7 +16,7 @@
                       <li><a href="<?=base_url('manage/accounts');?>">User Accounts</a></li>
                       <li><a href="<?=base_url('manage/documents');?>">Documents</a></li>
                       <li><a href="<?=base_url('manage/companies');?>">Companies</a></li>
-                      <li><a href="<?=base_url('manage/advisors');?>">Advisors</a></li>
+                      <!-- <li><a href="<?=base_url('manage/advisors');?>">Advisors</a></li> -->
                     </ul>
                   </li>
                   <li class="parent"><a href="#"><i class="icon mdi mdi-view-list"></i><span>Maintenance</span></a>
