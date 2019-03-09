@@ -89,4 +89,13 @@ class DocumentModel extends CI_Model {
 
 
 
+	function DocumentwithRequests() {
+		$this->db->select('d.*, (select count(Id) from tbl_requests where DocumentId = d.Id and Status = 1) as PendingRequest');
+		$this->db->from('tbl_documents d');
+		$get = $this->db->get();
+		return $get;	
+	}
+
+
+
 }

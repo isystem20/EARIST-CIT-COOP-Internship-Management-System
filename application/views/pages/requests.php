@@ -1,11 +1,11 @@
 
 <div class="be-content">
   <div class="page-head">
-    <h2 class="page-head-title">My Applications</h2>
+    <h2 class="page-head-title"><?=$doc[0]['DocumentName']; ?> Requests</h2>
     <nav aria-label="breadcrumb" role="navigation">
       <ol class="breadcrumb page-head-nav">
         <li class="breadcrumb-item"><a href="#">Menu</a></li>
-        <li class="breadcrumb-item active">My Applications</li>
+        <li class="breadcrumb-item active">Pending Requests</li>
       </ol>
     </nav>
   </div>
@@ -14,16 +14,6 @@
       <div class="col-sm-12">
         <div class="card card-table">
           <div class="card-header">
-            <a href="<?=base_url('applications/register'); ?>" class="btn btn-space btn-primary">
-              <i class="icon icon-left mdi mdi-account-add"></i> Add
-            </a>
-            <button class="btn btn-space btn-success" id="StudentUpdateSelectButton" data-url="<?=base_url('applications/edit/'); ?>" >
-              <i class="icon icon-left mdi mdi-account-add"></i> Update
-            </button>
-            <button class="btn btn-space btn-warning">
-              <i class="icon icon-left mdi mdi-account-add"></i> Delete
-            </button>
-
 
             <div class="tools dropdown"><span class="icon mdi mdi-download"></span><a href="#" role="button" data-toggle="dropdown" class="dropdown-toggle"><span class="icon mdi mdi-more-vert"></span></a>
               <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
@@ -41,18 +31,18 @@
                       </label>
                     </th>
                     <th>Date</th>
-                    <th>Company Name</th>
-                    <th>Contact Person</th>
-                    <th>Address</th>            
+                    <th>Requested By</th>
+                    <th>Intended Company</th> 
+                    <th>Addressee</th> 
                     <th style="width:80px;">Action</th>
                   </tr>
               </thead>
                 <tbody>
 
                   <?php
-                  if (!empty($all_list)) {
-                     if ($all_list->num_rows() > 0) {
-                        foreach ($all_list->result() as $row) { ?>
+                  if (!empty($requests)) {
+                     if ($requests->num_rows() > 0) {
+                        foreach ($requests->result() as $row) { ?>
                     <tr>
                       <td>
                         <label class="custom-control custom-control-sm custom-checkbox">
@@ -60,23 +50,17 @@
                           <span class="custom-control-label"></span>
                         </label>
                       </td>
-                      <td class="cell-detail"> <span><?=date('Y-m-d',strtotime($row->LabelDate)); ?></span></td>
-                      <td class="cell-detail"> <span><?=$row->CompanyName; ?></span></td> 
-                      <td class="cell-detail"> <span><?=$row->ContactPerson; ?></span></td>
-                      <td class="cell-detail"> <span><?=$row->Address1; ?></span></td>
+                      <td class="cell-detail"> <span><?=date('Y-m-d',strtotime($row->CreatedAt)); ?></span></td>
+                      <td class="cell-detail"> <span><?=$row->FirstName.' '.$row->LastName; ?></span></td> 
+                      <td class="cell-detail"> <span><?=$row->CompanyName; ?></span></td>
+                      <td class="cell-detail"> <span><?php if($row->SFirstName == '') {echo $row->ContactPerson;} else {echo $row->SFirstName.' '.$row->SLastName;} ?></span></td>
                       <td class="text-right">
-                        <div class="btn-group btn-space ">
-                          <a href="<?=base_url('student/view/'.$row->Id); ?>" class="btn btn-secondary">Open</a>
-                          <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">
-                            <span class="mdi mdi-chevron-down"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                          </button>
-                          <div role="menu" class="dropdown-menu">
-                            <a class="dropdown-item RequestDocumentBtn" data-id="<?=$row->Id; ?>" data-recordid="<?=$row->RecordId; ?>">Request with ...</a>
-                            <a href="#" class="dropdown-item">Delete</a>
+                          <div class="btn-group btn-space">
+                            <button type="button" class="btn btn-secondary">Open</button>
+                            <button type="button" class="btn btn-success">Approve</button>
+                            <button type="button" class="btn btn-danger">Reject</button>
                           </div>
-                        </div>
-                      </td>
+                          </td>
                     </tr>
                   <?php
                         }

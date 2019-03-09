@@ -25,6 +25,7 @@ class CompanyModel extends CI_Model {
         $this->db->set('CreatedById', "'".$this->session->userdata('userid')."'", FALSE);
         $this->db->set('ModifiedById', "'".$this->session->userdata('userid')."'", FALSE);
 		$this->db->insert('tbl_companies',$data);
+		// die($this->db->last_query());
 		$id = $this->db->insert_id();
 		$this->db->trans_complete();
 

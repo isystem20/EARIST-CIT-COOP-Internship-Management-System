@@ -15,10 +15,11 @@ class DocumentController extends MY_Controller {
 	{
 		$layout = array('datatable'=>TRUE, 'page_title'=>'Document Masterlist');
 		$data['all_list'] = $this->docs->LoadMasterlist();
+		$l['docs'] = $this->docs->DocumentwithRequests();
 		$this->load->view('layout/head',$layout);
 		$this->load->view('layout/wrapper');
 		$this->load->view('layout/topbar');
-		$this->load->view('layout/leftbar');
+		$this->load->view('layout/leftbar',$l);
 		$this->load->view('pages/documents',$data);
 		$this->load->view('layout/scripts',$layout);
 		$json = json_encode($data); //log
@@ -29,10 +30,11 @@ class DocumentController extends MY_Controller {
 	{
 		$layout = array('formelements'=>TRUE, 'page_title'=>'Document Registration','editor'=>TRUE);
 		$data['docslist'] = $this->docs->LoadMasterlist();
+		$l['docs'] = $this->docs->DocumentwithRequests();
 		$this->load->view('layout/head',$layout);
 		$this->load->view('layout/wrapper');
 		$this->load->view('layout/topbar');
-		$this->load->view('layout/leftbar');
+		$this->load->view('layout/leftbar',$l);
 		$this->load->view('pages/documentregister',$data);
 		$this->load->view('layout/scripts',$layout);
 		$json = json_encode($data); //log
@@ -42,6 +44,7 @@ class DocumentController extends MY_Controller {
 	public function ViewDocument($id){ 
 		$layout = array('formelements'=>TRUE, 'page_title'=>'Document Viewer','editor'=>TRUE);
 		$data['docslist'] = $this->docs->LoadMasterlist();
+		$l['docs'] = $this->docs->DocumentwithRequests();
 		$document = $this->docs->LoadSingle($id);
 		if ($document == FALSE) {
 			return redirect(base_url('404'));
@@ -50,7 +53,7 @@ class DocumentController extends MY_Controller {
 		$this->load->view('layout/head',$layout);
 		$this->load->view('layout/wrapper');
 		$this->load->view('layout/topbar');
-		$this->load->view('layout/leftbar');
+		$this->load->view('layout/leftbar',$l);
 		$this->load->view('pages/loaddocument',$data);
 		$this->load->view('layout/scripts',$layout);
 		$json = json_encode($data); //log

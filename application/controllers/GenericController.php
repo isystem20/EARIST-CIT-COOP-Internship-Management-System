@@ -16,6 +16,7 @@ class GenericController extends Admin_Controller {
         $this->load->model('AdvisorModel','advisors');
         $this->load->model('NationalityModel','nationality');
 		$this->load->model('GenericModel','generic');
+		$this->load->model('DocumentModel','doc');
 
     }
     private $sec = 'tbl_sections';
@@ -69,11 +70,11 @@ class GenericController extends Admin_Controller {
 			http_response_code(404);
 			die('Not Found');
 		}
-		
+		$l['docs'] = $this->doc->DocumentwithRequests();
 		$this->load->view('layout/head',$layout);
 		$this->load->view('layout/wrapper');
 		$this->load->view('layout/topbar');
-		$this->load->view('layout/leftbar');
+		$this->load->view('layout/leftbar',$l);
 		$this->load->view('pages/genericlist',$data);
 		$this->load->view('layout/scripts',$layout);
 		$json = json_encode($data); //log

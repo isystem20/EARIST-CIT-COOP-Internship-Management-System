@@ -31,13 +31,27 @@
                       <li><a href="<?=base_url('manage/generic/regions');?>">Regions</a></li>
                     </ul>
                   </li>
-                  <li><a href="<?=base_url('monitor/internship');?>"><i class="icon mdi mdi-chart"></i><span>Progress Monitor</span></a>
-                  </li>                   
-                  <li class="divider">Reports</li>                  
+                  <!-- <li><a href="<?=base_url('monitor/internship');?>"><i class="icon mdi mdi-chart"></i><span>Progress Monitor</span></a>
+                  </li>  -->                  
+              <!--     <li class="divider">Reports</li>                  
                   <li><a href="<?=base_url(); ?>"><i class="icon mdi mdi-accounts-list"></i><span>Status Summary</span></a>
-                  </li> 
+                  </li>  -->
                   <li class="divider">Document Letter Requests</li>  
 
+                  <?php
+
+                  if (!empty($docs)) {
+                     if ($docs->num_rows() > 0) {
+                        foreach ($docs->result() as $row) { ?>
+                  <li><a href="<?=base_url('requests/documents/'.$row->Id); ?>"><i class="icon mdi mdi-file-text"></i><span><?=$row->DocumentName; ?> <?php if($row->PendingRequest > 0) { echo '<span class="badge badge-pill badge-primary">'.$row->PendingRequest.'</span>'; } ?></span></a>
+                  </li> 
+
+                  <?php
+                        }
+                     }
+                  }
+                  ?>
+                  <!--
                   <li><a href="<?=base_url(); ?>"><i class="icon mdi mdi-account-box-mail"></i><span>Recommendation <span class="badge badge-pill badge-primary">8</span></span></a>
                   </li> 
                   <li><a href="<?=base_url(); ?>"><i class="icon mdi mdi-accounts-outline"></i><span>Acceptance</span></a>
@@ -56,7 +70,7 @@
                   <li><a href="<?=base_url(); ?>"><i class="icon mdi mdi-home"></i><span>System and Server</span></a>
                   </li>                 
                   <li><a href="<?=base_url(); ?>"><i class="icon mdi mdi-home"></i><span>Reports</span></a>
-                  </li>  
+                  </li>  -->
                   <?php } ?>
 
                   <?php if ($this->session->userdata('usertype') == 'STUDENT') { ?>

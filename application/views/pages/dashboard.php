@@ -109,7 +109,7 @@
                   </div>
                   <div class="title">Recent Activities</div>
                 </div>
-                <div class="card-body table-responsive" style="overflow-y: auto;height:255px;">
+                <div class="card-body table-responsive" style="overflow-y: auto;height:285px;">
                   <table class="table table-striped table-borderless">
                     <thead>
                       <tr>
@@ -153,9 +153,9 @@
                       <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
                     </div>
                   </div>
-                  <div class="title">Online Users</div>
+                  <div class="title">Document Requests</div>
                 </div>
-                <div class="card-body table-responsive">
+                <div class="card-body table-responsive" style="overflow-y: auto;height:285px;">
                   <table class="table table-striped table-hover">
                     <thead>
                       <tr>
@@ -165,33 +165,32 @@
                       </tr>
                     </thead>
                     <tbody>
+
+                  <?php
+
+                  if (!empty($docs)) {
+                     if ($docs->num_rows() > 0) {
+                        foreach ($docs->result() as $row) { ?>
+               <!--    <li><a href="<?=base_url('requests/documents/'.$row->Id); ?>"><i class="icon mdi mdi-file-text"></i><span><?=$row->DocumentName; ?> <?php if($row->PendingRequest > 0) { echo '<span class="badge badge-pill badge-primary">'.$row->PendingRequest.'</span>'; } ?></span></a>
+                  </li>  -->
                       <tr>
-                        <td class="user-avatar"> <img src="<?=base_url('themes/beagle/'); ?>assets/img/avatar6.png" alt="Avatar">Penelope Thornton</td>
-                        <td>Aug 16, 2016</td>
-                        <td class="actions"><a href="#" class="icon text-danger"><i class="mdi mdi-close-circle"></i></a></td>
+                        <td class="user-avatar"> <a href="<?=base_url('requests/documents/'.$row->Id); ?>"><?=$row->DocumentName; ?></a></td>
+                        <td><a href="<?=base_url('requests/documents/'.$row->Id); ?>"><?php if($row->PendingRequest > 0) { echo '<span class="badge badge-pill badge-primary">'.$row->PendingRequest.'</span>'; } ?></a></td>
+                        <td class="actions"><a href="<?=base_url('requests/documents/'.$row->Id); ?>" class="icon text-danger"><i class="mdi mdi-edit"></i></a></td>
                       </tr>
-                      <tr>
-                        <td class="user-avatar"> <img src="<?=base_url('themes/beagle/'); ?>assets/img/avatar4.png" alt="Avatar">Benji Harper</td>
-                        <td>Jul 15, 2016</td>
-                        <td class="actions"><a href="#" class="icon text-danger"><i class="mdi mdi-close-circle"></i></a></td>
-                      </tr>
-                      <tr>
-                        <td class="user-avatar"> <img src="<?=base_url('themes/beagle/'); ?>assets/img/avatar5.png" alt="Avatar">Justine Myranda</td>
-                        <td>Jul 28, 2016</td>
-                        <td class="actions"><a href="#" class="icon text-danger"><i class="mdi mdi-close-circle"></i></a></td>
-                      </tr>
-                      <tr>
-                        <td class="user-avatar"> <img src="<?=base_url('themes/beagle/'); ?>assets/img/avatar3.png" alt="Avatar">Sherwood Clifford</td>
-                        <td>Jun 30, 2016</td>
-                        <td class="actions"><a href="#" class="icon text-danger"><i class="mdi mdi-close-circle"></i></a></td>
-                      </tr>
+                  <?php
+                        }
+                     }
+                  }
+                  ?>
+
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row">
+     <!--      <div class="row">
             <div class="col-12 col-lg-4">
               <div class="card">
                 <div class="card-header card-header-divider pb-3">Document Counters</div>
@@ -299,6 +298,6 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>

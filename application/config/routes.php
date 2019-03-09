@@ -86,13 +86,18 @@ $route['profile'] = 'StudentAccountController/LoadProfile';
 $route['applications'] = 'StudentAccountController/LoadMyApplications';
 $route['applications/register'] = 'StudentAccountController/RegisterApplication';
 $route['applications/add'] = 'StudentAccountController/Create';
+$route['applications/preview'] = 'StudentAccountController/LoadDocumentRecord';
+$route['applications/edit/(:any)'] = 'StudentAccountController/UpdateApplication/$1';
+
+$route['requests/documents/(:any)'] = 'RequestController/LoadRequests/$1';
+$route['requests/add'] = 'StudentAccountController/CreateRequest';
 
 $route['login'] = 'AuthController/LoginPage';
 $route['login/auth'] = 'AuthController/Authenticate';
 $route['logout'] = 'AuthController/Logout';
 
-
-
+$route['requests'] = 'StudentAccountController/LoadMyRequests';
+$route['documents'] = 'StudentAccountController/LoadMyDocuments';
 //Generic Forms
 //SECTION
 $route['manage/generic/(:any)'] = 'GenericController/LoadMasterlist/$1';

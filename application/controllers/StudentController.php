@@ -15,16 +15,18 @@ class StudentController extends MY_Controller {
         $this->load->model('YearLevelModel','yearlevel');
         $this->load->model('AdvisorModel','advisors');
         $this->load->model('NationalityModel','nationality');
+		$this->load->model('DocumentModel','doc');
     }
 
 
 	public function LoadStudentMasterlist() {
 		$layout = array('datatable'=>TRUE, 'page_title'=>'Student Masterlist');
 		$data['all_list'] = $this->students->LoadMasterlist();
+		$l['docs'] = $this->doc->DocumentwithRequests();
 		$this->load->view('layout/head',$layout);
 		$this->load->view('layout/wrapper');
 		$this->load->view('layout/topbar');
-		$this->load->view('layout/leftbar');
+		$this->load->view('layout/leftbar',$l);
 		$this->load->view('pages/studentlist',$data);
 		// $this->load->view('layout/rightbar');
 		$this->load->view('layout/scripts',$layout);
@@ -35,6 +37,7 @@ class StudentController extends MY_Controller {
 
 	public function RegisterStudent(){ 
 		$layout = array('form'=>TRUE,'formelements'=>TRUE, 'page_title'=>'Student Registration');
+
 		$data['cities'] = $this->city->LoadMasterlist('Id,Name');
 		$data['regions'] = $this->region->LoadMasterlist('Id,Name');
 		$data['courses'] = $this->course->LoadMasterlist('Id,Name');
@@ -43,10 +46,11 @@ class StudentController extends MY_Controller {
 		$data['yearlevels'] = $this->yearlevel->LoadMasterlist('Id,Name');
 		$data['nationality'] = $this->nationality->LoadMasterlist('Id,Name');
 		$data['advisors'] = $this->advisors->LoadMasterlist('Id,LastName,FirstName');
+		$l['docs'] = $this->doc->DocumentwithRequests();
 		$this->load->view('layout/head',$layout);
 		$this->load->view('layout/wrapper');
 		$this->load->view('layout/topbar');
-		$this->load->view('layout/leftbar');
+		$this->load->view('layout/leftbar',$l);
 		$this->load->view('pages/studentregister',$data);
 		// $this->load->view('layout/rightbar');
 		$this->load->view('layout/scripts',$layout);
@@ -69,10 +73,11 @@ class StudentController extends MY_Controller {
 			return redirect(base_url('404'));
 		}
 		$data['profile'] = $student_profile->result();
+		$l['docs'] = $this->doc->DocumentwithRequests();
 		$this->load->view('layout/head',$layout);
 		$this->load->view('layout/wrapper');
 		$this->load->view('layout/topbar');
-		$this->load->view('layout/leftbar');
+		$this->load->view('layout/leftbar',$l);
 		$this->load->view('pages/loadstudentprofile',$data);
 		// $this->load->view('layout/rightbar');
 		$this->load->view('layout/scripts',$layout);
@@ -95,10 +100,11 @@ class StudentController extends MY_Controller {
 			return redirect(base_url('404'));
 		}
 		$data['profile'] = $student_profile->result();
+		$l['docs'] = $this->doc->DocumentwithRequests();
 		$this->load->view('layout/head',$layout);
 		$this->load->view('layout/wrapper');
 		$this->load->view('layout/topbar');
-		$this->load->view('layout/leftbar');
+		$this->load->view('layout/leftbar',$l);
 		$this->load->view('pages/loadstudentprofile',$data);
 		// $this->load->view('layout/rightbar');
 		$this->load->view('layout/scripts',$layout);

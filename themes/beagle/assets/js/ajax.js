@@ -281,9 +281,9 @@ $(document).ready(function() {
     var newURL = $(this).attr('action');    
     var newData = new FormData(this); 
     var EditMode = 0;
-    for(var pair of newData.entries()) {
-       console.log(pair[0]+ ', '+ pair[1]); 
-    }
+    // for(var pair of newData.entries()) {
+    //    console.log(pair[0]+ ', '+ pair[1]); 
+    // }
     $.ajax({
         url: newURL,
         type:'POST',
@@ -446,11 +446,94 @@ $(document).ready(function() {
 
 
 
+//REQUEST DOCUMENT BUTTON
+  $('.myapptable').delegate(".RequestDocumentBtn", "click", function() {
+    // alert($(this).data('id'));
+    $('.report-opts').attr('data-appid',$(this).data('id'));
+    $('.report-opts').attr('data-recordid',$(this).data('recordid'));    
+    $('#ReportOptions').modal();
+  });
+
+
+//REPORT SELECTION
+  $('.report-opts').click(function(e) {
+    e.preventDefault();
+    var recid = '';
+    var studid = $(this).data('studid');
+    var docid = $(this).data('docid');
+    var appid = $(this).data('appid');
+    var newURL = $('#ReportOptions').data('action');    
+    var newData = {
+        'StudentId' : studid,
+        'DocumentId' : docid,
+        'ApplicationId' : appid,
+    }
+    console.log(newData);
+    $.ajax({
+        url: newURL,
+        type:'POST',
+        dataType: "json",   
+        data: newData,
+        success: function(data) {
+          console.log(data);   
+            if($.isEmptyObject(data.error)){ 
+              var data_id = data.data[0].Id;
+              var doc_content = data.report[0].Content;
+              var doc_name = data.report[0].DocumentName;
+              $('.report-title').text(doc_name + " (Letterhead not included)");
+              $('.report-content').html(doc_content);
+              $('input[name=pDocumentId]').val(docid);
+              $('input[name=pApplicationId]').val(appid);
+              $('input[name=pRecordId]').val(recid);
+
+            }
+            else {
+              $.gritter.add({title:"Error",text:data.error,class_name:"color danger"});
+            }
+        // $("#all_delete_btn").prop("disabled", false);  
+        // $("#all_delete_btn").text("Proceed");           
+        }
+    }); 
+    $('#ReportOptions').modal('toggle');
+    // $("#ReportOptions .close").click()
+    $('#ReportSelectionPreview').modal();
+  });
 
 
 
+//PROCEED DOCUMENT REQUEST
+  $('#reportproceed').submit(function(e) {
+    e.preventDefault();  
+    var newURL = $('#reportproceed').attr('action');    
+    var newData = new FormData(this); 
+    console.log(newData);
+    $.ajax({
+        url: newURL,
+        type:'POST',
+        dataType: "json",   
+        data: newData,
+        contentType: false,
+        cache: false,  
+        processData:false, 
+        success: function(data) {
+          console.log(data);   
+            if($.isEmptyObject(data.error)){ 
+
+              $.gritter.add({title:"Success!",text:"Update Successful.",class_name:"color success"});
+
+             $('#ReportSelectionPreview').modal('toggle');             
+
+            }
+            else {
+              $.gritter.add({title:"Error",text:data.error,class_name:"color danger"});
+            }
+        // $("#all_delete_btn").prop("disabled", false);  
+        // $("#all_delete_btn").text("Proceed");           
+        }
+    }); 
 
 
+  });
 
 
 
