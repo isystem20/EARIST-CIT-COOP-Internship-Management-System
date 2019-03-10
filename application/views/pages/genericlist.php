@@ -72,9 +72,11 @@
                       <td class="cell-detail"> <span><?=date('Y-m-d',strtotime($row->ModifiedAt)); ?></span></td>
                       <td class="text-right"> <span><?php if($row->IsActive == '1') {echo '<span class="badge badge-success">Active</span>';}else {echo '<span class="badge badge-default">Inactive</span>';} ?></span></td>
                       <td class="text-right">
-
-                        <button class="btn btn-secondary generic_edit_btn" data-id="<?=$row->Id; ?>" data-code="<?=$row->Code; ?>" data-name="<?=$row->Name; ?>" data-desc="<?=$row->Description; ?>" data-status="<?=$row->IsActive; ?>" data-action="<?=base_url('manage/generic/'.$labels['class'].'/update'); ?>"><i class="mdi mdi-edit"></i></button>
-                        <button class="btn btn-warning generic_del_btn" data-id="<?=$row->Id; ?>" data-name="<?=$row->Name; ?>"><i class="mdi mdi-delete"></i></button>
+                    
+                        <div class="btn-group btn-space">
+                            <button class="btn btn-secondary generic_edit_btn" data-id="<?=$row->Id; ?>" data-code="<?=$row->Code; ?>" data-name="<?=$row->Name; ?>" data-desc="<?=$row->Description; ?>" data-status="<?=$row->IsActive; ?>" data-action="<?=base_url('manage/generic/'.$labels['class'].'/update'); ?>"><i class="mdi mdi-edit"></i></button>
+                          <button class="btn btn-warning generic_del_btn" data-id="<?=$row->Id; ?>" data-name="<?=$row->Name; ?>"><i class="mdi mdi-delete"></i></button>
+                          </div>
                       </td>
                     </tr>
 

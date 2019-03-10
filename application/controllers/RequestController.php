@@ -21,7 +21,7 @@ class RequestController extends Student_Controller {
 		$layout = array('datatable' => TRUE, 'page_title'=>'OJT Applications');
 		$data['all_list'] = $this->app->LoadSingle(null,$this->session->userdata('account_id'));
 		$data['docs'] = $this->docs->LoadMasterlist();
-        $requestlist = $this->req->RequestDocuments($id);
+        $requestlist = $this->req->RequestDocuments($id,null,1);
         if ($requestlist == FALSE) {
             return redirect(base_url('404'));
         }
@@ -38,6 +38,53 @@ class RequestController extends Student_Controller {
 		$this->load->view('layout/scripts',$layout);
 		$json = json_encode($data); //log
         $this->logger->log('Load Applications','Applications',$json); //Log  
+    }
+
+
+
+
+
+    public function RequestChangeStatus() {
+        $postdata = $this->input->post();
+        $json = json_encode($postdata); //log
+        $this->form_validation->set_rules('Id', 'Selected Item', 'required');
+        $this->form_validation->set_rules('Status', 'Action', 'required');
+
+        if ($this->form_validation->run() == FALSE){
+            $errors = validation_errors();
+            $data['error'] = $errors;
+            $json = json_encode($postdata); //log
+            $this->logger->log('Invalid Generate Preview Input','Document Request',$json); //Log  
+            echo json_encode($data);
+        }else{
+            $id = $postdata['Id'];
+            unset($postdata['Id']);
+
+            $req = $this->req->UpdateStatus($id,$postdata);
+
+            if ($req != FALSE) {
+                $this->logger->log('Success Request Update','Document Request',$json); //Log  
+                echo json_encode(['newtab'=>base_url('generate/print/document/'.$id)]);
+            }
+            else {
+                $this->logger->log('Success Request Update','Document Request',$json); //Log  
+                echo json_encode(['error'=>'Failed to save.']);
+            }
+
+        }
+
+
+    }
+
+
+    public function RequestViewing($id) {
+        $this->load->library('Pdf');
+        $requestlist = $this->req->RequestDocuments(null,null,2,$id);
+        if ($requestlist == FALSE) {
+            return redirect(base_url('404'));
+        }
+        $data['content'] = $requestlist;
+        $this->load->view("reports/documentfile",$data);
     }
 
 

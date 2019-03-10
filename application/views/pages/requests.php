@@ -56,9 +56,9 @@
                       <td class="cell-detail"> <span><?php if($row->SFirstName == '') {echo $row->ContactPerson;} else {echo $row->SFirstName.' '.$row->SLastName;} ?></span></td>
                       <td class="text-right">
                           <div class="btn-group btn-space">
-                            <button type="button" class="btn btn-secondary">Open</button>
-                            <button type="button" class="btn btn-success">Approve</button>
-                            <button type="button" class="btn btn-danger">Reject</button>
+                            <button type="button" class="btn btn-secondary approverequest" data-action="<?=base_url('generate/print/document/'.$row->Id); ?>" data-id="<?=$row->Id; ?>" data-cmd="1">Open</button>
+                            <button type="button" class="btn btn-success approverequest" data-action="<?=base_url('manage/requests/edit'); ?>" data-id="<?=$row->Id; ?>" data-cmd="2">Approve</button>
+                            <button type="button" class="btn btn-danger approverequest" data-action="<?=base_url('manage/requests/edit'); ?>" data-id="<?=$row->Id; ?>" data-cmd="0">Reject</button>
                           </div>
                           </td>
                     </tr>

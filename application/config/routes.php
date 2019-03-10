@@ -98,9 +98,15 @@ $route['logout'] = 'AuthController/Logout';
 
 $route['requests'] = 'StudentAccountController/LoadMyRequests';
 $route['documents'] = 'StudentAccountController/LoadMyDocuments';
+
+$route['manage/requests/edit'] = 'RequestController/RequestChangeStatus';
+
+
 //Generic Forms
 //SECTION
 $route['manage/generic/(:any)'] = 'GenericController/LoadMasterlist/$1';
 $route['manage/generic/(:any)/add'] = 'GenericController/Create/$1';
 $route['manage/generic/(:any)/update'] = 'GenericController/Update/$1';
 $route['manage/generic/(:any)/delete'] = 'GenericController/Delete/$1';
+
+$route['generate/print/document/(:any)'] = 'RequestController/RequestViewing/$1';

@@ -532,7 +532,49 @@ $(document).ready(function() {
         }
     }); 
 
+  });
 
+
+
+
+//APPROVE / REJECT
+  $('.myapptable').delegate(".approverequest", "click", function(e) {
+    e.preventDefault();
+    var newURL = $(this).data('action');    
+    var newData = {
+        'Id' : $(this).data('id'),
+        'Status' : $(this).data('cmd'),
+    }
+    console.log(newData);
+
+    if ($(this).data('cmd') == '1') {
+        window.setTimeout(function(){
+          window.open(newURL, '_blank'); 
+        }, 1000);
+        return false;
+    }
+
+    $.ajax({
+        url: newURL,
+        type:'POST',
+        dataType: "json",   
+        data: newData,
+        success: function(data) {
+          console.log(data);   
+            if($.isEmptyObject(data.error)){ 
+              $.gritter.add({title:"Success",text:'Update Successul. Generating Document...',class_name:"color success"});
+              window.setTimeout(function(){
+                window.open(data.newtab, '_blank'); 
+              }, 1000);
+
+            }
+            else {
+              $.gritter.add({title:"Error",text:data.error,class_name:"color danger"});
+            }
+        // $("#all_delete_btn").prop("disabled", false);  
+        // $("#all_delete_btn").text("Proceed");           
+        }
+    }); 
   });
 
 

@@ -28,7 +28,7 @@ class RequestModel extends CI_Model {
 		}
 	}
 
-	function RequestDocuments($docid = null,$userid = null,$status = null) {
+	function RequestDocuments($docid = null,$userid = null,$status = null,$id = null) {
 		$this->db->select('r.*, d.Code as DocCode, d.DocumentName as DocumentName, c.CompanyName as CompanyName, s.FirstName, s.LastName,or.SFirstName, or.SLastName,a.ContactPerson, a.Designation');
 		$this->db->from('tbl_requests r');
 		$this->db->join('tbl_documents d','d.Id = r.DocumentId','left outer');
@@ -42,6 +42,9 @@ class RequestModel extends CI_Model {
 		}
 		if (!empty($userid)) {
 			$this->db->where('s.Id',$userid);
+		}
+		if (!empty($id)) {
+			$this->db->where('r.Id',$id);
 		}
 		if (!empty($status)) {
 			if (is_array($status)) {
@@ -65,6 +68,19 @@ class RequestModel extends CI_Model {
 		}		
 		$get = $this->db->get();
 		return $get;	
+	}
+
+
+	public function UpdateStatus($id, $data) {
+		$this->db->update('tbl_requests',$data);
+		$this->db->where('Id',$id);
+		if ($this->db->affected_rows() > 0) {
+			return $id;
+		}
+		else {
+			return FALSE;
+		}
+
 	}
 
 }
