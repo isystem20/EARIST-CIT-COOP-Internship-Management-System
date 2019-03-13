@@ -47,7 +47,7 @@
                     <th>Active Interns</th>
                     <th>Last Modified</th>
                     <th>Status</th>                   
-                    <th style="width:80px;">Action</th>
+                   <!--  <th style="width:80px;">Action</th> -->
                   </tr>
               </thead>
                 <tbody>
@@ -73,7 +73,7 @@
                       <td class="cell-detail"> <span><?=$row->InternCount; ?></td>
                       <td class="cell-detail"> <span><?=date('Y-m-d',strtotime($row->ModifiedAt)); ?></td>
                       <td class="text-right"> <span><?php if($row->IsActive == '1') {echo '<span class="badge badge-success">Active</span>';}else {echo '<span class="badge badge-default">Inactive</span>';} ?></span></td>
-                      <td class="text-right">
+                    <!--   <td class="text-right">
                         <div class="btn-group btn-space ">
                           <a href="<?=base_url('student/view/'.$row->Id); ?>" class="btn btn-secondary">Open</a>
                           <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">
@@ -84,12 +84,9 @@
                             <a href="#" class="dropdown-item">Update</a>
                             <a href="#" class="dropdown-item">Disable</a>
                             <a href="#" class="dropdown-item">Delete</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">Assign Company</a>
-                            <a href="#" class="dropdown-item">Check Progress</a>
                           </div>
                         </div>
-                      </td>
+                      </td> -->
                     </tr>
 
 

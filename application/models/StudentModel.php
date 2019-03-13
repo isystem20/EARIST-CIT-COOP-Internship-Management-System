@@ -9,7 +9,7 @@ class StudentModel extends CI_Model {
     }
 
 
-	function LoadMasterlist()
+	function LoadMasterlist($filter = null,$value = null)
 	{
 		$this->db->select('s.*, c.Name as CourseName, sec.Name as SectionName, sem.Name as SemesterName, l.Name as YearLevelName');
 		$this->db->from('tbl_students s');
@@ -17,7 +17,20 @@ class StudentModel extends CI_Model {
 		$this->db->join('tbl_sections sec','sec.Id = s.SectionId','left outer');
 		$this->db->join('tbl_semesters sem','sem.Id = s.SemesterId','left outer');
 		$this->db->join('tbl_school_levels l','l.Id = s.YearLevelId','left outer');
+		if (!empty($filter) && (!empty($value) || $value == 0)) {
+			if (strtolower($filter) == 'course') {
+				$this->db->where('s.CourseId',$value);
+			}
+			if (strtolower($filter) == 'section') {
+				$this->db->where('s.SectionId',$value);
+			}
+			if (strtolower($filter) == 'status') {
+				$this->db->where('s.IsActive',$value);
+			}
+		}
+		
 		$get = $this->db->get();
+		// die($this->db->last_query());
 		return $get;
 	}
 
@@ -108,7 +121,22 @@ class StudentModel extends CI_Model {
         $this->db->set('LastName', "'".$data['LastName']."'", FALSE);
         $this->db->set('LoginName', "'".$loginname."'", FALSE);
         $this->db->set('Email', "'".$data['PersonalEmail']."'", FALSE);
-        $this->db->where('AccountId',$id);
+        if (is_array($id)) {
+        	$n = 0;
+        	foreach ($id as $i) {
+        		if ($n == 0) {
+        			$this->db->group_start();
+        			$this->db->where('AccountId',$id);
+        		}
+        		else {
+        			$this->db->or_where('AccountId',$id);
+        		}
+        	}
+        	$this->db->group_end();
+        }else {
+        	$this->db->where('AccountId',$id);
+        }
+        
         $this->db->update('tbl_users');
 		$this->db->trans_complete();
 
@@ -121,6 +149,41 @@ class StudentModel extends CI_Model {
 			
 		}
 	}
+
+
+	function UpdateStudentStatus($id,$data) {
+
+        $this->db->set('ModifiedAt', "NOW()", FALSE);
+        $this->db->set('ModifiedById', "'".$this->session->userdata('userid')."'", FALSE);
+        if (is_array($id)) {
+        	$n = 0;
+        	foreach ($id as $i) {
+        		if ($n == 0) {
+        			$this->db->group_start();
+        			$this->db->where('Id',$i);
+        		}
+        		else {
+        			$this->db->or_where('Id',$i);
+        		}
+        		$n = $n + 1;
+        	}
+        	$this->db->group_end();
+        }else {
+        	$this->db->where('Id',$id);
+        }
+		$this->db->update('tbl_students',$data);
+
+		// die($this->db->last_query());
+
+		if ($this->db->affected_rows() > 0) {
+			return 'Student Change Status Successful';
+		}
+		else {
+			return FALSE;
+		}
+
+	}
+
 
 
 }

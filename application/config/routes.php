@@ -63,12 +63,14 @@ $route['monitor/internship'] = 'InternshipController/LoadStudentMasterlist';
 
 
 $route['manage/students'] = 'StudentController/LoadStudentMasterlist';
+$route['manage/students/(:any)/(:any)'] = 'StudentController/LoadStudentMasterlist/$1/$2';
+
 $route['student/register'] = 'StudentController/RegisterStudent';
 $route['student/edit/(:any)'] = 'StudentController/UpdateStudent/$1';
 $route['student/view/(:any)'] = 'StudentController/ViewStudent/$1';
 $route['student/add'] = 'StudentController/Create';
 $route['student/update'] = 'StudentController/Update';
-$route['student/del'] = 'StudentController/Delete';
+$route['student/change'] = 'StudentController/ChangeStatus';
 
 $route['manage/documents'] = 'DocumentController/LoadMasterlist';
 $route['document/register'] = 'DocumentController/RegisterDocument';

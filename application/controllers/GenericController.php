@@ -213,7 +213,6 @@ class GenericController extends Admin_Controller {
 	        $this->logger->log('Invalid Update','Generic:'.$str,$json); //Log  
             echo json_encode($data);
         }else{
-
 			$str = strtolower($str);
 			$postid = $postdata['Id'];
 			unset($postdata['Id']);
@@ -255,5 +254,64 @@ class GenericController extends Admin_Controller {
 
         }
 	}
+
+
+	public function Delete2($str) {
+		$postdata = $this->input->post();
+		$this->form_validation->set_rules('Id', 'Selected Record', 'required');
+        $this->form_validation->set_error_delimiters('<ul class="parsley-errors-list filled" id="parsley-id-5"><li class="parsley-required">','</li></ul>');
+        if ($this->form_validation->run() == FALSE){
+        	foreach ($postdata as $key => $value) {
+        		$data['responses'][$key] = form_error($key);
+        	}
+            $errors = validation_errors();
+            $data['error'] = $errors;
+            $json = json_encode($postdata); //log
+	        $this->logger->log('Invalid Update','Generic:'.$str,$json); //Log  
+            echo json_encode($data);
+        }else{
+			$str = strtolower($str);
+			$postid = $postdata['Id'];
+			unset($postdata['Id']);
+			if ($str == 'sections') {
+				$result = $this->generic->Delete($postid,$this->sec);
+			}
+			elseif ($str == 'semesters') {
+				$result = $this->generic->Delete($postid,$this->sem);
+			}
+			elseif ($str == 'courses') {
+				$result = $this->generic->Delete($postid,$this->cou);
+			}
+			elseif ($str == 'levels') {
+				$result = $this->generic->Delete($postid,$this->lvl);
+			}
+			elseif ($str == 'nationalities') {
+				$result = $this->generic->Delete($postid,$this->nat);
+			}
+			elseif ($str == 'cities') {
+				$result = $this->generic->Delete($postid,$this->cit);
+			}
+			elseif ($str == 'regions') {
+				$result = $this->generic->Delete($postid,$this->reg);
+			}
+			else{
+				http_response_code(404);
+				die('Not Found');
+			}
+     		if ($result != FALSE) {	
+				$json = json_encode($result); //log
+		        $this->logger->log('Success Delete','Generic:'.$str,$json); //Log  
+        		echo json_encode(['redirect'=>base_url('manage/generic/'.$str)]);
+     		}
+     		else {
+	            $json = json_encode($postdata); //log
+		        $this->logger->log('Invalid Delete','Generic:'.$str,$json); //Log  
+        		echo json_encode(['error'=>'Failed to save.']);
+     		}
+
+        }
+	}
+
+
 
 }

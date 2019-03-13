@@ -17,10 +17,10 @@
             <button data-toggle="modal" data-target="#generic_add_edit" class="btn btn-space btn-primary">
               <i class="icon icon-left mdi mdi-account-add"></i> Add
             </button>
-            <button class="btn btn-space btn-success" id="StudentUpdateSelectButton" data-url="<?=base_url('student/edit/'); ?>" >
+            <button class="btn btn-space btn-success" id="GenericUpdate" data-url="<?=base_url('student/edit/'); ?>" >
               <i class="icon icon-left mdi mdi-account-add"></i> Update
             </button>
-            <button class="btn btn-space btn-warning">
+            <button class="btn btn-space btn-warning" id="GenericDelete" data-action="<?=base_url('manage/generic/'.$labels['class'].'/'); ?>">
               <i class="icon icon-left mdi mdi-account-add"></i> Delete
             </button>
 
@@ -61,7 +61,7 @@
                       <td>
                         
                         <label class="custom-control custom-control-sm custom-checkbox">
-                          <input type="checkbox" dataclass="studentids" class="custom-control-input studentids" data-id="<?=$row->Id; ?>">
+                          <input type="checkbox" dataclass="genericids" class="custom-control-input studentids" data-id="<?=$row->Id; ?>"  data-code="<?=$row->Code; ?>" data-name="<?=$row->Name; ?>" data-desc="<?=$row->Description; ?>" data-status="<?=$row->IsActive; ?>" data-action="<?=base_url('manage/generic/'.$labels['class'].'/'); ?>">
                           <span class="custom-control-label"></span>
                         </label>
                         

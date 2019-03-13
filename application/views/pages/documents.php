@@ -47,7 +47,7 @@
                     <th>Description</th>
                     <th>Last Modified</th>
                     <th>Status</th>
-                    <th style="width:80px;">Action</th>
+                    <!-- <th style="width:80px;">Action</th> -->
                   </tr>
               </thead>
                 <tbody>
@@ -74,7 +74,7 @@
                       </td>
                       <td class="cell-detail"> <span><?=date('Y-m-d',strtotime($row->ModifiedAt)); ?></span></td>
                       <td class="cell-detail"> <span><?php if ($row->IsActive == '1') { echo '<label class="label label-success">Active</label>'; } else {  echo '<span class="label label-light-inverse">Inactive</span>';} ?></span></td>
-                      <td class="text-right">
+                     <!--  <td class="text-right">
                         <div class="btn-group btn-space ">
                           <a href="<?=base_url('document/view/'.$row->Id); ?>" class="btn btn-secondary">Open</a>
                           <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">
@@ -90,7 +90,7 @@
                             <a href="#" class="dropdown-item">Check Progress</a>
                           </div>
                         </div>
-                      </td>
+                      </td> -->
                     </tr>
 
 

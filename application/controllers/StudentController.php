@@ -17,12 +17,19 @@ class StudentController extends MY_Controller {
         $this->load->model('NationalityModel','nationality');
 		$this->load->model('DocumentModel','doc');
     }
+    private $cou = 'tbl_courses';
 
-
-	public function LoadStudentMasterlist() {
+	public function LoadStudentMasterlist($filter = null,$value = null) {
 		$layout = array('datatable'=>TRUE, 'page_title'=>'Student Masterlist');
-		$data['all_list'] = $this->students->LoadMasterlist();
+		if (!empty($filter)) {
+				$data['all_list'] = $this->students->LoadMasterlist($filter,$value);	
+		}else {
+			$data['all_list'] = $this->students->LoadMasterlist();			
+		}
+
 		$l['docs'] = $this->doc->DocumentwithRequests();
+		$data['courses'] = $this->course->LoadMasterlist(null,$this->cou);
+
 		$this->load->view('layout/head',$layout);
 		$this->load->view('layout/wrapper');
 		$this->load->view('layout/topbar');
@@ -287,6 +294,35 @@ class StudentController extends MY_Controller {
 
 
         }
+	}
+
+
+	public function ChangeStatus() {
+		$postdata = $this->input->post();
+		// print_r($postdata);
+		// die();
+		if (!empty($postdata['Ids']) && (!empty($postdata['IsActive']) || $postdata['IsActive'] == 0 )) {
+			$id = $postdata['Ids'];
+			unset($postdata['Ids']);
+	        $result = $this->students->UpdateStudentStatus($id,$postdata);
+     		if ($result != FALSE) {	
+				$json = json_encode($result); //log
+		        $this->logger->log('Success Update','Students',$json); //Log  
+        		echo json_encode(['redirect'=>$_SERVER['HTTP_REFERER']]);
+     		}
+     		else {
+	            $json = json_encode($postdata); //log
+		        $this->logger->log('Invalid Update','Students',$json); //Log  
+        		echo json_encode(['error'=>'Failed to save.']);
+     		}
+		}else {
+			$json = json_encode($postdata); //log
+	        $this->logger->log('Missing Input','Students Update',$json); //Log  
+    		echo json_encode(['error'=>'Undefined selection or command.']);
+		}
+
+
+
 	}
 
 

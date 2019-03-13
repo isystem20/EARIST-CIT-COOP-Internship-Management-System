@@ -21,10 +21,39 @@
             <button class="btn btn-space btn-success" id="StudentUpdateSelectButton" data-url="<?=base_url('student/edit/'); ?>" >
               <i class="icon icon-left mdi mdi-account-add"></i> Update
             </button>
-            <button class="btn btn-space btn-warning">
-              <i class="icon icon-left mdi mdi-account-add"></i> Delete
+            <button class="btn btn-space btn-warning StudentChangeStatusSelectButton" id="StudentActiveSelectButton" data-action="<?=base_url('student/change'); ?>" data-cmd="1">
+              <i class="icon icon-left mdi mdi-account-add"></i> Set to Active
             </button>
+            <button class="btn btn-space btn-warning StudentChangeStatusSelectButton" id="StudentInactiveSelectButton" data-action="<?=base_url('student/change'); ?>" data-cmd="0">
+              <i class="icon icon-left mdi mdi-account-add"></i> Set to Inactive
+            </button>            
+            <div class="btn-group btn-space">
+              <button type="button" class="btn btn-secondary">Filter By Course</button>
+              <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle"><span class="mdi mdi-chevron-down"></span><span class="sr-only">Toggle Dropdown</span></button>
+              <div role="menu" class="dropdown-menu">
+                <a href="<?=base_url('manage/students'); ?>" class="dropdown-item">No Filter</a>
+                  <?php
+                  if (!empty($courses)) {
+                     if ($courses->num_rows() > 0) {
+                        foreach ($courses->result() as $row) { ?>                
+                <a href="<?=base_url('manage/students/course/'.$row->Id); ?>" class="dropdown-item"><?=$row->Name; ?></a>
+                  <?php
+                        }
+                     }
+                  }
+                  ?>
+              </div>
+            </div>
 
+            <div class="btn-group btn-space">
+              <button type="button" class="btn btn-secondary">Filter By Status</button>
+              <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle"><span class="mdi mdi-chevron-down"></span><span class="sr-only">Toggle Dropdown</span></button>
+              <div role="menu" class="dropdown-menu">
+                <a href="<?=base_url('manage/students'); ?>" class="dropdown-item">No Filter</a>               
+                <a href="<?=base_url('manage/students/status/1'); ?>" class="dropdown-item">Active</a>
+                <a href="<?=base_url('manage/students/status/0'); ?>" class="dropdown-item">Inactive</a>
+              </div>
+            </div>
 
             <div class="tools dropdown"><span class="icon mdi mdi-download"></span><a href="#" role="button" data-toggle="dropdown" class="dropdown-toggle"><span class="icon mdi mdi-more-vert"></span></a>
               <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
@@ -49,7 +78,7 @@
                     <th>Course</th>
                     <th>Section</th>
                     
-                    <th style="width:80px;">Action</th>
+                    <!-- <th style="width:80px;">Action</th> -->
                   </tr>
               </thead>
                 <tbody>
@@ -79,7 +108,7 @@
                       </td>
                       <td class="cell-detail"> <span><?=$row->CourseName; ?></td>
                       <td class="cell-detail"> <span><?=$row->SectionName; ?></td>
-                      <td class="text-right">
+                    <!--   <td class="text-right">
                         <div class="btn-group btn-space ">
                           <a href="<?=base_url('student/view/'.$row->Id); ?>" class="btn btn-secondary">Open</a>
                           <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">
@@ -88,14 +117,14 @@
                           </button>
                           <div role="menu" class="dropdown-menu">
                             <a href="#" class="dropdown-item">Update</a>
-                            <a href="#" class="dropdown-item">Disable</a>
-                            <a href="#" class="dropdown-item">Delete</a>
+                            <a href="#" class="dropdown-item StudentChangeStatusSelectButton" id="StudentActiveSelectButton" data-action="<?=base_url('student/change'); ?>" data-cmd="1">Set as Active</a>
+                            <a href="#" class="dropdown-item StudentChangeStatusSelectButton" id="StudentActiveSelectButton" data-action="<?=base_url('student/change'); ?>" data-cmd="0">Set as Inactive</a>
                             <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item">Assign Company</a>
                             <a href="#" class="dropdown-item">Check Progress</a>
                           </div>
                         </div>
-                      </td>
+                      </td> -->
                     </tr>
 
 

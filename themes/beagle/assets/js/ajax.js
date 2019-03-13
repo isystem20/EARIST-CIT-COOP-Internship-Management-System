@@ -112,6 +112,45 @@ $(document).ready(function() {
   });
 
 
+//Student Update Button
+  $('.StudentChangeStatusSelectButton').click(function(e){ 
+    e.preventDefault();  
+    var ids = new Array();
+    $("input:checkbox[dataclass=studentids]:checked").each(function() {
+       ids.push($(this).data('id'));
+    });
+    console.log(ids);
+    var newURL = $(this).data('action');    
+    var newData  = {
+            'Ids' : ids,
+            'IsActive' : $(this).data('cmd'),
+        }
+
+    $.ajax({
+        url: newURL,
+        type:'POST',
+        dataType: "json",   
+        data: newData,
+        success: function(data) {
+          console.log(data);            
+          if($.isEmptyObject(data.error)){ 
+              $.gritter.add({title:"Success",text:"Record Update Successful. Redirecting...",class_name:"color success"});
+              window.setTimeout(function(){
+                window.location.href = data.redirect;  
+              }, 1000);
+            }
+            else{
+              $.gritter.add({title:"Error",text:data.error,class_name:"color danger"});
+            }
+        $("#document_reg_btn").prop("disabled", false);  
+        $("#document_reg_btn").text("Submit");           
+        }
+    });   
+
+
+
+  });
+
 
 
 
@@ -345,12 +384,96 @@ $(document).ready(function() {
     $('#generic_add_edit').modal();
   });
 
+
+
+//Document Update Button
+  $('#GenericUpdate').click(function(e){ 
+      var count = 0;
+      var n = '';
+      var item;
+      $("input:checkbox[dataclass=genericids]:checked").each(function() {
+         count = count + 1;
+         n = $(this).data('id');
+         item = $(this);
+      });
+
+      if (count == 0) {
+        $.gritter.add({title:"",text:'Nothing is selected.',class_name:"color warning"});
+      }
+      else if(count == 1) {
+        
+        $('#generic_add_edit_title').text('Edit Record');
+        $('input[name=Id]').val(item.data('id'));
+        $('input[name=Code]').val(item.data('code'));
+        $('input[name=Name]').val(item.data('name'));
+        $('textarea[name=Description]').val(item.data('desc'));
+        $('#generic_reg_form').attr('action',item.data('action') + 'update');
+        if (item.data('status') == '1') {
+           $('#Inactive').attr('checked',false);      
+           $('#Active').attr('checked',true);
+        }else{
+          $('#Active').attr('checked',false);
+          $('#Inactive').attr('checked',true);
+        }
+        $('#generic_add_edit').modal();
+
+
+
+      } else if (count > 1) {
+        $.gritter.add({title:"",text:'Please select single record.',class_name:"color warning"});
+      } else {
+        $.gritter.add({title:"",text:'Something went wrong.',class_name:"color warning"});
+      }
+
+  });
+
+
+
 //DEL BUTTON IN TABLE
   $('.table-generic').delegate(".generic_del_btn", "click", function() {
     $('input[name=Id]').val($(this).data('id'));
     $('span[id=itemname]').text($(this).data('name'));
     $('#generic_del').modal();
   });
+
+
+//Student Update Button
+  $('#GenericDelete').click(function(e){ 
+    e.preventDefault();  
+    var ids = new Array();
+    $("input:checkbox[dataclass=genericids]:checked").each(function() {
+       ids.push($(this).data('id'));
+    });
+    console.log(ids);
+    var newURL = $(this).data('action') + 'delete';    
+    var newData  = {
+            'Ids' : ids,
+        }
+        // console.log(newData);
+        // return false;
+    $.ajax({
+        url: newURL,
+        type:'POST',
+        dataType: "json",   
+        data: newData,
+        success: function(data) {
+          console.log(data);            
+          if($.isEmptyObject(data.error)){ 
+              $.gritter.add({title:"Success",text:"Record Update Successful. Redirecting...",class_name:"color success"});
+              window.setTimeout(function(){
+                window.location.href = data.redirect;  
+              }, 1000);
+            }
+            else{
+              $.gritter.add({title:"Error",text:data.error,class_name:"color danger"});
+            }        
+        }
+    });   
+
+
+
+  });
+
 
 
 
