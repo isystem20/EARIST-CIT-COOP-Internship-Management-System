@@ -9,8 +9,8 @@ class InternshipController extends MY_Controller {
         $this->load->model('LoggerModel','logger'); 
         $this->load->model('StudentModel','students');
 		$this->load->model('DocumentModel','doc');
-            
-			
+        $this->load->model('CourseModel','course');
+		$this->load->model('CompanyModel','com');
     }
 
 
@@ -18,6 +18,8 @@ class InternshipController extends MY_Controller {
 	{
 		$layout = array('select2' => TRUE, 'slider'=> TRUE,'table'=>TRUE,'datepicker'=>TRUE, 'page_title'=>'Student Progress Monitor');
 		$data['all_list'] = $this->students->LoadMasterlist();
+		$data['courses'] = $this->course->LoadMasterlist('Id,Name');
+		$data['companies'] = $this->com->LoadMasterlist('a.Id,CompanyName');
 		$l['docs'] = $this->doc->DocumentwithRequests();
 		$this->load->view('layout/head',$layout);
 		$this->load->view('layout/wrapper');

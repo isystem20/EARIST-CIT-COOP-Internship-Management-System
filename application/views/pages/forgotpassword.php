@@ -6,30 +6,27 @@
             <div class="card card-border-color card-border-color-primary">
               <div class="card-header">
                 <img src="<?=base_url('themes/others/'); ?>defaultlogo.png" alt="logo" width="202" class="logo-img">
-                <span class="splash-description">Please enter your user information.</span></div>
+                <span class="splash-description">Account Recovery</span></div>
               <div class="card-body">
-                <form action="<?=base_url('login/auth'); ?>" id="loginform">
-                  <div class="form-group">
-                    <input id="username" type="text" placeholder="Username" autocomplete="off" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <input id="password" type="password" placeholder="Password" class="form-control">
-                  </div>
-                  <div class="form-group row login-tools">
-                    <div class="col-12 login-remember">
-                      <label class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Remember Me</span>
-                      </label>
+                <form action="<?=base_url('recovery/'); ?>" id="recoveryform">
+                    <div class="form-group row">
+                      <div class="col-12 col-sm-8 col-lg-8">
+                        <input id="Email" type="text" name="Email" placeholder="Your email address" class="form-control">
+                      </div>
+                      <div class="col-12 col-sm-8 col-lg-4">
+                        <button data-dismiss="modal" type="button" class="btn btn-primary btn-xl" id="SendRecoveryCode">Send code</button>
+                      </div>
                     </div>
-                    <!-- <div class="col-6 login-forgot-password"><a href="<?=base_url('recovery'); ?>">Forgot Password?</a></div> -->
+                  <div class="form-group">
+                    <input id="password" type="password" placeholder="Pass Code" class="form-control">
                   </div>
                   <div class="form-group login-submit">
-                    <button data-dismiss="modal" type="submit" class="btn btn-primary btn-xl">Sign me in</button>
+                    <button data-dismiss="modal" type="submit" class="btn btn-primary btn-xl">Verify</button>
                   </div>
                 </form>
               </div>
             </div>
-            <div class="splash-footer"><span>Don't have an account? <a href="<?=base_url('signup'); ?>">Sign Up</a></span></div>
+            <div class="splash-footer"><span>Don't have an account? <a href="pages-sign-up.html">Sign Up</a></span></div>
           </div>
         </div>
       </div>

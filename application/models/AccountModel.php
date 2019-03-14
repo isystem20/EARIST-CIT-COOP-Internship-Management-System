@@ -35,8 +35,22 @@ class AccountModel extends CI_Model {
 		}
 		else {
 			return FALSE;
+		}		
+	}
+
+
+	function UpdateActivationCode($id) {
+		$code = rand(100000,999999);
+		$this->db->set('ActivationCode', "'".$code."'", FALSE);
+		$this->db->where('AccountId',$id);
+		$this->db->update('tbl_users');
+		if ($this->db->affected_rows() > 0) {
+			return $code;
 		}
-				
+		else {
+			return FALSE;
+		}
+
 	}
 
 }

@@ -13,79 +13,104 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card card-table">
+          <?=form_open_multipart('monitor/internship','id="update_monitoring"'); ?>
           <div class="row table-filters-container">
             <div class="col-12 col-lg-12 col-xl-6">
               <div class="row">
                 <div class="col-12 col-lg-6 table-filters pb-0 pb-xl-4"><span class="table-filter-title">OJT progress</span>
                   <div class="filter-container">
-                    <form>
-                      <label class="control-label d-block"><span id="slider-value">10% - 60%</span></label>
-                      <input id="milestone_slider" type="text" data-slider-value="[10,60]" data-slider-step="5" data-slider-max="100" data-slider-min="0" value="50" class="bslider form-control">
-                    </form>
+                    <label class="control-label">Select a Course/Program:</label>
+                      <select class="select2" name="Course">
+                        <option value="">Any</option>
+                      <?php
+                      if (!empty($courses)) {
+                         if ($courses->num_rows() > 0) {
+                            foreach ($courses->result() as $row) { ?>
+                        <option value="<?=$row->Id; ?>"><?=$row->Name; ?></option>
+                        <?php
+                              }
+                           }
+                        }
+                        ?>
+                      </select>
                   </div>
                 </div>
                 <div class="col-12 col-lg-6 table-filters pb-0 pb-xl-4"><span class="table-filter-title">Company</span>
                   <div class="filter-container">
                     <label class="control-label">Select a company:</label>
-                    <form>
-                      <select class="select2">
-                        <option value="Bootstrap">Accenture</option>
-                        <option value="CLI">IBM</option>
+                      <select class="select2" name="Company">
+                        <option value="">Any</option>
+                      <?php
+                      if (!empty($companies)) {
+                         if ($companies->num_rows() > 0) {
+                            foreach ($companies->result() as $row) { ?>
+                        <option value="<?=$row->Id; ?>"><?=$row->CompanyName; ?></option>
+                        <?php
+                              }
+                           }
+                        }
+                        ?>
                       </select>
-                    </form>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-12 col-lg-12 col-xl-6">
               <div class="row">
-                <div class="col-12 col-lg-6 table-filters pb-0 pb-xl-4"><span class="table-filter-title">Date</span>
+                <div class="col-12 col-lg-5 table-filters pb-0 pb-xl-4"><span class="table-filter-title">Date</span>
                   <div class="filter-container">
-                    <form>
                       <div class="row">
                         <div class="col-6">
                           <label class="control-label">Since:</label>
-                          <input type="text" class="form-control form-control-sm datetimepicker">
+                          <input type="text" name="StartDate" class="form-control form-control-sm datetimepicker">
                         </div>
                         <div class="col-6">
                           <label class="control-label">To:</label>
-                          <input type="text" class="form-control form-control-sm datetimepicker">
+                          <input type="text" name="EndDate" class="form-control form-control-sm datetimepicker">
                         </div>
                       </div>
-                    </form>
                   </div>
                 </div>
-                <div class="col-12 col-lg-6 table-filters pb-xl-4"><span class="table-filter-title">Status</span>
+                <div class="col-12 col-lg-5 table-filters pb-xl-4"><span class="table-filter-title">Status</span>
                   <div class="filter-container">
-                    <form>
                       <div class="row">
                         <div class="col-6">
                           <div class="custom-controls-stacked">
                             <label class="custom-control custom-checkbox">
-                              <input type="checkbox" checked="" class="custom-control-input"><span class="custom-control-label">No Company</span>
+                              <input type="checkbox" name="NoCompany" class="custom-control-input"><span class="custom-control-label">No Company</span>
                             </label>
                             <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input"><span class="custom-control-label">On-going</span>
+                              <input type="checkbox" name="OnGoing" class="custom-control-input"><span class="custom-control-label">On-going</span>
                             </label>
                           </div>
                         </div>
                         <div class="col-6">
                           <div class="custom-controls-stacked">
                             <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Completed</span>
+                              <input type="checkbox" name="Inactive" class="custom-control-input"><span class="custom-control-label">Inactive</span>
                             </label>
                             <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Dropped</span>
+                              <input type="checkbox" name="" class="custom-control-input"><span class="custom-control-label">Dropped</span>
                             </label>
                           </div>
                         </div>
                       </div>
-                    </form>
                   </div>
                 </div>
+                <div class="col-12 col-lg-2 table-filters pb-xl-4"><span class="table-filter-title">Action</span>
+                  <div class="filter-container">
+                      <div class="row">
+                        <div class="col-6">
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                      </div>
+                  </div>
+                </div>                
               </div>
             </div>
           </div>
+          <?=form_close(); ?> 
+
           <div class="card-body">
             <div class="table-responsive noSwipe">
               <table class="table table-striped table-hover">

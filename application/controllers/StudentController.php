@@ -190,8 +190,14 @@ class StudentController extends MY_Controller {
 		        $result = $this->students->AddStudent($postdata);
 	     		if ($result != FALSE) {	
 					$json = json_encode($result); //log
-			        $this->logger->log('Success Register','Studdents',$json); //Log  
-	        		echo json_encode(['redirect'=>base_url('manage/students')]);
+			        $this->logger->log('Success Register','Studdents',$json); //Log 
+			        if (!empty($this->session->userdata('userid'))) {
+			        	echo json_encode(['redirect'=>base_url('manage/students')]);
+			        }
+			        else {
+			        	echo json_encode(['redirect'=>base_url()]);
+			        }
+	        		
 	     		}
 	     		else {
 		            $json = json_encode($postdata); //log
