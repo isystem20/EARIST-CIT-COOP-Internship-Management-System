@@ -17,11 +17,17 @@ class RequestController extends Student_Controller {
             
     }
 
-    public function LoadRequests($id = null){
+    public function LoadRequests($id = null,$status = null){
 		$layout = array('datatable' => TRUE, 'page_title'=>'OJT Applications');
 		$data['all_list'] = $this->app->LoadSingle(null,$this->session->userdata('account_id'));
 		$data['docs'] = $this->docs->LoadMasterlist();
-        $requestlist = $this->req->RequestDocuments($id,null,1);
+        if ($status != null) {
+            $requestlist = $this->req->RequestDocuments($id,null,$status);
+        }
+        else {
+            $requestlist = $this->req->RequestDocuments($id,null,1);
+        }
+        
         if ($requestlist == FALSE) {
             return redirect(base_url('404'));
         }
@@ -79,11 +85,13 @@ class RequestController extends Student_Controller {
 
     public function RequestViewing($id) {
         $this->load->library('Pdf');
-        $requestlist = $this->req->RequestDocuments(null,null,2,$id);
+        $requestlist = $this->req->RequestDocuments(null,null,null,$id);
         if ($requestlist == FALSE) {
             return redirect(base_url('404'));
         }
-        $data['content'] = $requestlist;
+        $data['form'] = $requestlist->result_array();
+            // print_r($data['content']);
+            // die();
         $this->load->view("reports/documentfile",$data);
     }
 

@@ -73,7 +73,17 @@
                           </button>
                           <div role="menu" class="dropdown-menu">
                             <a class="dropdown-item RequestDocumentBtn" data-id="<?=$row->Id; ?>" data-recordid="<?=$row->RecordId; ?>">Request with ...</a>
-                            <a href="#" class="dropdown-item">Delete</a>
+                            <?php
+                            if ($row->RecordId != '') { ?>
+                              <a href="<?=base_url('record/'.$row->RecordId); ?>" class="dropdown-item">View Record</a>
+                            <?php
+                            }else { ?>
+                              <a href="<?=base_url('applications/records/'.$row->Id); ?>" class="dropdown-item">Set Internship</a>
+                            <?php
+                            }
+
+                            ?>
+                            
                           </div>
                         </div>
                       </td>

@@ -64,6 +64,35 @@
                               </div>                            
                           </div>
                       </div>
+                      <div>
+                        <p>Variables</p>
+                        <p>{{DocumentDate}} - Desired Document Date </p>
+                        <p>{{ContactPerson}} - Company Contact Person</p>
+                        <p>{{ContactPerson_Designation}} - Designation of Contact Person</p>
+                        <p>{{CompanyName}} - Name of the Participating Company</p>
+                        <p>{{CompanyAddress1}} - Company Address (Unit/Building/Street) </p>
+                        <p>{{CompanyAddress2}} - Company Address (City, Region, Zip) </p>
+                        <p>{{StudentFullName}} - Full name of Student</p>
+                        <p>{{StudentFName}} - First name of Student</p>
+                        <p>{{StudentLNAme}} - Last name of Student</p>
+
+                        <p>{{StudentCourse}} - Course / Program of the Student</p>
+                        <p>{{StudentOJTHours}} - Number of hours required for Internship</p>
+
+                        <p>{{StudentGender}} - Gender of Student</p>
+                        <p>{{StudentPronoun}} - Pronoun to use for the Student</p>
+                        <p>{{Student3rdPerson}} - Third person to use for the Student</p>
+
+
+                        <p>{{TrainingSupervisor}} - Name of Training Supervisor</p>
+                        <p>{{TrainingSupervisor_Designation}} - Designation of Training Supervisor</p>
+                        <p>{{TrainingManager}} - Name of Company Department Head</p>
+
+                        <p>{{StudentStartDate}} - Start of Internship in the Company</p>
+                        <p>{{StudentEndDate}} - Estimated End of Internship in the Company</p>
+                        <p>{{StudentScheduleDays}} - Internship Day Schedule</p>
+                        <p>{{StudentScheduleTime}} - Internship Time Schedule</p>
+                      </div>
                       <div class="row pt-0 pt-sm-5">
                         <div class="col-sm-6 pb-2 pb-sm-4 pb-lg-0 pr-0"></div>
                         <div class="col-sm-6 pl-0">

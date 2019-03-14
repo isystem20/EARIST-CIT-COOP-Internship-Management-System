@@ -703,4 +703,52 @@ $(document).ready(function() {
 
 
 
+//[RECORD REGISTER]
+  $('#record_reg_form').submit(function(e){ 
+    e.preventDefault();       
+    $("#record_reg_btn").prop("disabled", true);  
+    $("#record_reg_btn").text("Processing..");  
+    var newURL = $(this).attr('action');    
+    var newData = new FormData(this); 
+    var EditMode = 0;
+    // for(var pair of newData.entries()) {
+    //    console.log(pair[0]+ ', '+ pair[1]); 
+    // }
+    $.ajax({
+        url: newURL,
+        type:'POST',
+        dataType: "json",   
+        data: newData,
+        contentType: false,
+        cache: false,  
+        processData:false,  
+        success: function(data) {
+          console.log(data);            
+          if($.isEmptyObject(data.error)){ 
+              $.gritter.add({title:"Success",text:"Record Update Successful. Redirecting...",class_name:"color success"});
+              window.setTimeout(function(){
+                window.location.href = data.redirect;  
+              }, 1000);
+            }
+            else{
+              $.each(data.responses, function(key,value) {
+                var element = $('[name='+key+']');
+                element.next('.parsley-errors-list').remove();
+                element.removeClass('parsley-error');
+                element.addClass(value.length > 0 ? 'parsley-error' : '');
+                if (element.closest('.datetimepicker').length > 0) {
+                  element.closest('.datetimepicker').after(value);
+                }else{
+                  element.after(value);
+                }
+                
+              });
+            }
+        $("#record_reg_btn").prop("disabled", false);  
+        $("#record_reg_btn").text("Submit");           
+        }
+    });   
+  });
+
+
 });

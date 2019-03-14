@@ -41,17 +41,47 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 // set font
 $pdf->SetFont('dejavusans', '', 10);
 
+$id = $form[0]['Id'];
+$content = $form[0]['Content'];
 
 
+
+$variables = array(
+	'DocumentDate' => $form[0]['DocumentDate'], 
+	'ContactPerson' => $form[0]['ContactPerson'], 
+	'ContactPerson_Designation' => $form[0]['ContactPerson_Designation'], 
+	'CompanyName' =>$form[0]['CompanyName'], 
+	'CompanyAddress1' =>$form[0]['CompanyAddress1'], 
+	'CompanyAddress2' =>$form[0]['CompanyAddress2'], 
+	'StudentFullName' => $form[0]['StudentFullName'], 
+	'StudentFName' =>$form[0]['StudentFName'], 
+	'StudentLName' => $form[0]['StudentLName'], 
+	'StudentCourse' => $form[0]['StudentCourse'], 
+	'StudentOJTHours' => $form[0]['StudentOJTHours'], 
+	'StudentGender' => $form[0]['StudentGender'], 
+	'StudentPronoun' =>$form[0]['StudentPronoun'], 
+	'Student3rdPerson' => $form[0]['Student3rdPerson'], 
+	'TrainingSupervisor' => $form[0]['TrainingSupervisor'], 
+	'TrainingSupervisor_Designation' => $form[0]['TrainingSupervisor_Designation'], 
+	'TrainingManager' => $form[0]['TrainingManager'], 
+	'StudentStartDate' => $form[0]['StudentStartDate'], 
+	'StudentEndDate' => $form[0]['StudentEndDate'], 
+	'StudentScheduleDays' => $form[0]['StudentScheduleDays'], 
+	'StudentScheduleTime' => $form[0]['StudentScheduleTime'], 
+	);
+
+foreach($variables as $key => $value)
+{
+    $content = str_replace('{{'.$key.'}}', $value, $content);
+}
 
 $pdf->AddPage();
 ob_start();
 
 $logo = base_url('themes/others/letterhead.png');
     // we can have any view part here like HTML, PHP etc
-    $content = '
-    	Unknown Error Occurred. Incompatible version of PHP.
-    ';
+    $body = $form[0]['DocumentDate'] . $content;
+    
 ob_end_clean();
-$pdf->writeHTML($content, true, false, true, false, '');
+$pdf->writeHTML($body, true, false, true, false, '');
 $pdf->Output('output.pdf', 'I');

@@ -29,14 +29,15 @@ class RequestModel extends CI_Model {
 	}
 
 	function RequestDocuments($docid = null,$userid = null,$status = null,$id = null) {
-		$this->db->select('r.*, d.Code as DocCode, d.DocumentName as DocumentName, c.CompanyName as CompanyName, s.FirstName, s.LastName,or.SFirstName, or.SLastName,a.ContactPerson, a.Designation');
+		$this->db->select('r.Id, r.DocumentId, r.ApplicationId, r.RecordId, r.CreatedAt, s.FirstName, s.LastName, a.ContactPerson, or.SFirstName as SFirstName, or.SLastName as SLastName, d.Code as DocCode, d.DocumentName as DocumentName, d.Content, a.LabelDate as DocumentDate, a.ContactPerson, a.Designation as ContactPerson_Designation, a.Address1 as CompanyAddress1, concat(ci.Name," ",a.Zip) as CompanyAddress2, c.CompanyName as CompanyName, s.FirstName as StudentFName, s.LastName as StudentLName, concat(s.FirstName," ",s.LastName) as StudentFullName, co.Name as StudentCourse, or.Hours as StudentOJTHours,s.Gender as StudentGender, "" as StudentPronoun, "" as Student3rdPerson, concat(or.SFirstName," ",or.SLastName) as TrainingSupervisor, or.SupervisorPosition as TrainingSupervisor_Designation, concat(or.MFirstName," ",or.MLastName) as TrainingManager, or.StartDate as StudentStartDate, or.EndDate as StudentEndDate, or.ScheduleDays as StudentScheduleDays, or.ScheduleTime as StudentScheduleTime');
 		$this->db->from('tbl_requests r');
 		$this->db->join('tbl_documents d','d.Id = r.DocumentId','left outer');
 		$this->db->join('tbl_ojt_applications a','a.Id = r.ApplicationId','left outer');
 		$this->db->join('tbl_ojt_records or','or.Id = r.RecordId','left outer');
 		$this->db->join('tbl_companies c','c.Id = a.CompanyId','left outer');
 		$this->db->join('tbl_students s','s.Id = a.StudentId','left outer');
-		
+		$this->db->join('tbl_courses co','co.Id = s.CourseId','left outer');
+		$this->db->join('tbl_cities ci','ci.Id = a.CityId','left outer');		
 		if (!empty($docid)) {
 			$this->db->where('r.DocumentId',$docid);
 		}

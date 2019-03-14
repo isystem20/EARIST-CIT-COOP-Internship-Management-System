@@ -14,7 +14,16 @@
       <div class="col-sm-12">
         <div class="card card-table">
           <div class="card-header">
-
+            <div class="btn-group btn-space">
+              <button type="button" class="btn btn-secondary">Filter By Status</button>
+              <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle"><span class="mdi mdi-chevron-down"></span><span class="sr-only">Toggle Dropdown</span></button>
+              <div role="menu" class="dropdown-menu">
+                <a href="<?=base_url('requests/documents/'.$doc[0]['Id']); ?>" class="dropdown-item">No Filter</a>               
+                <a href="<?=base_url('requests/documents/'.$doc[0]['Id'].'/1'); ?>" class="dropdown-item">Pending</a>
+                <a href="<?=base_url('requests/documents/'.$doc[0]['Id'].'/2'); ?>" class="dropdown-item">Approved</a>
+                <a href="<?=base_url('requests/documents/'.$doc[0]['Id'].'/0'); ?>" class="dropdown-item">Rejected</a>
+              </div>
+            </div>
             <div class="tools dropdown"><span class="icon mdi mdi-download"></span><a href="#" role="button" data-toggle="dropdown" class="dropdown-toggle"><span class="icon mdi mdi-more-vert"></span></a>
               <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
                 <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>

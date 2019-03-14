@@ -31,8 +31,8 @@
                       <li><a href="<?=base_url('manage/generic/regions');?>">Regions</a></li>
                     </ul>
                   </li>
-                  <!-- <li><a href="<?=base_url('monitor/internship');?>"><i class="icon mdi mdi-chart"></i><span>Progress Monitor</span></a>
-                  </li>  -->                  
+                  <li><a href="<?=base_url('monitor/internship');?>"><i class="icon mdi mdi-chart"></i><span>Progress Monitor</span></a>
+                  </li>                   
               <!--     <li class="divider">Reports</li>                  
                   <li><a href="<?=base_url(); ?>"><i class="icon mdi mdi-accounts-list"></i><span>Status Summary</span></a>
                   </li>  -->

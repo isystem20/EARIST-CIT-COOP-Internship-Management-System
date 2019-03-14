@@ -87,11 +87,19 @@ $route['manage/accounts'] = 'UserController/LoadUserMasterlist';
 $route['profile'] = 'StudentAccountController/LoadProfile';
 $route['applications'] = 'StudentAccountController/LoadMyApplications';
 $route['applications/register'] = 'StudentAccountController/RegisterApplication';
+$route['applications/records/(:any)'] = 'StudentAccountController/RegisterRecord/$1';
+
 $route['applications/add'] = 'StudentAccountController/Create';
+$route['record/add'] = 'StudentAccountController/CreateRecord';
+$route['record/(:any)'] = 'StudentAccountController/ViewRecord/$1';
+
+
+
 $route['applications/preview'] = 'StudentAccountController/LoadDocumentRecord';
 $route['applications/edit/(:any)'] = 'StudentAccountController/UpdateApplication/$1';
 
 $route['requests/documents/(:any)'] = 'RequestController/LoadRequests/$1';
+$route['requests/documents/(:any)/(:any)'] = 'RequestController/LoadRequests/$1/$2';
 $route['requests/add'] = 'StudentAccountController/CreateRequest';
 
 $route['login'] = 'AuthController/LoginPage';

@@ -14,6 +14,8 @@ class StudentAccountController extends Student_Controller {
         $this->load->model('DocumentModel','docs');
         $this->load->model('RequestModel','req');
         $this->load->model('StudentModel','students');
+        $this->load->model('RecordModel','rec');
+
     }
 
 
@@ -113,6 +115,23 @@ class StudentAccountController extends Student_Controller {
         // $this->logger->log('Register Form','Students',$json); //Log  
     }
 
+
+    public function RegisterRecord($appid) {
+		$layout = array('form'=>TRUE,'formelements'=>TRUE, 'page_title'=>'Internship Record');
+		$app = $this->app->LoadSingle($appid,$this->session->userdata('account_id'));
+		$data['application'] = $app ->result_array();
+		$data['companies'] = $this->com->LoadMasterlist('a.Id,a.CompanyName');
+		$data['cities'] = $this->city->LoadMasterlist('Id,Name');
+		$data['regions'] = $this->region->LoadMasterlist('Id,Name');
+		$this->load->view('layout/head',$layout);
+		$this->load->view('layout/wrapper');
+		$this->load->view('layout/topbar');
+		$this->load->view('layout/leftbar');
+		$this->load->view('pages/internshiprecords',$data);
+		$this->load->view('layout/scripts',$layout);
+		$json = json_encode($data); //log
+        // $this->logger->log('Register Form','Students',$json); //Log  
+    }
 
 
 
@@ -258,6 +277,80 @@ class StudentAccountController extends Student_Controller {
 		$json = json_encode($data); //log
         // $this->logger->log('Register Form','Students',$json); //Log  
     }
+
+
+    public function ViewRecord($recid) {
+		$layout = array('form'=>TRUE,'formelements'=>TRUE, 'page_title'=>'Internship Record Update');
+		$record = $this->rec->LoadSingle($recid,$this->session->userdata('account_id'));
+		if ($record != FALSE) {
+			$data['record'] = $record ->result_array();
+		}
+		else {
+			return redirect(base_url('404'));
+		}
+		$data['companies'] = $this->com->LoadMasterlist('a.Id,a.CompanyName');
+		$data['cities'] = $this->city->LoadMasterlist('Id,Name');
+		$data['regions'] = $this->region->LoadMasterlist('Id,Name');
+		$this->load->view('layout/head',$layout);
+		$this->load->view('layout/wrapper');
+		$this->load->view('layout/topbar');
+		$this->load->view('layout/leftbar');
+		$this->load->view('pages/internshiprecorddetails',$data);
+		$this->load->view('layout/scripts',$layout);
+		$json = json_encode($data); //log
+        // $this->logger->log('Register Form','Students',$json); //Log  
+    }
+
+
+
+
+    public function CreateRecord() {
+    	$postdata = $this->input->post();
+		$this->form_validation->set_rules('ApplicationId', 'Selected Application', 'required');
+        $this->form_validation->set_rules('SFirstName', 'Supervisor First Name', 'required');
+        $this->form_validation->set_rules('SLastName', 'Supervisor Last Name', 'required');
+        $this->form_validation->set_rules('MFirstName', 'Manager First Name', 'required');
+        $this->form_validation->set_rules('MLastName', 'Manager Last Name', 'required');
+        $this->form_validation->set_rules('Department', 'Department', 'required');
+        $this->form_validation->set_rules('Hours', 'Internship Hours', 'required');
+        $this->form_validation->set_rules('StartDate', 'Starting Date', 'required');
+        $this->form_validation->set_rules('EndDate', 'Expected End Date', 'required');
+        $this->form_validation->set_rules('ScheduleDays', 'Schedule Days', 'required');
+        $this->form_validation->set_rules('ScheduleTime', 'Schedule Time', 'required');
+        $this->form_validation->set_error_delimiters('<ul class="parsley-errors-list filled" id="parsley-id-5"><li class="parsley-required">','</li></ul>');
+        if ($this->form_validation->run() == FALSE){
+        	foreach ($postdata as $key => $value) {
+        		$data['responses'][$key] = form_error($key);
+        	}
+            $errors = validation_errors();
+            $data['error'] = $errors;
+            $json = json_encode($postdata); //log
+	        $this->logger->log('Invalid Register','Internship Record',$json); //Log  
+            echo json_encode($data);
+        }else{
+        	$id = $postdata['Id'];
+        	unset($postdata['Id']);
+        	if (!empty($id)) {
+        		$result = $this->rec->UpdateRecord($id,$postdata);
+        	}
+        	else {
+        		$result = $this->rec->AddRecord($postdata);
+        	}
+	        
+     		if ($result != FALSE) {	
+				$json = json_encode($result); //log
+		        $this->logger->log('Success Register','Internship Record',$json); //Log  
+        		echo json_encode(['redirect'=>base_url('applications')]);
+     		}
+     		else {
+	            $json = json_encode($postdata); //log
+		        $this->logger->log('Invalid Register','Internship Record',$json); //Log  
+        		echo json_encode(['error'=>'Failed to save.']);
+     		}
+
+        }
+    }
+
 
 
 }
