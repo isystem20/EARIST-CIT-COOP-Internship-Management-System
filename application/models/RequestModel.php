@@ -14,8 +14,8 @@ class RequestModel extends CI_Model {
         $id = $this->uuid->v4();
 		$this->db->trans_start();
 		$this->db->set('Id', "'".$id."'", FALSE);
-        $this->db->set('CreatedById', "'".$this->session->userdata('userid')."'", FALSE);
-        $this->db->set('ModifiedById', "'".$this->session->userdata('userid')."'", FALSE);
+        $this->db->set('CreatedById', "'".$this->session->userdata('account_id')."'", FALSE);
+        $this->db->set('ModifiedById', "'".$this->session->userdata('account_id')."'", FALSE);
 		$this->db->insert('tbl_requests',$data);
 		$this->db->trans_complete();
 		if ($this->db->trans_status() === FALSE)
