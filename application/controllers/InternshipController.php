@@ -19,10 +19,10 @@ class InternshipController extends MY_Controller {
 	{
 
 
-		$layout = array('select2' => TRUE, 'slider'=> TRUE,'table'=>TRUE,'datepicker'=>TRUE, 'page_title'=>'Student Progress Monitor');
+		$layout = array('select2' => TRUE, 'slider'=> TRUE,'datatable'=>TRUE, 'table'=> TRUE,'datepicker'=>TRUE, 'page_title'=>'Student Progress Monitor');
 		$postdata = $this->input->post();
 		if (!empty($postdata)) {
-			print_r($postdata);
+			// print_r($postdata);
 			$data['all_list'] = $this->intern->LoadInterns($postdata);
 		}
 		else{

@@ -114,7 +114,7 @@
 
           <div class="card-body">
             <div class="table-responsive noSwipe">
-              <table class="table table-striped table-hover">
+              <table id="table3" class="table table-striped table-hover">
                 <thead>
                   <tr>
                     <th style="width:5%;">
@@ -149,7 +149,7 @@
                           <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
                         </label>
                       </td>
-                      <td class="user-avatar cell-detail user-info"><img src="<?=base_url('themes/beagle/')?><?=$row->Photopath; ?>" alt="Avatar" class="mt-0 mt-md-2 mt-lg-0"><span><?=$row->FirstName.' '.$row->LastName; ?></span><span class="cell-detail-description">Section 1</span></td>
+                      <td class="user-avatar cell-detail user-info"><img src="<?=base_url($row->Photopath)?>" alt="Avatar" class="mt-0 mt-md-2 mt-lg-0"><span><?=$row->FirstName.' '.$row->LastName; ?></span><span class="cell-detail-description">Section 1</span></td>
                       <td class="cell-detail"> <span><?php if($row->LastDocument == '') { echo '-'; } else { echo $row->LastDocument; }; ?></span></td>
                       <td class="milestone"><span class="completed"><?php  $d = 0; if($row->DocCount == '') { echo '0';$d = 0;} else {echo $row->DocCount; } ?> / <?=$doccount ?></span><span class="version">Document Count</span>
                         <div class="progress">
