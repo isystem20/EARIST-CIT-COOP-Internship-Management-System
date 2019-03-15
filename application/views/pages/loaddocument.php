@@ -75,7 +75,7 @@
                         <p>{{StudentFullName}} - Full name of Student</p>
                         <p>{{StudentFName}} - First name of Student</p>
                         <p>{{StudentLNAme}} - Last name of Student</p>
-
+                        <p>{{StudentCode}} - Student Unique Number/Code </p>
                         <p>{{StudentCourse}} - Course / Program of the Student</p>
                         <p>{{StudentOJTHours}} - Number of hours required for Internship</p>
 
