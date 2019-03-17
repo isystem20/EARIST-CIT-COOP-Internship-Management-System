@@ -120,13 +120,20 @@ class StudentController extends MY_Controller {
 	}
 
 
+	function callback_date_valid($date){
+	    $day = (int) substr($date, 0, 2);
+	    $month = (int) substr($date, 3, 2);
+	    $year = (int) substr($date, 6, 4);
+	    return checkdate($month, $day, $year);
+	}
+
 	public function Create() {
 		$postdata = $this->input->post();
 		$this->form_validation->set_rules('FirstName', 'Given Name', 'required');
         $this->form_validation->set_rules('LastName', 'Family Name', 'required');
         $this->form_validation->set_rules('Birthdate', 'Date of birth', 'required');
         $this->form_validation->set_rules('PersonalEmail', 'Email', 'required|valid_email');
-        $this->form_validation->set_rules('MobileNo', 'Mobile', 'required');
+        $this->form_validation->set_rules('MobileNo', 'Mobile', 'required|exact_length[11]');
         $this->form_validation->set_rules('Code', 'Student Number', 'required|is_unique[tbl_students.Code]');
         $this->form_validation->set_rules('CourseId', 'Course', 'required');
         $this->form_validation->set_rules('YearLevelId', 'Year Level', 'required');
@@ -144,6 +151,12 @@ class StudentController extends MY_Controller {
 	        $this->logger->log('Invalid Register','Students',$json); //Log  
             echo json_encode($data);
         }else{
+
+        	foreach ($postdata as $key => $value) {
+        		$postdata[$key] = ucwords($value);
+        	}
+
+
 	        $path = dirname(BASEPATH).'/uploads/public/';
 	        $config['upload_path'] = $path;
 	        $config['allowed_types'] = 'gif|jpg|png';
@@ -233,6 +246,13 @@ class StudentController extends MY_Controller {
 	        $this->logger->log('Invalid Update','Students',$json); //Log  
             echo json_encode($data);
         }else{
+
+
+        	foreach ($postdata as $key => $value) {
+        		$postdata[$key] = ucwords($value);
+        	}
+
+        	
 	        $path = dirname(BASEPATH).'/uploads/public/';
 	        $config['upload_path'] = $path;
 	        $config['allowed_types'] = 'gif|jpg|png';
