@@ -782,10 +782,12 @@ $(document).ready(function() {
 
 
 
+$('#companyidselect').change(function(e){
+  if ($(this).val() != '') {
+    $('#companynametext').val($("#companyidselect option:selected").text());
+  }
 
-
-
-
+});
 
 
 
