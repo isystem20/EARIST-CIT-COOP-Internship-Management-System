@@ -751,4 +751,48 @@ $(document).ready(function() {
   });
 
 
+//[SEND CODE]
+  $('#SendRecoveryCode').click(function(e){ 
+    e.preventDefault();       
+    $("#SendRecoveryCode").prop("disabled", true);  
+    var newURL = $('#recoveryform').attr('action')+'sendcode';    
+    var newData  = {
+            'Email' : $('#Email').val(),  
+        }
+    $.ajax({
+        url: newURL,
+        type:'POST',
+        dataType: "json",     
+        data: newData,
+        success: function(data) {
+          console.log(data);            
+          if($.isEmptyObject(data.error)){ 
+              $.gritter.add({title:"Success",text:"Authentication Successful. Redirecting...",class_name:"color success"})
+              // window.setTimeout(function(){
+              //   window.location.href = data.url;  
+              // }, 1000);
+            }
+            else{
+               $.gritter.add({title:"Error",text:data.error,class_name:"color danger"});
+            }
+          $("#SendRecoveryCode").prop("disabled", false);           
+        }
+    });   
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });

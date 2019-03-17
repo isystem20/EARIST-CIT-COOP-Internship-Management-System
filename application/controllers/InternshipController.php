@@ -9,15 +9,28 @@ class InternshipController extends MY_Controller {
         $this->load->model('LoggerModel','logger'); 
         $this->load->model('StudentModel','students');
 		$this->load->model('DocumentModel','doc');
-            
-			
+        $this->load->model('CourseModel','course');
+		$this->load->model('CompanyModel','com');
+		$this->load->model('InternshipModel','intern');		
     }
 
 
 	public function LoadStudentMasterlist()
 	{
-		$layout = array('select2' => TRUE, 'slider'=> TRUE,'table'=>TRUE,'datepicker'=>TRUE, 'page_title'=>'Student Progress Monitor');
-		$data['all_list'] = $this->students->LoadMasterlist();
+
+
+		$layout = array('select2' => TRUE, 'slider'=> TRUE,'datatable'=>TRUE, 'table'=> TRUE,'datepicker'=>TRUE, 'page_title'=>'Student Progress Monitor');
+		$postdata = $this->input->post();
+		if (!empty($postdata)) {
+			// print_r($postdata);
+			$data['all_list'] = $this->intern->LoadInterns($postdata);
+		}
+		else{
+			$data['all_list'] = $this->intern->LoadInterns();
+		}
+		$data['courses'] = $this->course->LoadMasterlist('Id,Name');
+		$data['documents'] = $this->doc->LoadMasterlist();
+		$data['companies'] = $this->com->LoadMasterlist('a.Id,CompanyName');
 		$l['docs'] = $this->doc->DocumentwithRequests();
 		$this->load->view('layout/head',$layout);
 		$this->load->view('layout/wrapper');

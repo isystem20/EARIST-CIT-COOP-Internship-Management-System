@@ -16,7 +16,10 @@
                   <div class="user-info">
                     <div class="user-name"><?=$this->session->userdata('firstname'); ?></div>
                     <div class="user-position online">Available</div>
-                  </div><a href="pages-profile.html" class="dropdown-item"><span class="icon mdi mdi-face"></span> Account</a><a href="#" class="dropdown-item"><span class="icon mdi mdi-settings"></span> Settings</a><a href="<?=base_url('logout'); ?>" class="dropdown-item"><span class="icon mdi mdi-power"></span> Logout</a>
+                  </div>
+<!--                   <a href="pages-profile.html" class="dropdown-item"><span class="icon mdi mdi-face"></span> Account</a>
+                  <a href="#" class="dropdown-item"><span class="icon mdi mdi-settings"></span> Settings</a> -->
+                  <a href="<?=base_url('logout'); ?>" class="dropdown-item"><span class="icon mdi mdi-power"></span> Logout</a>
                 </div>
               </li>
             </ul>

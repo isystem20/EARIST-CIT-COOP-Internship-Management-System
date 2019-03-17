@@ -52,6 +52,22 @@ class StudentModel extends CI_Model {
 				
 	}
 
+	function FindEmail($email) {
+		$this->db->select('s.*, c.Name as CourseName, sec.Name as SectionName, sem.Name as SemesterName, l.Name as YearLevelName');
+		$this->db->from('tbl_students s');
+		$this->db->join('tbl_courses c','c.Id = s.CourseId','left outer');
+		$this->db->join('tbl_sections sec','sec.Id = s.SectionId','left outer');
+		$this->db->join('tbl_semesters sem','sem.Id = s.SemesterId','left outer');
+		$this->db->join('tbl_school_levels l','l.Id = s.YearLevelId','left outer');
+		$this->db->where('s.PersonalEmail',$email);
+		$get = $this->db->get();
+		if ($get->num_rows() > 0) {
+			return $get;
+		}
+		else {
+			return FALSE;
+		}			
+	}
 
 	function AddStudent($data) {
         $this->load->library('Uuid');

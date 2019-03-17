@@ -8,6 +8,17 @@ class AuthController extends Public_Controller {
         parent::__construct();
         $this->load->model('LoggerModel','logger'); 
         $this->load->model('AuthModel','auth');
+        $this->load->model('StudentModel','stud');
+        $this->load->model('EmailModel','email');
+        $this->load->model('AccountModel','acct');
+        $this->load->model('CityModel','city');
+        $this->load->model('RegionModel','region');
+        $this->load->model('CourseModel','course');
+        $this->load->model('SemesterModel','semester');
+        $this->load->model('SectionModel','section');
+        $this->load->model('YearLevelModel','yearlevel');
+        $this->load->model('AdvisorModel','advisors');
+        $this->load->model('NationalityModel','nationality');
     }
 
 
@@ -19,6 +30,79 @@ class AuthController extends Public_Controller {
 		$this->load->view('layout/scripts',$layout);
 	}
 
+
+	public function RegisterPage()
+	{
+		$layout = array('form'=>TRUE,'formelements'=>TRUE, 'page_title'=>'Student Registration');
+
+		$data['cities'] = $this->city->LoadMasterlist('Id,Name');
+		$data['regions'] = $this->region->LoadMasterlist('Id,Name');
+		$data['courses'] = $this->course->LoadMasterlist('Id,Name');
+		$data['semesters'] = $this->semester->LoadMasterlist('Id,Name');
+		$data['sections'] = $this->section->LoadMasterlist('Id,Name');
+		$data['yearlevels'] = $this->yearlevel->LoadMasterlist('Id,Name');
+		$data['nationality'] = $this->nationality->LoadMasterlist('Id,Name');
+		$data['advisors'] = $this->advisors->LoadMasterlist('Id,LastName,FirstName');
+
+		$this->load->view('layout/head',$layout);
+		$this->load->view('layout/wrapper');
+		// $this->load->view('layout/topbar');
+		$this->load->view('pages/register',$data);
+		$this->load->view('layout/scripts',$layout);
+	}
+
+
+	public function AccountRecoveryPage()
+	{
+		$layout = array('charts' => TRUE, 'page_title'=>'Dashboard');
+		$this->load->view('layout/head',$layout);
+		$this->load->view('pages/forgotpassword');
+		$this->load->view('layout/scripts',$layout);
+	}
+
+	public function SendCode()
+	{
+		$this->form_validation->set_rules('Email','Email Address','required');
+  		if ($this->form_validation->run() == FALSE){
+            $errors = validation_errors();
+            echo json_encode(['error'=>$errors]);
+        }
+        else {
+        	//Check the email
+        	$postdata = $this->input->post();
+        	$found = $this->stud->FindEmail($postdata['Email']);
+        	if ($found->num_rows() > 0) {
+        		$raw = $found->result_array();
+        		$parsed = $raw[0];
+        		// die($parsed['Id']);
+        		$code = $this->acct->UpdateActivationCode($parsed['Id']);
+        		if ($code != FALSE) {
+        			$status = $this->email->SendCode($code,$parsed);
+        			if ($status != true) {
+        				$json = $postdata;
+		    			$this->logger->log('Send Email Success','Account Recovery',$json); //Log
+		    			echo json_encode(['url'=>base_url('changepassword')]);  
+        			}else {
+        				$json = $status;
+		    			$this->logger->log('Send Email Attempt','Account Recovery',$json); //Log
+		    			echo json_encode(['error'=>$status]);        				
+        			}
+	          			
+        		}
+        		else {
+	        		$json = json_encode($postdata); //log
+	    			$this->logger->log('Failed Attempt','Account Recovery',$json); //Log
+	    			echo json_encode(['error'=>'Failed to set code. User account might not be existing. Please contact Administrator.']);	        			
+        		}
+        		
+        	}
+        	else {
+        		$json = json_encode($postdata); //log
+    			$this->logger->log('Failed Attempt','Account Recovery',$json); //Log
+    			echo json_encode(['error'=>'Email does not exist.']);	
+        	}
+        }
+	}
 
 
 	Public function Authenticate() {
@@ -87,6 +171,114 @@ class AuthController extends Public_Controller {
 
         }
 	}
+
+	public function PublicRegister() {
+		$postdata = $this->input->post();
+		$this->form_validation->set_rules('FirstName', 'Given Name', 'required');
+        $this->form_validation->set_rules('LastName', 'Family Name', 'required');
+        $this->form_validation->set_rules('Birthdate', 'Date of birth', 'required');
+        $this->form_validation->set_rules('PersonalEmail', 'Email', 'required|valid_email');
+        $this->form_validation->set_rules('MobileNo', 'Mobile', 'required');
+        $this->form_validation->set_rules('Code', 'Student Number', 'required|is_unique[tbl_students.Code]');
+        $this->form_validation->set_rules('CourseId', 'Course', 'required');
+        $this->form_validation->set_rules('YearLevelId', 'Year Level', 'required');
+        $this->form_validation->set_rules('SemesterId', 'Semester', 'required');
+        $this->form_validation->set_rules('SectionId', 'Section', 'required');
+        $this->form_validation->set_rules('Advisor', 'Advisor', 'required');
+        $this->form_validation->set_error_delimiters('<ul class="parsley-errors-list filled" id="parsley-id-5"><li class="parsley-required">','</li></ul>');
+        if ($this->form_validation->run() == FALSE){
+        	foreach ($postdata as $key => $value) {
+        		$data['responses'][$key] = form_error($key);
+        	}
+            $errors = validation_errors();
+            $data['error'] = $errors;
+            $json = json_encode($postdata); //log
+	        $this->logger->log('Invalid Register','Students',$json); //Log  
+            echo json_encode($data);
+        }else{
+	        $path = dirname(BASEPATH).'/uploads/public/';
+	        $config['upload_path'] = $path;
+	        $config['allowed_types'] = 'gif|jpg|png';
+	        $config['max_size'] = '100000';
+	 		$senderror = FALSE;
+	        $this->load->library('upload', $config);
+
+			if (!empty($_FILES["Profile"]["name"])) {
+
+		        if ($this->upload->do_upload('Profile')) {
+		        	$photo_file = $this->upload->data();
+            		$postdata['PhotoPath'] = 'uploads/public/' . $photo_file['file_name'];
+		        }		 
+		        else {
+		        	$errors = $this->upload->display_errors();
+		            $json = json_encode($errors); //log
+			        $this->logger->log('Invalid Upload','Students',$json); //Log  
+		            $senderror = TRUE;
+		        }
+
+			}
+
+			if (!empty($_FILES["Banner"]["name"])) {
+
+		        if ($this->upload->do_upload('Banner')) {
+		        	$banner_file = $this->upload->data();
+		        	$postdata['BannerPath'] = 'uploads/public/' . $banner_file['file_name'];
+	            
+		        }		
+		        else {
+		            $errors = $this->upload->display_errors();
+		            $json = json_encode($errors); //log
+			        $this->logger->log('Invalid Upload','Students',$json); //Log  
+		            $senderror = TRUE;	
+		        }   
+		        
+			}
+	
+    		if ($senderror == TRUE) {
+    			echo json_encode(['error'=>'Failed to Upload Images.']);
+    		}
+    		else {
+
+		        $result = $this->stud->AddStudent($postdata);
+	     		if ($result != FALSE) {	
+					$json = json_encode($result); //log
+			        $this->logger->log('Success Register','Studdents',$json); //Log 
+			        if (!empty($this->session->userdata('userid'))) {
+			        	echo json_encode(['redirect'=>base_url('manage/students')]);
+			        }
+			        else {
+			        	echo json_encode(['redirect'=>base_url()]);
+			        }
+	        		
+	     		}
+	     		else {
+		            $json = json_encode($postdata); //log
+			        $this->logger->log('Invalid Register','Students',$json); //Log  
+	        		echo json_encode(['error'=>'Failed to save.']);
+	     		}
+
+    		}
+
+
+
+        }
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -13,82 +13,108 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card card-table">
+          <?=form_open_multipart('monitor/internship','id="update_monitoring"'); ?>
           <div class="row table-filters-container">
             <div class="col-12 col-lg-12 col-xl-6">
               <div class="row">
                 <div class="col-12 col-lg-6 table-filters pb-0 pb-xl-4"><span class="table-filter-title">OJT progress</span>
                   <div class="filter-container">
-                    <form>
-                      <label class="control-label d-block"><span id="slider-value">10% - 60%</span></label>
-                      <input id="milestone_slider" type="text" data-slider-value="[10,60]" data-slider-step="5" data-slider-max="100" data-slider-min="0" value="50" class="bslider form-control">
-                    </form>
+                    <label class="control-label">Select a Course/Program:</label>
+                      <select class="select2" name="Course">
+                        <option value="">Any</option>
+                      <?php
+                      if (!empty($courses)) {
+                         if ($courses->num_rows() > 0) {
+                            foreach ($courses->result() as $row) { ?>
+                        <option value="<?=$row->Id; ?>"><?=$row->Name; ?></option>
+                        <?php
+                              }
+                           }
+                        }
+                        ?>
+                      </select>
                   </div>
                 </div>
                 <div class="col-12 col-lg-6 table-filters pb-0 pb-xl-4"><span class="table-filter-title">Company</span>
                   <div class="filter-container">
                     <label class="control-label">Select a company:</label>
-                    <form>
-                      <select class="select2">
-                        <option value="Bootstrap">Accenture</option>
-                        <option value="CLI">IBM</option>
+                      <select class="select2" name="Company">
+                        <option value="">Any</option>
+                      <?php
+                      if (!empty($companies)) {
+                         if ($companies->num_rows() > 0) {
+                            foreach ($companies->result() as $row) { ?>
+                        <option value="<?=$row->Id; ?>"><?=$row->CompanyName; ?></option>
+                        <?php
+                              }
+                           }
+                        }
+                        ?>
                       </select>
-                    </form>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-12 col-lg-12 col-xl-6">
               <div class="row">
-                <div class="col-12 col-lg-6 table-filters pb-0 pb-xl-4"><span class="table-filter-title">Date</span>
+                <div class="col-12 col-lg-5 table-filters pb-0 pb-xl-4"><span class="table-filter-title">Start Date</span>
                   <div class="filter-container">
-                    <form>
                       <div class="row">
                         <div class="col-6">
                           <label class="control-label">Since:</label>
-                          <input type="text" class="form-control form-control-sm datetimepicker">
+                          <input type="text" name="StartDate" class="form-control form-control-sm datetimepicker">
                         </div>
                         <div class="col-6">
                           <label class="control-label">To:</label>
-                          <input type="text" class="form-control form-control-sm datetimepicker">
+                          <input type="text" name="EndDate" class="form-control form-control-sm datetimepicker">
                         </div>
                       </div>
-                    </form>
                   </div>
                 </div>
-                <div class="col-12 col-lg-6 table-filters pb-xl-4"><span class="table-filter-title">Status</span>
+                <div class="col-12 col-lg-5 table-filters pb-xl-4"><span class="table-filter-title">Status</span>
                   <div class="filter-container">
-                    <form>
                       <div class="row">
                         <div class="col-6">
                           <div class="custom-controls-stacked">
                             <label class="custom-control custom-checkbox">
-                              <input type="checkbox" checked="" class="custom-control-input"><span class="custom-control-label">No Company</span>
+                              <input type="checkbox" name="NoCompany" value="1" class="custom-control-input"><span class="custom-control-label">No Company</span>
                             </label>
                             <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input"><span class="custom-control-label">On-going</span>
+                              <input type="checkbox" name="OnGoing" value="1"  class="custom-control-input"><span class="custom-control-label">On-going</span>
                             </label>
                           </div>
                         </div>
                         <div class="col-6">
                           <div class="custom-controls-stacked">
                             <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Completed</span>
+                              <input type="checkbox" name="Inactive" value="1"  class="custom-control-input"><span class="custom-control-label">Inactive</span>
                             </label>
-                            <label class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input"><span class="custom-control-label">Dropped</span>
-                            </label>
+                        <!--     <label class="custom-control custom-checkbox">
+                              <input type="checkbox" name="" class="custom-control-input"><span class="custom-control-label">Dropped</span>
+                            </label> -->
                           </div>
                         </div>
                       </div>
-                    </form>
                   </div>
                 </div>
+                <div class="col-12 col-lg-2 table-filters pb-xl-4"><span class="table-filter-title">Action</span>
+                  <div class="filter-container">
+                      <div class="row">
+                        <div class="col-6">
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                          <a href="<?=base_url('monitor/internship'); ?>" class="btn btn-default">Reset</a>
+                        </div>
+                      </div>
+                  </div>
+                </div>                
               </div>
             </div>
           </div>
+          <?=form_close(); ?> 
+
           <div class="card-body">
             <div class="table-responsive noSwipe">
-              <table class="table table-striped table-hover">
+              <table id="table3" class="table table-striped table-hover">
                 <thead>
                   <tr>
                     <th style="width:5%;">
@@ -97,15 +123,20 @@
                       </label>
                     </th>
                     <th style="width:20%;">Student Name</th>
-                    <th style="width:17%;">Last Action</th>
-                    <th style="width:15%;">Current Status</th>
+                    <th style="width:17%;">Last Request</th>
+                    <th style="width:15%;">Documents</th>
                     <th style="width:10%;">Company</th>
                     <th style="width:10%;">Date Started</th>
-                    <th style="width:10%;"></th>
+                 <!--    <th style="width:10%;"></th> -->
                   </tr>
                 </thead>
                 <tbody>
-
+                  <?php 
+                  $doccount = 0;
+                  if (!empty($documents)) {
+                    $doccount = $documents->num_rows();
+                  } 
+                  ?>
                   <?php
                   if (!empty($all_list)) {
                      if ($all_list->num_rows() > 0) {
@@ -118,23 +149,23 @@
                           <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
                         </label>
                       </td>
-                      <td class="user-avatar cell-detail user-info"><img src="<?=base_url('themes/beagle/')?><?=$row->Photopath; ?>" alt="Avatar" class="mt-0 mt-md-2 mt-lg-0"><span><?=$row->FirstName.' '.$row->LastName; ?></span><span class="cell-detail-description">Section 1</span></td>
-                      <td class="cell-detail"> <span>Endorsement</span><span class="cell-detail-description">May 1, 2018</span></td>
-                      <td class="milestone"><span class="completed">8 / 15</span><span class="version">OJT Progress</span>
+                      <td class="user-avatar cell-detail user-info"><img src="<?=base_url($row->Photopath)?>" alt="Avatar" class="mt-0 mt-md-2 mt-lg-0"><span><?=$row->FirstName.' '.$row->LastName; ?></span><span class="cell-detail-description">Section 1</span></td>
+                      <td class="cell-detail"> <span><?php if($row->LastDocument == '') { echo '-'; } else { echo $row->LastDocument; }; ?></span></td>
+                      <td class="milestone"><span class="completed"><?php  $d = 0; if($row->DocCount == '') { echo '0';$d = 0;} else {echo $row->DocCount; } ?> / <?=$doccount ?></span><span class="version">Document Count</span>
                         <div class="progress">
-                          <div style="width: 45%" class="progress-bar progress-bar-primary"></div>
+                          <div style="width: <?php $row->DocCount/$doccount; ?>%" class="progress-bar progress-bar-primary"></div>
                         </div>
                       </td>
-                      <td class="cell-detail"><span>Accenture</span><span class="cell-detail-description">63e8ec3</span></td>
-                      <td class="cell-detail"><span>May 6, 2018</span><span class="cell-detail-description">8:30</span></td>
-                      <td class="text-right">
+                      <td class="cell-detail"><span><?php if($row->CompanyName == '') { echo 'No Company'; } else { echo $row->CompanyName; }; ?></span><span class="cell-detail-description"><?php if($row->ContactPerson == '') { echo ''; } else { echo $row->ContactPerson; }; ?></span></td>
+                      <td class="cell-detail"><span><?php if($row->StartDate == '') { echo ''; } else { echo $row->StartDate; }; ?></span><span class="cell-detail-description"></span></td>
+               <!--        <td class="text-right">
                         <div class="btn-group btn-hspace">
                           <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">On-going <span class="icon-dropdown mdi mdi-chevron-down"></span></button>
                           <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
                             <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
                           </div>
                         </div>
-                      </td>
+                      </td> -->
                     </tr>
 
 
@@ -145,7 +176,7 @@
                   ?>
 
 
-                  <tr class="online">
+<!--                   <tr class="online">
                     <td>
                       <label class="custom-control custom-control-sm custom-checkbox">
                         <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
@@ -240,7 +271,7 @@
                         </div>
                       </div>
                     </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>

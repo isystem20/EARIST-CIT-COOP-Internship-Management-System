@@ -105,6 +105,16 @@ $route['requests/add'] = 'StudentAccountController/CreateRequest';
 $route['login'] = 'AuthController/LoginPage';
 $route['login/auth'] = 'AuthController/Authenticate';
 $route['logout'] = 'AuthController/Logout';
+$route['recovery'] = 'AuthController/AccountRecoveryPage';
+$route['recovery/sendcode'] = 'AuthController/SendCode';
+
+
+
+$route['signup'] = 'AuthController/RegisterPage';
+$route['signup/go'] = 'AuthController/PublicRegister';
+
+
+
 
 $route['requests'] = 'StudentAccountController/LoadMyRequests';
 $route['documents'] = 'StudentAccountController/LoadMyDocuments';
