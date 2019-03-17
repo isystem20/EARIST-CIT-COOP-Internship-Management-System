@@ -33,7 +33,7 @@
                     <div class="form-group row">
                       <label for="inputText3" class="col-12 col-sm-3 col-form-label text-sm-right">Select Company</label>
                       <div class="col-12 col-sm-8 col-lg-6">
-                          <select class="select2" name="CompanyId">
+                          <select class="select2" name="CompanyId" id="companyidselect">
                               <option value="">[Add New Company]</option>  
                               <?php
                               if ($companies->num_rows() > 0) {
@@ -63,7 +63,7 @@
                     <div class="form-group row">
                       <label for="inputPlaceholder3" class="col-12 col-sm-3 col-form-label text-sm-right">Company Name</label>
                       <div class="col-12 col-sm-8 col-lg-6">
-                        <input id="inputPlaceholder3" type="text" name="CompanyName" placeholder="Placeholder text" class="form-control">
+                        <input id="companynametext" type="text" name="CompanyName" placeholder="Placeholder text" class="form-control">
                       </div>
                     </div>
                     <div class="form-group row">
@@ -95,12 +95,30 @@
                       <div class="col-12 col-sm-8 col-lg-6">
                         <input id="inputPlaceholder3" type="text" name="Zip" placeholder="Company Zip Code" class="form-control">
                       </div>
-                    </div>                    
+                    </div>  
+                    <div class="form-group row">
+                      <label for="inputPlaceholder3" class="col-12 col-sm-3 col-form-label text-sm-right">Contact Person Title</label>
+                      <div class="col-12 col-sm-8 col-lg-6">
+                          <select class="form-control" name="CPTitle">
+                            <option value="Mr. " selected="">Mr. </option>
+                            <option value="Mrs. ">Mrs. </option>
+                            <option value="Ms. ">Ms. </option>
+                            <option value="Sir ">Sir </option>
+                            <option value="Dr. ">Dr. </option>
+                            <option value="Eng. ">Eng. </option>
+                            <option value="Sir ">Sir </option>
+                          </select>
+                      </div>
+                    </div>
+
                     <div class="form-group row">
                       <label for="inputPlaceholder3" class="col-12 col-sm-3 col-form-label text-sm-right">Contact Person</label>
-                      <div class="col-12 col-sm-8 col-lg-6">
-                        <input id="inputPlaceholder3" type="text" name="ContactPerson" placeholder="Contact Person" class="form-control">
+                      <div class="col-12 col-sm-8 col-lg-3">
+                        <input id="inputPlaceholder3" type="text" name="ContactPersonFirstName" placeholder="First Name" class="form-control">
                       </div>
+                      <div class="col-12 col-sm-8 col-lg-3">
+                        <input id="inputPlaceholder3" type="text" name="ContactPersonLastName" placeholder="Last Name" class="form-control">
+                      </div>                      
                     </div>
                     <div class="form-group row">
                       <label for="inputDisabled3" class="col-12 col-sm-3 col-form-label text-sm-right">Designation</label>

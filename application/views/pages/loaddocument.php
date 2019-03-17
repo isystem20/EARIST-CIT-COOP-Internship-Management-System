@@ -67,7 +67,11 @@
                       <div>
                         <p>Variables</p>
                         <p>{{DocumentDate}} - Desired Document Date </p>
-                        <p>{{ContactPerson}} - Company Contact Person</p>
+                        <p>{{ContactPersonTitle}} - Contact Person's Title</p>
+                        <p>{{ContactPersonFirstName}} - Contact Person's First Name</p>
+                        <p>{{ContactPersonLastName}} - Contact Person's Last Name</p>
+
+                        <p>{{ContactPerson}} - Company Contact Person's Full Name</p>
                         <p>{{ContactPerson_Designation}} - Designation of Contact Person</p>
                         <p>{{CompanyName}} - Name of the Participating Company</p>
                         <p>{{CompanyAddress1}} - Company Address (Unit/Building/Street) </p>

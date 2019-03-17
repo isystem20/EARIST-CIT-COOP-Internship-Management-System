@@ -47,24 +47,27 @@ $content = $form[0]['Content'];
 
 
 $variables = array(
-	'DocumentDate' => $form[0]['DocumentDate'], 
-	'ContactPerson' => $form[0]['ContactPerson'], 
-	'ContactPerson_Designation' => $form[0]['ContactPerson_Designation'], 
-	'CompanyName' =>$form[0]['CompanyName'], 
-	'CompanyAddress1' =>$form[0]['CompanyAddress1'], 
-	'CompanyAddress2' =>$form[0]['CompanyAddress2'], 
-	'StudentFullName' => $form[0]['StudentFullName'], 
-	'StudentFName' =>$form[0]['StudentFName'], 
-	'StudentLName' => $form[0]['StudentLName'],
-	'StudentCode' => $form[0]['StudentCode'],
-	'StudentCourse' => $form[0]['StudentCourse'], 
+	'DocumentDate' => date('F j, Y',strtotime($form[0]['DocumentDate'])), 
+	'ContactPerson' => ucwords($form[0]['ContactPerson']), 
+	'ContactPersonTitle' => ucwords($form[0]['ContactPersonTitle']), 
+	'ContactPersonFirstName' => ucwords($form[0]['ContactPersonFirstName']), 
+	'ContactPersonLastName' => ucwords($form[0]['ContactPersonLastName']), 
+	'ContactPerson_Designation' => ucwords($form[0]['ContactPerson_Designation']), 
+	'CompanyName' =>ucwords($form[0]['CompanyName']), 
+	'CompanyAddress1' =>ucwords($form[0]['CompanyAddress1']), 
+	'CompanyAddress2' =>ucwords($form[0]['CompanyAddress2']), 
+	'StudentFullName' => ucwords($form[0]['StudentFullName']), 
+	'StudentFName' => ucwords($form[0]['StudentFName']), 
+	'StudentLName' => ucwords($form[0]['StudentLName']),
+	'StudentCode' => ucwords($form[0]['StudentCode']),
+	'StudentCourse' => ucwords($form[0]['StudentCourse']), 
 	'StudentOJTHours' => $form[0]['StudentOJTHours'], 
 	'StudentGender' => $form[0]['StudentGender'], 
-	'StudentPronoun' =>$form[0]['StudentPronoun'], 
-	'Student3rdPerson' => $form[0]['Student3rdPerson'], 
-	'TrainingSupervisor' => $form[0]['TrainingSupervisor'], 
-	'TrainingSupervisor_Designation' => $form[0]['TrainingSupervisor_Designation'], 
-	'TrainingManager' => $form[0]['TrainingManager'], 
+	'StudentPronoun' =>ucwords($form[0]['StudentPronoun']), 
+	'Student3rdPerson' => ucwords(form[0]['Student3rdPerson']), 
+	'TrainingSupervisor' => ucwords($form[0]['TrainingSupervisor']), 
+	'TrainingSupervisor_Designation' => ucwords($form[0]['TrainingSupervisor_Designation']), 
+	'TrainingManager' => ucwords($form[0]['TrainingManager']), 
 	'StudentStartDate' => $form[0]['StudentStartDate'], 
 	'StudentEndDate' => $form[0]['StudentEndDate'], 
 	'StudentScheduleDays' => $form[0]['StudentScheduleDays'], 
@@ -81,7 +84,7 @@ ob_start();
 
 $logo = base_url('themes/others/letterhead.png');
     // we can have any view part here like HTML, PHP etc
-    $body = $form[0]['DocumentDate'] . $content;
+    $body = $content;
     
 ob_end_clean();
 $pdf->writeHTML($body, true, false, true, false, '');

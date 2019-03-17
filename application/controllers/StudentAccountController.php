@@ -138,7 +138,8 @@ class StudentAccountController extends Student_Controller {
     public function Create() {
 		$postdata = $this->input->post();
 		$this->form_validation->set_rules('LabelDate', 'Application Date', 'required');
-        $this->form_validation->set_rules('ContactPerson', 'Contact Person', 'required');
+        $this->form_validation->set_rules('ContactPersonFirstName', 'Contact Person First Name', 'required');
+        $this->form_validation->set_rules('ContactPersonLastName', 'Contact Person Last Name', 'required');
 		$this->form_validation->set_rules('Designation', 'Contact Person Position', 'required');
         $this->form_validation->set_rules('CompanyName', 'Company Name', 'required');
         $this->form_validation->set_rules('Address1', 'Address', 'required');
@@ -154,6 +155,14 @@ class StudentAccountController extends Student_Controller {
 	        $this->logger->log('Invalid Register','Application',$json); //Log  
             echo json_encode($data);
         }else{
+
+
+        	foreach ($postdata as $key => $value) {
+        		$postdata[$key] = ucwords($value);
+        	}
+
+        	$postdata['ContactPerson'] = $postdata['ContactPersonFirstName'] . ' ' . $postdata['ContactPersonLastName'];
+
         	$result = 0;
         	if (empty($postdata['CompanyId'])) {
         		$companydata = $postdata;

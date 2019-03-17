@@ -134,6 +134,7 @@ class StudentController extends MY_Controller {
         $this->form_validation->set_rules('Birthdate', 'Date of birth', 'required');
         $this->form_validation->set_rules('PersonalEmail', 'Email', 'required|valid_email');
         $this->form_validation->set_rules('MobileNo', 'Mobile', 'required|exact_length[11]');
+        $this->form_validation->set_rules('TelNo', 'Landline', 'exact_length[9]');
         $this->form_validation->set_rules('Code', 'Student Number', 'required|is_unique[tbl_students.Code]');
         $this->form_validation->set_rules('CourseId', 'Course', 'required');
         $this->form_validation->set_rules('YearLevelId', 'Year Level', 'required');
@@ -234,7 +235,8 @@ class StudentController extends MY_Controller {
         $this->form_validation->set_rules('LastName', 'Family Name', 'required');
         $this->form_validation->set_rules('Birthdate', 'Date of birth', 'required');
         $this->form_validation->set_rules('PersonalEmail', 'Email', 'required|valid_email');
-        $this->form_validation->set_rules('MobileNo', 'Mobile', 'required');
+        $this->form_validation->set_rules('MobileNo', 'Mobile', 'required|exact_length[11]');
+        $this->form_validation->set_rules('TelNo', 'Landline', 'exact_length[9]');
         $this->form_validation->set_rules('Code', 'Student Number', 'required');
         $this->form_validation->set_rules('CourseId', 'Course', 'required');
         $this->form_validation->set_rules('YearLevelId', 'Year Level', 'required');
