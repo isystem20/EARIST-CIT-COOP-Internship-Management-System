@@ -64,7 +64,7 @@ $variables = array(
 	'StudentOJTHours' => $form[0]['StudentOJTHours'], 
 	'StudentGender' => $form[0]['StudentGender'], 
 	'StudentPronoun' =>ucwords($form[0]['StudentPronoun']), 
-	'Student3rdPerson' => ucwords(form[0]['Student3rdPerson']), 
+	'Student3rdPerson' => ucwords($form[0]['Student3rdPerson']), 
 	'TrainingSupervisor' => ucwords($form[0]['TrainingSupervisor']), 
 	'TrainingSupervisor_Designation' => ucwords($form[0]['TrainingSupervisor_Designation']), 
 	'TrainingManager' => ucwords($form[0]['TrainingManager']), 
@@ -78,6 +78,9 @@ foreach($variables as $key => $value)
 {
     $content = str_replace('{{'.$key.'}}', $value, $content);
 }
+
+$content = str_replace('"text-align: center;">', '><center>', $content);
+
 
 $pdf->AddPage();
 ob_start();
