@@ -79,7 +79,7 @@ foreach($variables as $key => $value)
     $content = str_replace('{{'.$key.'}}', $value, $content);
 }
 
-$content = str_replace('"text-align: center;">', '><center>', $content);
+// $content = str_replace('"text-align: center;">', '><center>', $content);
 
 
 $pdf->AddPage();
