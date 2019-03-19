@@ -439,37 +439,23 @@ $(document).ready(function() {
 
 //Student Update Button
   $('#GenericDelete').click(function(e){ 
-    e.preventDefault();  
-    var ids = new Array();
-    $("input:checkbox[dataclass=genericids]:checked").each(function() {
-       ids.push($(this).data('id'));
-    });
-    console.log(ids);
-    var newURL = $(this).data('action') + 'delete';    
-    var newData  = {
-            'Ids' : ids,
-        }
-        // console.log(newData);
-        // return false;
-    $.ajax({
-        url: newURL,
-        type:'POST',
-        dataType: "json",   
-        data: newData,
-        success: function(data) {
-          console.log(data);            
-          if($.isEmptyObject(data.error)){ 
-              $.gritter.add({title:"Success",text:"Record Update Successful. Redirecting...",class_name:"color success"});
-              window.setTimeout(function(){
-                window.location.href = data.redirect;  
-              }, 1000);
-            }
-            else{
-              $.gritter.add({title:"Error",text:data.error,class_name:"color danger"});
-            }        
-        }
-    });   
+      var count = 0;
+      var n = '';
+      var ids = new Array();
+      $("input:checkbox[dataclass=genericids]:checked").each(function() {
+         count = count + 1;
+         n = $(this).data('id');
+         ids.push(n);
+      });
+      if (count == 0) {
+        $.gritter.add({title:"",text:'Nothing is selected.',class_name:"color warning"});
+      }
+      else {
 
+        $('input[name=Id]').val(ids);
+        $('#generic_del').modal();
+
+      }
 
 
   });

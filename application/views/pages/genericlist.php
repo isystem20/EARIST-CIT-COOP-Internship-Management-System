@@ -20,7 +20,7 @@
             <button class="btn btn-space btn-success" id="GenericUpdate" data-url="<?=base_url('student/edit/'); ?>" >
               <i class="icon icon-left mdi mdi-account-add"></i> Update
             </button>
-            <button class="btn btn-space btn-warning" id="GenericDelete" data-action="<?=base_url('manage/generic/'.$labels['class'].'/'); ?>">
+            <button class="btn btn-space btn-warning" id="GenericDelete">
               <i class="icon icon-left mdi mdi-account-add"></i> Delete
             </button>
 
