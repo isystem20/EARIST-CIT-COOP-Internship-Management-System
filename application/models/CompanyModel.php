@@ -18,6 +18,21 @@ class CompanyModel extends CI_Model {
 		return $query;
 	}	
 
+	function LoadSingle($id) {
+		$this->db->select('*');
+		$this->db->from('tbl_companies');
+		$this->db->where('Id',$id);
+		$get = $this->db->get();
+		if ($get->num_rows() > 0) {
+			return $get;
+		}
+		else {
+			return FALSE;
+		}
+				
+	}
+
+
 
 	function AddCompany($data) {
 
@@ -38,5 +53,44 @@ class CompanyModel extends CI_Model {
 			
 		}
 	}
+
+
+
+	function UpdateCompany($id,$data) {
+        $this->db->set('ModifiedAt', "NOW()", FALSE);
+        $this->db->set('ModifiedById', "'".$this->session->userdata('userid')."'", FALSE);
+        $this->db->where('Id',$id);
+		$this->db->update('tbl_companies',$data);
+		// die($this->db->last_query());
+		if ($this->db->affected_rows() > 0) {
+			return $this->LoadSingle($id);	
+		}
+		else {
+			return FALSE;					
+		}
+	}
+
+
+	function DeleteCompany($data) {
+		$n = 0;
+		foreach ($data as $id) {
+			$n = $n + 1;
+			if ($n == 1) {
+				$this->db->where('Id', $id);
+			}
+			else {
+				$this->db->or_where('Id', $id);
+			}
+		}
+		$this->db->delete('tbl_companies');
+		if ($this->db->affected_rows() > 0) {
+			return TRUE;
+		}
+		else {
+			return FALSE;
+		}
+
+	}
+
 
 }

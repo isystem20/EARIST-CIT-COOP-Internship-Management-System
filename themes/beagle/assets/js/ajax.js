@@ -215,9 +215,7 @@ $(document).ready(function() {
       $("input:checkbox[dataclass=documentids]:checked").each(function() {
          count = count + 1;
          n = $(this).data('id');
-
       });
-
       if (count == 0) {
         $.gritter.add({title:"",text:'Nothing is selected.',class_name:"color warning"});
       }
@@ -540,9 +538,9 @@ $(document).ready(function() {
           console.log(data);            
             if($.isEmptyObject(data.error)){ 
               $.gritter.add({title:"Success",text:"Record Update Successful. Redirecting...",class_name:"color success"});
-              // window.setTimeout(function(){
-              //   window.location.href = data.redirect;  
-              // }, 1000);
+              window.setTimeout(function(){
+                window.location.href = data.redirect;  
+              }, 1000);
             }
             else {
               $.gritter.add({title:"Error",text:data.error,class_name:"color danger"});
@@ -778,9 +776,95 @@ $('#companyidselect').change(function(e){
 
 
 
+//[DOCUMENT REGISTER]
+  $('#company_reg_form').submit(function(e){ 
+    e.preventDefault();       
+    $("#company_reg_btn").prop("disabled", true);  
+    $("#company_reg_btn").text("Processing..");  
+    var newURL = $(this).attr('action');    
+    var newData = new FormData(this); 
+    $.ajax({
+        url: newURL,
+        type:'POST',
+        dataType: "json",   
+        data: newData,
+        contentType: false,
+        cache: false,  
+        processData:false,  
+        success: function(data) {
+          console.log(data);            
+          if($.isEmptyObject(data.error)){ 
+              $.gritter.add({title:"Success",text:"Record Update Successful. Redirecting...",class_name:"color success"});
+              window.setTimeout(function(){
+                window.location.href = data.redirect;  
+              }, 1000);
+            }
+            else{
+              $.each(data.responses, function(key,value) {
+                var element = $('[name='+key+']');
+                element.next('.parsley-errors-list').remove();
+                element.removeClass('parsley-error');
+                element.addClass(value.length > 0 ? 'parsley-error' : '');
+                if (element.closest('.datetimepicker').length > 0) {
+                  element.closest('.datetimepicker').after(value);
+                }else{
+                  element.after(value);
+                }
+                
+              });
+            }
+        $("#company_reg_btn").prop("disabled", false);  
+        $("#company_reg_btn").text("Submit");           
+        }
+    });   
+  });
 
 
 
+
+//Document Update Button
+  $('#CompanyUpdateSelectButton').click(function(e){ 
+      var url = $(this).data('url');
+      var count = 0;
+      var n = '';
+      $("input:checkbox[dataclass=companyids]:checked").each(function() {
+         count = count + 1;
+         n = $(this).data('id');
+      });
+      if (count == 0) {
+        $.gritter.add({title:"",text:'Nothing is selected.',class_name:"color warning"});
+      }
+      else if(count == 1) {
+        window.location.href = url + n;
+      } else if (count > 1) {
+        $.gritter.add({title:"",text:'Please select single student.',class_name:"color warning"});
+      } else {
+        $.gritter.add({title:"",text:'Something went wrong.',class_name:"color warning"});
+      }
+
+  });
+
+//Document Delete Button
+  $('#CompanyDeleteSelectButton').click(function(e){ 
+      var url = $(this).data('url');
+      var count = 0;
+      var n = '';
+      var ids = new Array();
+      $("input:checkbox[dataclass=companyids]:checked").each(function() {
+         count = count + 1;
+         n = $(this).data('id');
+         ids.push(n);
+      });
+      if (count == 0) {
+        $.gritter.add({title:"",text:'Nothing is selected.',class_name:"color warning"});
+      }
+      else {
+        $('#all_delete_modal').modal();
+        $('input[name=Class]').val('companyids');
+        $('#all_delete_form').attr('action',url);
+      }
+
+  });
 
 
 });

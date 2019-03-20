@@ -15,13 +15,13 @@
       <div class="col-sm-12">
         <div class="card card-table">
           <div class="card-header">
-            <a href="<?=base_url('student/register'); ?>" class="btn btn-space btn-primary">
+            <a href="<?=base_url('company/register'); ?>" class="btn btn-space btn-primary">
               <i class="icon icon-left mdi mdi-account-add"></i> Add
             </a>
-            <button class="btn btn-space btn-success" id="StudentUpdateSelectButton" data-url="<?=base_url('student/edit/'); ?>" >
+            <button class="btn btn-space btn-success" id="CompanyUpdateSelectButton" data-url="<?=base_url('company/edit/'); ?>" >
               <i class="icon icon-left mdi mdi-account-add"></i> Update
             </button>
-            <button class="btn btn-space btn-warning">
+            <button class="btn btn-space btn-warning" id="CompanyDeleteSelectButton" data-url="<?=base_url('company/del'); ?>">
               <i class="icon icon-left mdi mdi-account-add"></i> Delete
             </button>
 
@@ -62,7 +62,7 @@
                       <td>
                         
                         <label class="custom-control custom-control-sm custom-checkbox">
-                          <input type="checkbox" dataclass="studentids" class="custom-control-input studentids" data-id="<?=$row->Id; ?>">
+                          <input type="checkbox" dataclass="companyids" class="custom-control-input studentids" data-id="<?=$row->Id; ?>">
                           <span class="custom-control-label"></span>
                         </label>
                         

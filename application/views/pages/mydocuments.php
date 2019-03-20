@@ -53,7 +53,7 @@
                       <td class="cell-detail"> <span><?=date('Y-m-d',strtotime($row->CreatedAt)); ?></span></td>
                       <td class="cell-detail"> <span><?=$row->CompanyName; ?></span></td> 
                       <td class="cell-detail"> <span><?=$row->ContactPerson; ?></span></td>
-                      <td class="cell-detail"> <span><?=$row->Designation; ?></span></td>
+                      <td class="cell-detail"> <span><?=$row->ContactPerson_Designation; ?></span></td>
                       <td class="text-right">
                         <?php if($row->Status == '1'){echo '<span class="badge badge-secondary">Pending</span>';} elseif($row->Status == '0'){ echo '<span class="badge badge-danger">Rejected</span>';} elseif($row->Status == '2') { echo '<span class="badge badge-success">Approved</span>';} ?>
                       </td>

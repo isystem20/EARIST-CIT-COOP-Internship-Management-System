@@ -81,6 +81,13 @@ $route['document/update'] = 'DocumentController/Update';
 $route['document/del'] = 'DocumentController/Delete';
 
 $route['manage/companies'] = 'CompanyController/LoadMasterlist';
+$route['company/register'] = 'CompanyController/RegisterCompany';
+$route['company/add'] = 'CompanyController/Create';
+$route['company/edit/(:any)'] = 'CompanyController/ViewCompany/$1';
+$route['company/view/(:any)'] = 'CompanyController/ViewCompany/$1';
+$route['company/update'] = 'CompanyController/Update';
+$route['company/del'] = 'CompanyController/Delete';
+
 
 $route['manage/accounts'] = 'UserController/LoadUserMasterlist';
 
