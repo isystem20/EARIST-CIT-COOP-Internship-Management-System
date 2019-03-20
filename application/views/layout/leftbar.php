@@ -39,10 +39,12 @@
                   <li class="divider">Document Letter Requests</li>  
 
                   <?php
-
+                  $pending = array();
                   if (!empty($docs)) {
                      if ($docs->num_rows() > 0) {
-                        foreach ($docs->result() as $row) { ?>
+                        $pending = $docs->result_array();
+                        foreach ($docs->result() as $row) { ?> 
+
                   <li><a href="<?=base_url('requests/documents/'.$row->Id); ?>"><i class="icon mdi mdi-file-text"></i><span><?=$row->DocumentName; ?> <?php if($row->PendingRequest > 0) { echo '<span class="badge badge-pill badge-primary">'.$row->PendingRequest.'</span>'; } ?></span></a>
                   </li> 
 
@@ -51,6 +53,10 @@
                      }
                   }
                   ?>
+
+                  <li class="divider">Account Requests</li> 
+                  <li><a href="<?=base_url('manage/students/status/0'); ?>"><i class="icon mdi mdi-file-text"></i><span>Pending Registration <?php if(!empty($pending) && $pending[0]['StudentPending'] > 0) { echo '<span class="badge badge-pill badge-primary">'.$pending[0]['StudentPending'].'</span>'; } ?></span></a>
+                  </li>                   
                   <!--
                   <li><a href="<?=base_url(); ?>"><i class="icon mdi mdi-account-box-mail"></i><span>Recommendation <span class="badge badge-pill badge-primary">8</span></span></a>
                   </li> 

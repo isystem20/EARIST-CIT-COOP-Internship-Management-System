@@ -26,7 +26,7 @@
 
             <ul class="nav navbar-nav float-right be-icons-nav">
 <!--               <li class="nav-item dropdown"><a href="#" role="button" aria-expanded="false" class="nav-link be-toggle-right-sidebar"><span class="icon mdi mdi-settings"></span></a></li> -->
-              <li class="nav-item dropdown"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span class="icon mdi mdi-notifications"></span><span class="indicator"></span></a>
+   <!--            <li class="nav-item dropdown"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span class="icon mdi mdi-notifications"></span><span class="indicator"></span></a>
                 <ul class="dropdown-menu be-notifications">
                   <li>
                     <div class="title">Notifications<span class="badge badge-pill">1</span></div>
@@ -47,7 +47,7 @@
                     <div class="footer"> <a href="#">View all notifications</a></div>
                   </li>
                 </ul>
-              </li>
+              </li> -->
       <!--         <li class="nav-item dropdown"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><span class="icon mdi mdi-apps"></span></a>
                 <ul class="dropdown-menu be-connections">
                   <li>
