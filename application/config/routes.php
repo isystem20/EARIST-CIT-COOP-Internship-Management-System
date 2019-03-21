@@ -71,6 +71,7 @@ $route['student/view/(:any)'] = 'StudentController/ViewStudent/$1';
 $route['student/add'] = 'StudentController/Create';
 $route['student/update'] = 'StudentController/Update';
 $route['student/change'] = 'StudentController/ChangeStatus';
+$route['student/del'] = 'StudentController/Delete';
 
 $route['manage/documents'] = 'DocumentController/LoadMasterlist';
 $route['document/register'] = 'DocumentController/RegisterDocument';

@@ -26,7 +26,11 @@
             </button>
             <button class="btn btn-space btn-warning StudentChangeStatusSelectButton" id="StudentInactiveSelectButton" data-action="<?=base_url('student/change'); ?>" data-cmd="0">
               <i class="icon icon-left mdi mdi-account-add"></i> Set to Inactive
-            </button>            
+            </button>  
+            <button class="btn btn-space btn-danger" id="StudentDeleteSelectButton" data-url="<?=base_url('student/del'); ?>">
+              <i class="icon icon-left mdi mdi-account-add"></i> Delete
+            </button>  
+
             <div class="btn-group btn-space">
               <button type="button" class="btn btn-secondary">Filter By Course</button>
               <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle"><span class="mdi mdi-chevron-down"></span><span class="sr-only">Toggle Dropdown</span></button>

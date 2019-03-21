@@ -202,4 +202,49 @@ class StudentModel extends CI_Model {
 
 
 
+	function DeleteStudent($data) {
+		$n = 0;
+		foreach ($data as $id) {
+			$n = $n + 1;
+			if ($n == 1) {
+				$this->db->where('Id', $id);
+			}
+			else {
+				$this->db->or_where('Id', $id);
+			}
+			
+		}
+		$this->db->delete('tbl_students');
+		$this->db->flush_cache();
+
+		$n = 0;
+		foreach ($data as $id) {
+			$n = $n + 1;
+			if ($n == 1) {
+				$this->db->where('AccountId', $id);
+			}
+			else {
+				$this->db->or_where('AccountId', $id);
+			}
+			
+		}
+		$this->db->delete('tbl_users');
+		if ($this->db->affected_rows() > 0) {
+			return TRUE;
+		}
+		else {
+			return FALSE;
+		}
+
+	}
+
+
+
+
+
+
+
+
+
+
 }

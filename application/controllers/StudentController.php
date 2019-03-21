@@ -353,6 +353,34 @@ class StudentController extends MY_Controller {
 
 	}
 
+	public function Delete() {
+		$postdata = $this->input->post();
+
+		if (empty($postdata['Id'])) {
+			$json = json_encode($postdata); //log
+	        $this->logger->log('Invalid Register','Students',$json); //Log  
+            echo json_encode(['error'=>'Unknown Documents']);
+		}else{
+			$id = $postdata['Id'];
+			unset($postdata['Id']);
+	        $result = $this->students->DeleteStudent($id);
+	 		if ($result != FALSE) {	
+				$json = json_encode($postdata); //log
+		        $this->logger->log('Success Delete','Students',$json); //Log  
+	    		echo json_encode(['redirect'=>$_SERVER['HTTP_REFERER']]);
+	 		}
+	 		else {
+				$json = json_encode($postdata); //log
+		        $this->logger->log('Failed Delete','Students',$json); //Log 
+	    		echo json_encode(['error'=>'Failed to save.']);
+	 		}
+
+        }
+
+
+	}
+
+
 
 
 

@@ -167,7 +167,10 @@ class StudentAccountController extends Student_Controller {
         	if (empty($postdata['CompanyId'])) {
         		$companydata = $postdata;
         		unset($companydata['CompanyId']);
+        		unset($companydata['CPTitle']);
         		unset($companydata['LabelDate']);
+        		unset($companydata['ContactPersonFirstName']);
+        		unset($companydata['ContactPersonLastName']);
         		unset($companydata['ContactPerson']);
         		unset($companydata['Designation']);
         		$result = $this->com->AddCompany($companydata); 
