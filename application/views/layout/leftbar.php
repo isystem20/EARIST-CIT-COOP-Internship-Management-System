@@ -13,7 +13,7 @@
                   <li class="parent"><a href="#"><i class="icon mdi mdi-accounts-list-alt"></i><span>Masterlist</span></a>
                     <ul class="sub-menu">
                       <li><a href="<?=base_url('manage/students');?>">Students</a></li>
-                      <li><a href="<?=base_url('manage/accounts');?>">User Accounts</a></li>
+                      <!-- <li><a href="<?=base_url('manage/accounts');?>">User Accounts</a></li> -->
                       <li><a href="<?=base_url('manage/documents');?>">Documents</a></li>
                       <li><a href="<?=base_url('manage/companies');?>">Companies</a></li>
                       <!-- <li><a href="<?=base_url('manage/advisors');?>">Advisors</a></li> -->
