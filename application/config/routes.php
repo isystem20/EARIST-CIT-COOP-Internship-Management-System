@@ -96,6 +96,7 @@ $route['profile'] = 'StudentAccountController/LoadProfile';
 $route['applications'] = 'StudentAccountController/LoadMyApplications';
 $route['applications/register'] = 'StudentAccountController/RegisterApplication';
 $route['applications/records/(:any)'] = 'StudentAccountController/RegisterRecord/$1';
+$route['applications/del'] = 'StudentAccountController/Delete';
 
 $route['applications/add'] = 'StudentAccountController/Create';
 $route['record/add'] = 'StudentAccountController/CreateRecord';

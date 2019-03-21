@@ -82,4 +82,27 @@ class ApplicationModel extends CI_Model {
 
 
 
+
+	function DeleteApp($data) {
+		$n = 0;
+		foreach ($data as $id) {
+			$n = $n + 1;
+			if ($n == 1) {
+				$this->db->where('Id', $id);
+			}
+			else {
+				$this->db->or_where('Id', $id);
+			}
+		}
+		$this->db->delete('tbl_ojt_applications');
+		if ($this->db->affected_rows() > 0) {
+			return TRUE;
+		}
+		else {
+			return FALSE;
+		}
+
+	}
+
+
 }

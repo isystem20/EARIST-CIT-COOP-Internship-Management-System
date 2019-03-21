@@ -20,7 +20,7 @@
             <button class="btn btn-space btn-success" id="StudentUpdateSelectButton" data-url="<?=base_url('applications/edit/'); ?>" >
               <i class="icon icon-left mdi mdi-account-add"></i> Update
             </button>
-            <button class="btn btn-space btn-warning">
+            <button class="btn btn-space btn-warning" id="AppDeleteSelectButton" data-url="<?=base_url('applications/del'); ?>" >
               <i class="icon icon-left mdi mdi-account-add"></i> Delete
             </button>
 

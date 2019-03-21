@@ -203,6 +203,35 @@ class StudentAccountController extends Student_Controller {
     }
 
 
+	public function Delete() {
+		$postdata = $this->input->post();
+
+		if (empty($postdata['Id'])) {
+			$json = json_encode($postdata); //log
+	        $this->logger->log('Invalid Register','Application',$json); //Log  
+            echo json_encode(['error'=>'Unknown Application']);
+		}else{
+			$id = $postdata['Id'];
+			unset($postdata['Id']);
+	        $result = $this->app->DeleteApp($id);
+	 		if ($result != FALSE) {	
+				$json = json_encode($postdata); //log
+		        $this->logger->log('Success Delete','Application',$json); //Log  
+	    		echo json_encode(['redirect'=>$_SERVER['HTTP_REFERER']]);
+	 		}
+	 		else {
+				$json = json_encode($postdata); //log
+		        $this->logger->log('Failed Delete','Application',$json); //Log 
+	    		echo json_encode(['error'=>'Failed to save.']);
+	 		}
+
+        }
+
+
+	}
+
+
+
     public function LoadDocumentRecord(){
 		$postdata = $this->input->post();
 		$this->form_validation->set_rules('StudentId', 'Student ID', 'required');
@@ -362,6 +391,17 @@ class StudentAccountController extends Student_Controller {
 
         }
     }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

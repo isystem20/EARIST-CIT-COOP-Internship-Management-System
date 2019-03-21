@@ -252,6 +252,31 @@ $(document).ready(function() {
 
   });
 
+
+//Document Delete Button
+  $('#AppDeleteSelectButton').click(function(e){ 
+      var url = $(this).data('url');
+      var count = 0;
+      var n = '';
+      var ids = new Array();
+      $("input:checkbox[dataclass=studentids]:checked").each(function() {
+         count = count + 1;
+         n = $(this).data('id');
+         ids.push(n);
+      });
+      if (count == 0) {
+        $.gritter.add({title:"",text:'Nothing is selected.',class_name:"color warning"});
+      }
+      else {
+        $('#all_delete_modal').modal();
+        $('input[name=Class]').val('studentids');
+        $('#all_delete_form').attr('action',url);
+      }
+
+  });
+
+
+
 //Document Delete Button
   $('#StudentDeleteSelectButton').click(function(e){ 
       var url = $(this).data('url');
