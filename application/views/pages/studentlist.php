@@ -66,6 +66,7 @@
             </div>
           </div>
           <div class="card-body">
+
             <table id="table3" class="table table-striped table-hover table-fw-widget">
               <thead>
                   <tr>
@@ -104,7 +105,7 @@
                       </td>
                       <td class="cell-detail"> <span><?=$row->Code; ?></span></td>
                       <td class="user-avatar cell-detail user-info">
-                        <img src="<?=base_url($row->Photopath)?>" alt="" class="mt-0 mt-md-2 mt-lg-0">
+                        <img src="<?php if($row->Photopath != '') { echo base_url($row->Photopath); } else { echo base_url('themes/others/photo.png'); } ?>" alt="" class="mt-0 mt-md-2 mt-lg-0">
                       </td>
                       <td class="cell-detail"> <span><?=$row->LastName; ?></span></td> 
                       <td class="cell-detail"> <span><?=$row->FirstName; ?></span></td>

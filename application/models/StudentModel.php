@@ -69,7 +69,7 @@ class StudentModel extends CI_Model {
 		}			
 	}
 
-	function AddStudent($data) {
+	function AddStudent($data,$type = null) {
         $this->load->library('Uuid');
         $id = $this->uuid->v4();
         $uid = $this->uuid->v4();
@@ -83,7 +83,6 @@ class StudentModel extends CI_Model {
         $salt1 = hash('sha512', $key . $password);
         $salt2 = hash('sha512', $password . $key);
         $hashed_password = hash('sha512', $salt1 . $password . $salt2);
-
 
 
 		$this->db->trans_start();
@@ -102,7 +101,13 @@ class StudentModel extends CI_Model {
         $this->db->set('LoginName', "'".$loginname."'", FALSE);
         $this->db->set('PasswordHash', "'".$hashed_password."'", FALSE);
         $this->db->set('AccountId', "'".$id."'", FALSE);
-        $this->db->set('UserType', "'STUDENT'", FALSE);
+
+        if (!empty($type)) {
+        	$this->db->set('UserType', "'".$type."'", FALSE);
+        }else {
+        	$this->db->set('UserType', "'STUDENT'", FALSE);
+        }     
+        
         $this->db->set('Email', "'".$data['PersonalEmail']."'", FALSE);
         $this->db->set('CreatedById', "'".$this->session->userdata('userid')."'", FALSE);
         $this->db->set('ModifiedById', "'".$this->session->userdata('userid')."'", FALSE);
@@ -229,12 +234,13 @@ class StudentModel extends CI_Model {
 			
 		}
 		$this->db->delete('tbl_users');
-		if ($this->db->affected_rows() > 0) {
+		
+		// if ($this->db->affected_rows() > 0) {
 			return TRUE;
-		}
-		else {
-			return FALSE;
-		}
+		// }
+		// else {
+		// 	return FALSE;
+		// }
 
 	}
 

@@ -91,6 +91,17 @@ $route['company/del'] = 'CompanyController/Delete';
 
 
 $route['manage/accounts'] = 'UserController/LoadUserMasterlist';
+$route['manage/accounts/(:any)/(:any)'] = 'UserController/LoadUserMasterlist/$1/$2';
+
+$route['admin/register'] = 'UserController/RegisterStudent';
+$route['admin/edit/(:any)'] = 'UserController/UpdateStudent/$1';
+$route['admin/view/(:any)'] = 'UserController/ViewStudent/$1';
+$route['admin/add'] = 'UserController/Create';
+$route['admin/update'] = 'UserController/Update';
+$route['admin/change'] = 'UserController/ChangeStatus';
+$route['admin/del'] = 'UserController/Delete';
+
+
 
 $route['profile'] = 'StudentAccountController/LoadProfile';
 $route['applications'] = 'StudentAccountController/LoadMyApplications';

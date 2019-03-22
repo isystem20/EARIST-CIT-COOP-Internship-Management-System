@@ -5,9 +5,9 @@
       <div class="row">
         <div class="col-lg-5">
           <div class="user-display">
-            <div class="user-display-bg"><img src="<?=base_url($this->session->userdata('photo'))?>" alt="Profile Background"></div>
+            <div class="user-display-bg"><img src="<?php if($this->session->userdata('banner') != '') { echo base_url($this->session->userdata('banner')); } else { echo base_url('themes/others/banner.jpg'); } ?>" alt="Profile Background"></div>
             <div class="user-display-bottom">
-              <div class="user-display-avatar"><img src="<?=base_url($this->session->userdata('photo'))?>" alt="Avatar"></div>
+              <div class="user-display-avatar"><img src="<?php if($this->session->userdata('photo') != '') { echo base_url($this->session->userdata('photo')); } else { echo base_url('themes/others/photo.png'); } ?>" alt="Avatar"></div>
               <div class="user-display-info">
                 <div class="name"><?=$profile[0]->FirstName.' '.$profile[0]->MiddleName. ' '.$profile[0]->LastName. ' '.$profile[0]->Suffix; ?></div>
                 <div class="nick"><span class="mdi mdi-account"></span>Student Code: <?=$profile[0]->YearLevelName; ?></div>

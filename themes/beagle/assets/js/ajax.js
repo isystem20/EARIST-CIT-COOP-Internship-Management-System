@@ -111,12 +111,77 @@ $(document).ready(function() {
 
   });
 
+//Student Update Button
+  $('#AdminUpdateSelectButton').click(function(e){ 
+      var url = $(this).data('url');
+      var count = 0;
+      var n = '';
+      $("input:checkbox[dataclass=adminids]:checked").each(function() {
+         count = count + 1;
+         n = $(this).data('id');
+
+      });
+
+      if (count == 0) {
+        $.gritter.add({title:"",text:'Nothing is selected.',class_name:"color warning"});
+      }
+      else if(count == 1) {
+        window.location.href = url + n;
+      } else if (count > 1) {
+        $.gritter.add({title:"",text:'Please select single student.',class_name:"color warning"});
+      } else {
+        $.gritter.add({title:"",text:'Something went wrong.',class_name:"color warning"});
+      }
+
+  });
+
+
 
 //Student Update Button
   $('.StudentChangeStatusSelectButton').click(function(e){ 
     e.preventDefault();  
     var ids = new Array();
     $("input:checkbox[dataclass=studentids]:checked").each(function() {
+       ids.push($(this).data('id'));
+    });
+    console.log(ids);
+    var newURL = $(this).data('action');    
+    var newData  = {
+            'Ids' : ids,
+            'IsActive' : $(this).data('cmd'),
+        }
+
+    $.ajax({
+        url: newURL,
+        type:'POST',
+        dataType: "json",   
+        data: newData,
+        success: function(data) {
+          console.log(data);            
+          if($.isEmptyObject(data.error)){ 
+              $.gritter.add({title:"Success",text:"Record Update Successful. Redirecting...",class_name:"color success"});
+              window.setTimeout(function(){
+                window.location.href = data.redirect;  
+              }, 1000);
+            }
+            else{
+              $.gritter.add({title:"Error",text:data.error,class_name:"color danger"});
+            }
+        $("#document_reg_btn").prop("disabled", false);  
+        $("#document_reg_btn").text("Submit");           
+        }
+    });   
+
+
+
+  });
+
+
+//Student Update Button
+  $('.AdminChangeStatusSelectButton').click(function(e){ 
+    e.preventDefault();  
+    var ids = new Array();
+    $("input:checkbox[dataclass=adminids]:checked").each(function() {
        ids.push($(this).data('id'));
     });
     console.log(ids);
@@ -300,6 +365,27 @@ $(document).ready(function() {
   });
 
 
+//Document Delete Button
+  $('#AdminDeleteSelectButton').click(function(e){ 
+      var url = $(this).data('url');
+      var count = 0;
+      var n = '';
+      var ids = new Array();
+      $("input:checkbox[dataclass=adminids]:checked").each(function() {
+         count = count + 1;
+         n = $(this).data('id');
+         ids.push(n);
+      });
+      if (count == 0) {
+        $.gritter.add({title:"",text:'Nothing is selected.',class_name:"color warning"});
+      }
+      else {
+        $('#all_delete_modal').modal();
+        $('input[name=Class]').val('adminids');
+        $('#all_delete_form').attr('action',url);
+      }
+
+  });
 
 
 

@@ -1,212 +1,271 @@
 
 <div class="be-content">
   <div class="page-head">
-    <h2 class="page-head-title">Account Masterlist</h2>
+    <h2 class="page-head-title">User Masterlist</h2>
     <nav aria-label="breadcrumb" role="navigation">
       <ol class="breadcrumb page-head-nav">
         <li class="breadcrumb-item"><a href="#">Administration</a></li>
         <li class="breadcrumb-item"><a href="#">Masterlist</a></li>
-        <li class="breadcrumb-item active">User Accounts</li>
+        <li class="breadcrumb-item active">Users</li>
       </ol>
     </nav>
   </div>
   <div class="main-content container-fluid">
     <div class="row">
       <div class="col-sm-12">
-        <div class="card card-table">
-          <div class="card-header">
-            <a href="<?=base_url('student/register'); ?>" class="btn btn-space btn-primary">
-              <i class="icon icon-left mdi mdi-account-add"></i> Add
-            </a>
-            <button class="btn btn-space btn-success" id="StudentUpdateSelectButton" data-url="<?=base_url('student/edit/'); ?>" >
-              <i class="icon icon-left mdi mdi-account-add"></i> Update
-            </button>
-            <button class="btn btn-space btn-warning">
-              <i class="icon icon-left mdi mdi-account-add"></i> Delete
-            </button>
+
+                <div class="tab-container">
+                  <ul role="tablist" class="nav nav-tabs nav-tabs-success">
+                    <li class="nav-item"><a href="#studentab" data-toggle="tab" role="tab" class="nav-link active show" aria-selected="true">Students</a></li>
+                    <li class="nav-item"><a href="#admintab" data-toggle="tab" role="tab" class="nav-link" aria-selected="false">Administrators</a></li>
+                  </ul>
+                  <div class="tab-content">
+                    <div id="studentab" role="tabpanel" class="tab-pane active show">
+                      <h4>Students Accounts</h4>
 
 
-            <div class="tools dropdown"><span class="icon mdi mdi-download"></span><a href="#" role="button" data-toggle="dropdown" class="dropdown-toggle"><span class="icon mdi mdi-more-vert"></span></a>
-              <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
-                <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
-              </div>
-            </div>
-          </div>
-          <div class="card-body">
-            <table id="table3" class="table table-striped table-hover table-fw-widget">
-              <thead>
-                  <tr>
-                    <th style="width:5%;">
-                      <label class="custom-control custom-control-sm custom-checkbox">
-                        <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
-                      </label>
-                    </th>
-                    <th>S.N</th>
-                    <th>Photo</th>
-                    <th>Last Name</th>
-                    <th>First Name</th>
-                    <th>Year</th>
-                    <th>Course</th>
-                    <th>Section</th>
-                    
-                    <!-- <th style="width:80px;">Action</th> -->
-                  </tr>
-              </thead>
-                <tbody>
-
-                  <?php
-                  if (!empty($all_list)) {
-                     if ($all_list->num_rows() > 0) {
-                        foreach ($all_list->result() as $row) { ?>
-
-
-                    <tr>
-                      <td>
-                        
-                        <label class="custom-control custom-control-sm custom-checkbox">
-                          <input type="checkbox" dataclass="studentids" class="custom-control-input studentids" data-id="<?=$row->Id; ?>">
-                          <span class="custom-control-label"></span>
-                        </label>
-                        
-                      </td>
-                      <td class="cell-detail"> <span><?=$row->Code; ?></span></td>
-                      <td class="user-avatar cell-detail user-info">
-                        <img src="<?=base_url($row->Photopath)?>" alt="" class="mt-0 mt-md-2 mt-lg-0">
-                      </td>
-                      <td class="cell-detail"> <span><?=$row->LastName; ?></span></td> 
-                      <td class="cell-detail"> <span><?=$row->FirstName; ?></span></td>
-                      <td class="cell-detail"> <span><?=$row->YearLevelName; ?></span>
-                      </td>
-                      <td class="cell-detail"> <span><?=$row->CourseName; ?></td>
-                      <td class="cell-detail"> <span><?=$row->SectionName; ?></td>
-                   <!--    <td class="text-right">
-                        <div class="btn-group btn-space ">
-                          <a href="<?=base_url('student/view/'.$row->Id); ?>" class="btn btn-secondary">Open</a>
-                          <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">
-                            <span class="mdi mdi-chevron-down"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
+                      <div class="card card-table">
+                        <div class="card-header">
+                          <a href="<?=base_url('student/register'); ?>" class="btn btn-space btn-primary">
+                            <i class="icon icon-left mdi mdi-account-add"></i> Add Student
+                          </a>
+                          <button class="btn btn-space btn-success" id="StudentUpdateSelectButton" data-url="<?=base_url('student/edit/'); ?>" >
+                            <i class="icon icon-left mdi mdi-account-add"></i> Update
                           </button>
-                          <div role="menu" class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Update</a>
-                            <a href="#" class="dropdown-item">Disable</a>
-                            <a href="#" class="dropdown-item">Delete</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">Assign Company</a>
-                            <a href="#" class="dropdown-item">Check Progress</a>
+                          <button class="btn btn-space btn-warning StudentChangeStatusSelectButton" id="StudentActiveSelectButton" data-action="<?=base_url('student/change'); ?>" data-cmd="1">
+                            <i class="icon icon-left mdi mdi-account-add"></i> Set to Active
+                          </button>
+                          <button class="btn btn-space btn-warning StudentChangeStatusSelectButton" id="StudentInactiveSelectButton" data-action="<?=base_url('student/change'); ?>" data-cmd="0">
+                            <i class="icon icon-left mdi mdi-account-add"></i> Set to Inactive
+                          </button>  
+                          <button class="btn btn-space btn-danger" id="StudentDeleteSelectButton" data-url="<?=base_url('student/del'); ?>">
+                            <i class="icon icon-left mdi mdi-account-add"></i> Delete
+                          </button>  
+
+                          <div class="btn-group btn-space">
+                            <button type="button" class="btn btn-secondary">Filter By Course</button>
+                            <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle"><span class="mdi mdi-chevron-down"></span><span class="sr-only">Toggle Dropdown</span></button>
+                            <div role="menu" class="dropdown-menu">
+                              <a href="<?=base_url('manage/students'); ?>" class="dropdown-item">No Filter</a>
+                                <?php
+                                if (!empty($courses)) {
+                                   if ($courses->num_rows() > 0) {
+                                      foreach ($courses->result() as $row) { ?>                
+                              <a href="<?=base_url('manage/students/course/'.$row->Id); ?>" class="dropdown-item"><?=$row->Name; ?></a>
+                                <?php
+                                      }
+                                   }
+                                }
+                                ?>
+                            </div>
+                          </div>
+
+                          <div class="btn-group btn-space">
+                            <button type="button" class="btn btn-secondary">Filter By Status</button>
+                            <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle"><span class="mdi mdi-chevron-down"></span><span class="sr-only">Toggle Dropdown</span></button>
+                            <div role="menu" class="dropdown-menu">
+                              <a href="<?=base_url('manage/students'); ?>" class="dropdown-item">No Filter</a>               
+                              <a href="<?=base_url('manage/students/status/1'); ?>" class="dropdown-item">Active</a>
+                              <a href="<?=base_url('manage/students/status/0'); ?>" class="dropdown-item">Inactive</a>
+                            </div>
+                          </div>
+
+                          <div class="tools dropdown"><span class="icon mdi mdi-download"></span><a href="#" role="button" data-toggle="dropdown" class="dropdown-toggle"><span class="icon mdi mdi-more-vert"></span></a>
+                            <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
+                              <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
+                            </div>
                           </div>
                         </div>
-                      </td> -->
-                    </tr>
+                        <div class="card-body">
 
 
-                  <?php
-                        }
-                     }
-                  }
-                  ?>
+                            <table id="table1" class="table table-striped table-hover table-fw-widget">
+                              <thead>
+                                  <tr>
+                                    <th style="width:5%;">
+                                      <label class="custom-control custom-control-sm custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
+                                      </label>
+                                    </th>
+                                    <th>S.N</th>
+                                    <th>Photo</th>
+                                    <th>Last Name</th>
+                                    <th>First Name</th>
+                                    <th>Year</th>
+                                    <th>Course</th>
+                                    <th>Section</th>
+                                    
+                                    <!-- <th style="width:80px;">Action</th> -->
+                                  </tr>
+                              </thead>
+                                <tbody>
+
+                                  <?php
+                                  if (!empty($all_list_stud)) {
+                                     if ($all_list_stud->num_rows() > 0) {
+                                        foreach ($all_list_stud->result() as $row) { ?>
 
 
-     <!--              <tr class="online">
-                    <td>
-                      <label class="custom-control custom-control-sm custom-checkbox">
-                        <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
-                      </label>
-                    </td>
-                    <td class="user-avatar cell-detail user-info"><img src="<?=base_url('themes/beagle/')?>assets/img/avatar4.png" alt="Avatar" class="mt-0 mt-md-2 mt-lg-0"><span>Benji Harper</span><span class="cell-detail-description">Section 1</span></td>
-                    <td class="cell-detail"> <span>Main structure markup</span><span class="cell-detail-description">CLI Connector</span></td>
-                    <td class="milestone"><span class="completed">22 / 30</span><span class="version">v1.1.5</span>
-                      <div class="progress">
-                        <div style="width: 75%" class="progress-bar progress-bar-primary"></div>
-                      </div>
-                    </td>
-                    <td class="cell-detail"><span>develop</span><span class="cell-detail-description">4cc1bc2</span></td>
-                    <td class="cell-detail"><span>April 22, 2016</span><span class="cell-detail-description">14:45</span></td>
-                    <td class="text-right">
-                      <div class="btn-group btn-hspace">
-                        <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">Open <span class="icon-dropdown mdi mdi-chevron-down"></span></button>
-                        <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
-                          <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
+                                    <tr>
+                                      <td>
+                                        
+                                        <label class="custom-control custom-control-sm custom-checkbox">
+                                          <input type="checkbox" dataclass="studentids" class="custom-control-input studentids" data-id="<?=$row->Id; ?>">
+                                          <span class="custom-control-label"></span>
+                                        </label>
+                                        
+                                      </td>
+                                      <td class="cell-detail"> <span><?=$row->Code; ?></span></td>
+                                      <td class="user-avatar cell-detail user-info">
+                                        <img src="<?php if($row->Photopath != '') { echo base_url($row->Photopath); } else { echo base_url('themes/others/photo.png'); } ?>" alt="" class="mt-0 mt-md-2 mt-lg-0">
+                                      </td>
+                                      <td class="cell-detail"> <span><?=$row->LastName; ?></span></td> 
+                                      <td class="cell-detail"> <span><?=$row->FirstName; ?></span></td>
+                                      <td class="cell-detail"> <span><?=$row->YearLevelName; ?></span>
+                                      </td>
+                                      <td class="cell-detail"> <span><?=$row->CourseName; ?></td>
+                                      <td class="cell-detail"> <span><?=$row->SectionName; ?></td>
+                                    </tr>
+
+
+                                  <?php
+                                        }
+                                     }
+                                  }
+                                  ?>
+
+                                </tbody>
+                            </table>
+
+
+
+
+
                         </div>
                       </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="custom-control custom-control-sm custom-checkbox">
-                        <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
-                      </label>
-                    </td>
-                    <td class="user-avatar cell-detail user-info"><img src="<?=base_url('themes/beagle/')?>assets/img/avatar5.png" alt="Avatar" class="mt-0 mt-md-2 mt-lg-0"><span>Justine Myranda</span><span class="cell-detail-description">Section 2</span></td>
-                    <td class="cell-detail"> <span>Left sidebar adjusments</span><span class="cell-detail-description">Back-end Manager</span></td>
-                    <td class="milestone"><span class="completed">10 / 30</span><span class="version">v1.1.3</span>
-                      <div class="progress">
-                        <div style="width: 33%" class="progress-bar progress-bar-primary"></div>
-                      </div>
-                    </td>
-                    <td class="cell-detail"><span>develop</span><span class="cell-detail-description">5477993</span></td>
-                    <td class="cell-detail"><span>April 15, 2016</span><span class="cell-detail-description">10:00</span></td>
-                    <td class="text-right">
-                      <div class="btn-group btn-hspace">
-                        <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">Open <span class="icon-dropdown mdi mdi-chevron-down"></span></button>
-                        <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
-                          <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
+
+
+                    </div>
+                    <div id="admintab" role="tabpanel" class="tab-pane">
+                      <h4>Administrator Accounts</h4>
+
+
+                      <div class="card card-table">
+                        <div class="card-header">
+                          <a href="<?=base_url('admin/register'); ?>" class="btn btn-space btn-primary">
+                            <i class="icon icon-left mdi mdi-account-add"></i> Add Admin
+                          </a>
+                          <button class="btn btn-space btn-success" id="AdminUpdateSelectButton" data-url="<?=base_url('admin/edit/'); ?>" >
+                            <i class="icon icon-left mdi mdi-account-add"></i> Update
+                          </button>
+                          <button class="btn btn-space btn-warning AdminChangeStatusSelectButton" id="StudentActiveSelectButton" data-action="<?=base_url('admin/change'); ?>" data-cmd="1">
+                            <i class="icon icon-left mdi mdi-account-add"></i> Set to Active
+                          </button>
+                          <button class="btn btn-space btn-warning AdminChangeStatusSelectButton" id="StudentInactiveSelectButton" data-action="<?=base_url('admin/change'); ?>" data-cmd="0">
+                            <i class="icon icon-left mdi mdi-account-add"></i> Set to Inactive
+                          </button>  
+                          <button class="btn btn-space btn-danger" id="AdminDeleteSelectButton" data-url="<?=base_url('admin/del'); ?>">
+                            <i class="icon icon-left mdi mdi-account-add"></i> Delete
+                          </button>  
+
+                          <div class="btn-group btn-space">
+                            <button type="button" class="btn btn-secondary">Filter By Status</button>
+                            <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle"><span class="mdi mdi-chevron-down"></span><span class="sr-only">Toggle Dropdown</span></button>
+                            <div role="menu" class="dropdown-menu">
+                              <a href="<?=base_url('manage/accounts'); ?>" class="dropdown-item">No Filter</a>               
+                              <a href="<?=base_url('manage/accounts/status/1'); ?>" class="dropdown-item">Active</a>
+                              <a href="<?=base_url('manage/accounts/status/0'); ?>" class="dropdown-item">Inactive</a>
+                            </div>
+                          </div>
+
+                          <div class="tools dropdown"><span class="icon mdi mdi-download"></span><a href="#" role="button" data-toggle="dropdown" class="dropdown-toggle"><span class="icon mdi mdi-more-vert"></span></a>
+                            <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
+                              <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-body">
+
+
+
+                          <table id="table3" class="table table-striped table-hover table-fw-widget">
+                            <thead>
+                                <tr>
+                                  <th style="width:5%;">
+                                    <label class="custom-control custom-control-sm custom-checkbox">
+                                      <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
+                                    </label>
+                                  </th>
+                                  <th>S.N</th>
+                                  <th>Photo</th>
+                                  <th>Last Name</th>
+                                  <th>First Name</th>
+                                  <th>Year</th>
+                                  <th>Course</th>
+                                  <th>Section</th>
+                                  
+                                  <!-- <th style="width:80px;">Action</th> -->
+                                </tr>
+                            </thead>
+                              <tbody>
+
+                                <?php
+                                if (!empty($all_list_admin)) {
+                                   if ($all_list_admin->num_rows() > 0) {
+                                      foreach ($all_list_admin->result() as $row) { ?>
+
+
+                                  <tr>
+                                    <td>
+                                      
+                                      <label class="custom-control custom-control-sm custom-checkbox">
+                                        <input type="checkbox" dataclass="adminids" class="custom-control-input adminids" data-id="<?=$row->Id; ?>">
+                                        <span class="custom-control-label"></span>
+                                      </label>
+                                      
+                                    </td>
+                                    <td class="cell-detail"> <span><?=$row->Code; ?></span></td>
+                                    <td class="user-avatar cell-detail user-info">
+                                      <img src="<?php if($row->Photopath != '') { echo base_url($row->Photopath); } else { echo base_url('themes/others/photo.png'); } ?>" alt="" class="mt-0 mt-md-2 mt-lg-0">
+                                    </td>
+                                    <td class="cell-detail"> <span><?=$row->LastName; ?></span></td> 
+                                    <td class="cell-detail"> <span><?=$row->FirstName; ?></span></td>
+                                    <td class="cell-detail"> <span><?=$row->YearLevelName; ?></span>
+                                    </td>
+                                    <td class="cell-detail"> <span><?=$row->CourseName; ?></td>
+                                    <td class="cell-detail"> <span><?=$row->SectionName; ?></td>
+                                  </tr>
+
+
+                                <?php
+                                      }
+                                   }
+                                }
+                                ?>
+
+                              </tbody>
+                          </table>
+
                         </div>
                       </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <label class="custom-control custom-control-sm custom-checkbox">
-                        <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
-                      </label>
-                    </td>
-                    <td class="user-avatar cell-detail user-info"><img src="<?=base_url('themes/beagle/')?>assets/img/avatar3.png" alt="Avatar" class="mt-0 mt-md-2 mt-lg-0"><span>Sherwood Clifford</span><span class="cell-detail-description">Section 3</span></td>
-                    <td class="cell-detail"> <span>Topbar dropdown style</span><span class="cell-detail-description">Bootstrap Admin</span></td>
-                    <td class="milestone"><span class="completed">25 / 40</span><span class="version">v1.0.4</span>
-                      <div class="progress">
-                        <div style="width: 55%" class="progress-bar progress-bar-primary"></div>
-                      </div>
-                    </td>
-                    <td class="cell-detail"><span>master</span><span class="cell-detail-description">8cb98ec</span></td>
-                    <td class="cell-detail"><span>April 8, 2016</span><span class="cell-detail-description">17:24</span></td>
-                    <td class="text-right">
-                      <div class="btn-group btn-hspace">
-                        <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">Open <span class="icon-dropdown mdi mdi-chevron-down"></span></button>
-                        <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
-                          <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr class="online">
-                    <td>
-                      <label class="custom-control custom-control-sm custom-checkbox">
-                        <input type="checkbox" class="custom-control-input"><span class="custom-control-label"></span>
-                      </label>
-                    </td>
-                    <td class="user-avatar cell-detail user-info"><img src="<?=base_url('themes/beagle/')?>assets/img/avatar.png" alt="Avatar" class="mt-0 mt-md-2 mt-lg-0"><span>Kristopher Donny</span><span class="cell-detail-description">Section 1</span></td>
-                    <td class="cell-detail"> <span>Right sidebar adjusments</span><span class="cell-detail-description">CLI Connector</span></td>
-                    <td class="milestone"><span class="completed">38 / 40</span><span class="version">v1.0.1</span>
-                      <div class="progress">
-                        <div style="width: 98%" class="progress-bar progress-bar-primary"></div>
-                      </div>
-                    </td>
-                    <td class="cell-detail"><span>master</span><span class="cell-detail-description">65bc2da</span></td>
-                    <td class="cell-detail"><span>Mars 18, 2016</span><span class="cell-detail-description">13:02</span></td>
-                    <td class="text-right">
-                      <div class="btn-group btn-hspace">
-                        <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">Open <span class="icon-dropdown mdi mdi-chevron-down"></span></button>
-                        <div role="menu" class="dropdown-menu"><a href="#" class="dropdown-item">Action</a><a href="#" class="dropdown-item">Another action</a><a href="#" class="dropdown-item">Something else here</a>
-                          <div class="dropdown-divider"></div><a href="#" class="dropdown-item">Separated link</a>
-                        </div>
-                      </div>
-                    </td>
-                  </tr> -->
-                </tbody>
-            </table>
-          </div>
-        </div>
+
+
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+

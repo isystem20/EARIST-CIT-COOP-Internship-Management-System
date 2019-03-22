@@ -149,6 +149,7 @@ class AuthController extends Public_Controller {
 	        			'security_id' =>$login->SecurityUserLevelId,
 	        			'usertype' => $login->UserType,
 	        			'account_id' => $login->AccountId,
+	        			'banner' => $login->BannerPath,
 	        			'photo' => $login->Photopath,
 	        			'username' => $login->LoginName,
 	        			'email'=>$login->PersonalEmail,
