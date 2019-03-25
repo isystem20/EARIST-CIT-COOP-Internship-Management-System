@@ -49,7 +49,12 @@ if (strtolower($form[0]['ContactPersonGender']) == 'female') {
 	$cp_pronoun = 'She';
 	$cp_3rd = 'Her';
 }
-
+$s_pronoun = 'He';
+$s_3rd = 'His';
+if (strtolower($form[0]['StudentGender']) == 'female') {
+	$s_pronoun = 'She';
+	$s_3rd = 'Her';
+}
 
 $variables = array(
 	'DocumentDate' => date('F j, Y',strtotime($form[0]['DocumentDate'])), 
