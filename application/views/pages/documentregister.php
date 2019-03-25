@@ -62,7 +62,8 @@
                         <p>{{ContactPersonTitle}} - Contact Person's Title</p>
                         <p>{{ContactPersonFirstName}} - Contact Person's First Name</p>
                         <p>{{ContactPersonLastName}} - Contact Person's Last Name</p>
-
+                        <p>{{ContactPersonPronoun}} - Contact Person's Pronoun</p>
+                        <p>{{ContactPerson3rdPerson}} - Contact Person's 3rd Person</p>                        
                         <p>{{ContactPerson}} - Company Contact Person's Full Name</p>
                         <p>{{ContactPerson_Designation}} - Designation of Contact Person</p>
                         <p>{{CompanyName}} - Name of the Participating Company</p>

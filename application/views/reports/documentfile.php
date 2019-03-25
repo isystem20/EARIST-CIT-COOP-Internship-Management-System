@@ -43,7 +43,12 @@ $pdf->SetFont('dejavusans', '', 10);
 
 $id = $form[0]['Id'];
 $content = $form[0]['Content'];
-
+$cp_pronoun = 'He';
+$cp_3rd = 'His';
+if (strtolower($form[0]['ContactPersonGender']) == 'female') {
+	$cp_pronoun = 'She';
+	$cp_3rd = 'Her';
+}
 
 
 $variables = array(
@@ -53,6 +58,8 @@ $variables = array(
 	'ContactPersonFirstName' => ucwords($form[0]['ContactPersonFirstName']), 
 	'ContactPersonLastName' => ucwords($form[0]['ContactPersonLastName']), 
 	'ContactPerson_Designation' => ucwords($form[0]['ContactPerson_Designation']), 
+	'ContactPersonPronoun' => $cp_pronoun, 
+	'ContactPerson3rdPerson' => $cp_3rd, 
 	'CompanyName' =>ucwords($form[0]['CompanyName']), 
 	'CompanyAddress1' =>ucwords($form[0]['CompanyAddress1']), 
 	'CompanyAddress2' =>ucwords($form[0]['CompanyAddress2']), 

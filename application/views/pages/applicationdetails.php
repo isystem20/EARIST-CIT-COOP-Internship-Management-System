@@ -55,7 +55,7 @@
                               <div class="input-group-append">
                                 <button class="btn btn-primary"><i class="icon-th mdi mdi-calendar"></i></button>
                               </div>                                    
-                              <input size="16" type="text" name="LabelDate" value="<?=date('Y-m-d') ?>" class="form-control">
+                              <input size="16" type="text" name="LabelDate" value="<?=date('Y-m-d',strtotime($app_info[0]->LabelDate)); ?>" class="form-control">
                             </div>
                           </div>
                       </div>
@@ -69,7 +69,7 @@
                     <div class="form-group row">
                       <label for="inputPlaceholder3" class="col-12 col-sm-3 col-form-label text-sm-right">Company Address</label>
                       <div class="col-12 col-sm-8 col-lg-6">
-                        <input id="inputPlaceholder3" type="text" name="Address1" placeholder="Floor, Building, Street" class="form-control">
+                        <input id="inputPlaceholder3" type="text" name="Address1" value="<?=$app_info[0]->Address1 ?>" placeholder="Floor, Building, Street" class="form-control">
                       </div>
                     </div>
                     <div class="form-group row">
@@ -93,19 +93,29 @@
                     <div class="form-group row">
                       <label for="inputPlaceholder3" class="col-12 col-sm-3 col-form-label text-sm-right">ZIP code</label>
                       <div class="col-12 col-sm-8 col-lg-6">
-                        <input id="inputPlaceholder3" type="text" name="Zip" placeholder="Company Zip Code" class="form-control">
+                        <input id="inputPlaceholder3" type="text" name="Zip" value="<?=$app_info[0]->Zip ?>" placeholder="Company Zip Code" class="form-control">
                       </div>
                     </div>                    
                     <div class="form-group row">
                       <label for="inputPlaceholder3" class="col-12 col-sm-3 col-form-label text-sm-right">Contact Person</label>
                       <div class="col-12 col-sm-8 col-lg-6">
-                        <input id="inputPlaceholder3" type="text" name="ContactPerson" placeholder="Contact Person" class="form-control">
+                        <input id="inputPlaceholder3" type="text" name="ContactPerson" value="<?=$app_info[0]->ContactPerson ?>" placeholder="Contact Person" class="form-control">
                       </div>
                     </div>
                     <div class="form-group row">
+                      <label for="inputPlaceholder3" class="col-12 col-sm-3 col-form-label text-sm-right">Contact Person Gender</label>
+                      <div class="col-12 col-sm-8 col-lg-6">
+                          <select class="form-control" name="ContactPersonGender">
+                            <option value="Male" selected="">Male</option>
+                            <option value="Female">Female</option>
+                          </select>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
                       <label for="inputDisabled3" class="col-12 col-sm-3 col-form-label text-sm-right">Designation</label>
                       <div class="col-12 col-sm-8 col-lg-6">
-                        <input id="inputDisabled3" type="text" name="Designation" placeholder="Designation of Contact Person" class="form-control">
+                        <input id="inputDisabled3" type="text" name="Designation" value="<?=$app_info[0]->Designation ?>" placeholder="Designation of Contact Person" class="form-control">
                       </div>
                     </div>
                     <div class="form-group row">

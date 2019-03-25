@@ -121,6 +121,15 @@
                       </div>                      
                     </div>
                     <div class="form-group row">
+                      <label for="inputPlaceholder3" class="col-12 col-sm-3 col-form-label text-sm-right">Contact Person Gender</label>
+                      <div class="col-12 col-sm-8 col-lg-6">
+                          <select class="form-control" name="ContactPersonGender">
+                            <option value="Male" selected="">Male</option>
+                            <option value="Female">Female</option>
+                          </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
                       <label for="inputDisabled3" class="col-12 col-sm-3 col-form-label text-sm-right">Designation</label>
                       <div class="col-12 col-sm-8 col-lg-6">
                         <input id="inputDisabled3" type="text" name="Designation" placeholder="Designation of Contact Person" class="form-control">
