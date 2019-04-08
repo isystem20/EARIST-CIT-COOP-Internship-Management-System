@@ -101,7 +101,7 @@
                               </div>
                               <div class="form-group col-sm-4">
                                 <label for="inputUserName">Mobile</label>
-                                <input data-parsley-type="digits" name="MobileNo" type="text"  placeholder="639XXXXXXXXX" class="form-control parsley-error" data-parsley-id="63">
+                                <input data-parsley-type="digits" name="MobileNo" type="text"  placeholder="09XXXXXXXXX" class="form-control parsley-error" data-parsley-id="63">
                               </div>
                               <div class="form-group col-sm-4">
                                 <label for="inputUserName">Landline</label>
@@ -244,18 +244,7 @@
                           <div class="col-sm-12 row">
                               <div class="form-group col-sm-6">
                                 <label for="inputUserName">Internship Advisor</label>
-                                <select class="select2" name="Advisor">
-                                    <?php
-                                    if ($advisors->num_rows() > 0) {
-                                      foreach ($advisors->result() as $row) { ?>
-
-                                    <option value="<?=$row->Id ?>"><?=$row->LastName.', '.$row->FirstName; ?></option>  
-
-                                    <?php
-                                      }
-                                    }
-                                    ?>
-                                </select>
+                                <input id="inputUserName" type="text" name="Advisor"  placeholder="Enter Advisor" autocomplete="off" class="form-control">
                               </div>
                               <div class="form-group col-sm-3">
                                 <label for="inputUserName">Profile Picture</label>
