@@ -73,8 +73,8 @@ class RequestModel extends CI_Model {
 
 
 	public function UpdateStatus($id, $data) {
+		$this->db->where('Id',$id);		
 		$this->db->update('tbl_requests',$data);
-		$this->db->where('Id',$id);
 		if ($this->db->affected_rows() > 0) {
 			return $id;
 		}

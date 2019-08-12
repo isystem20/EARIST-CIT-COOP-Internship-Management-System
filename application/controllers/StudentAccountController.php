@@ -369,9 +369,10 @@ class StudentAccountController extends Student_Controller {
 	        $this->logger->log('Invalid Register','Internship Record',$json); //Log  
             echo json_encode($data);
         }else{
-        	$id = $postdata['Id'];
-        	unset($postdata['Id']);
-        	if (!empty($id)) {
+
+        	if (!empty($postdata['Id'])) {
+        		$id = $postdata['Id'];
+        		unset($postdata['Id']);
         		$result = $this->rec->UpdateRecord($id,$postdata);
         	}
         	else {

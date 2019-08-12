@@ -90,11 +90,11 @@
                   </li> 
                   <li><a href="<?=base_url('requests'); ?>"><i class="icon mdi mdi-face"></i><span>My Requests</span></a>
                   </li> 
-                  <li class="divider">Settings</li>
+         <!--          <li class="divider">Settings</li>
                   <li><a href="<?=base_url('notifications'); ?>"><i class="icon mdi mdi-home"></i><span>Notifications</span></a>
                   </li>                 
                   <li><a href=""><i class="icon mdi mdi-home"></i><span>Reset Password</span></a>
-                  </li>                       
+                  </li>  -->                      
                   <?php } ?>
 
 
