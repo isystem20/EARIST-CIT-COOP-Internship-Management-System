@@ -74,10 +74,10 @@
               <table class="table table-striped table-hover">
                 <thead>
                   <tr>
-                    <th style="width:37%;">Date</th>
-                    <th style="width:36%;">Document</th>
+                    <th style="width:40%;">Date</th>
+                    <th style="width:40%;">Document</th>
                     <th>Status</th>
-                    <th class="actions"></th>
+                    <!-- <th class="actions"></th> -->
                   </tr>
                 </thead>
                 <tbody>
@@ -89,7 +89,7 @@
                     <td class="user-avatar"><?=date('Y-m-d',strtotime($row->CreatedAt)); ?></td>
                     <td><?=$row->DocumentName; ?></td>
                     <td><?php if($row->Status == '1'){echo '<span class="badge badge-secondary">Pending</span>';} elseif($row->Status == '0'){ echo '<span class="badge badge-danger">Rejected</span>';} elseif($row->Status == '2') { echo '<span class="badge badge-success">Approved</span>';} ?></td>
-                    <td class="actions"><a href="#" class="icon"><i class="mdi mdi-delete"></i></a></td>
+                    <!-- <td class="actions"><a href="#" class="icon"><i class="mdi mdi-delete"></i></a></td> -->
                   </tr>
                   <?php
                         }

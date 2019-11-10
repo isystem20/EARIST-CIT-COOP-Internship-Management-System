@@ -66,7 +66,7 @@
                       <td class="cell-detail"> <span><?=$row->Address1; ?></span></td>
                       <td class="text-right">
                         <div class="btn-group btn-space ">
-                          <a href="<?=base_url('student/view/'.$row->Id); ?>" class="btn btn-secondary">Open</a>
+                          <a href="<?=base_url('applications/edit/'.$row->Id); ?>" class="btn btn-secondary">Open</a>
                           <button type="button" data-toggle="dropdown" class="btn btn-secondary dropdown-toggle">
                             <span class="mdi mdi-chevron-down"></span>
                             <span class="sr-only">Toggle Dropdown</span>

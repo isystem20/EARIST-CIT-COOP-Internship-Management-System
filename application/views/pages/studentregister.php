@@ -61,7 +61,7 @@
                       </div>
                       <div class="row">
                           <div class="col-sm-12 row">
-                              <div class="form-group col-sm-4">
+                              <div class="form-group col-sm-3">
                                 <label for="inputUserName">Birthdate</label>
                                 <div class="">
                                   <div data-min-view="2" data-date-format="yyyy-mm-dd" class="input-group date datetimepicker">
@@ -72,7 +72,7 @@
                                   </div>
                                 </div>
                               </div>
-                              <div class="form-group col-sm-4">
+                              <div class="form-group col-sm-3">
                                 <label for="inputUserName">Civil Status</label>
                                 <select class="select2" name="CivilStatus">
                                     <option value="Single">Single</option>
@@ -80,7 +80,15 @@
                                     <option value="Separated">Separated</option>
                                 </select>
                               </div>
-                              <div class="form-group col-sm-4">
+                              <div class="form-group col-sm-3">
+                                <label for="inputUserName">Gender</label>
+                                <select class="select2" name="Gender">
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                              </div>
+
+                              <div class="form-group col-sm-3">
                                 <label for="inputUserName">Nationality</label>
                                 <select class="select2" name="Nationality">
                                     <?php
@@ -99,6 +107,8 @@
                                     ?>
                                 </select>
                               </div>
+
+
                           </div>
                       </div>
 
@@ -161,6 +171,20 @@
                               </div>
                           </div>
                       </div>
+
+                      <div class="row">
+                          <div class="col-sm-12 row">
+                              <div class="form-group col-sm-8">
+                                <label for="inputUserName">Guardian Name</label>
+                                <input name="GuardianName"  placeholder="Guardian Full name" class="form-control">
+                              </div>
+                              <div class="form-group col-sm-4">
+                                <label for="inputUserName">GuardianContact</label>
+                                <input data-parsley-type="digits" name="GuardianContact" type="text"  placeholder="09XXXXXXXXX" class="form-control parsley-error" data-parsley-id="63">
+                              </div>
+                          </div>
+                      </div>
+
                   </div>
                 </div>
               </div>

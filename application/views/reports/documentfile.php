@@ -84,6 +84,9 @@ $variables = array(
 	'StudentEndDate' => $form[0]['StudentEndDate'], 
 	'StudentScheduleDays' => $form[0]['StudentScheduleDays'], 
 	'StudentScheduleTime' => $form[0]['StudentScheduleTime'], 
+	'StudentAddress' => $form[0]['StudentAddress'], 
+	'GuardianName' => $form[0]['GuardianName'], 
+	'GuardianContact' => $form[0]['GuardianContact'], 
 	);
 
 foreach($variables as $key => $value)
