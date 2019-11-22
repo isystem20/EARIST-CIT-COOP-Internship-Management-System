@@ -73,6 +73,7 @@ $variables = array(
 	'StudentLName' => ucwords($form[0]['StudentLName']),
 	'StudentCode' => ucwords($form[0]['StudentCode']),
 	'StudentCourse' => ucwords($form[0]['StudentCourse']), 
+	'StudentMobile' => ucwords($form[0]['MobileNo']), 
 	'StudentOJTHours' => $form[0]['StudentOJTHours'], 
 	'StudentGender' => $form[0]['StudentGender'], 
 	'StudentPronoun' => $s_pronoun, 

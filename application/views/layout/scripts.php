@@ -105,13 +105,13 @@
     </script>
     <?php } ?>   
     <?php if (!empty($editor)) { ?>
-    <script src="<?=base_url('themes/beagle/'); ?>assets/lib/summernote/summernote-bs4.min.js" type="text/javascript"></script>
+<!--     <script src="<?=base_url('themes/beagle/'); ?>assets/lib/summernote/summernote-bs4.min.js" type="text/javascript"></script>
     <script src="<?=base_url('themes/beagle/'); ?>assets/lib/summernote/summernote-ext-beagle.js" type="text/javascript"></script>
     <script type="text/javascript">
       $(document).ready(function(){
         App.textEditors();
       });
-    </script>
+    </script> -->
     <?php } ?>        
     <?php if (!empty($table)) { ?>
     <script type="text/javascript">

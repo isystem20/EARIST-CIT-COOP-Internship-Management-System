@@ -59,8 +59,8 @@
                           <div class="col-sm-12 row">
                               <div class="form-group col-sm-12">
                                 <label for="inputUserName">Content</label>
-                                <div id="editor1"></div>
-                                <textarea id="pre-loaded-content" style="display: none;"><?=$doc[0]->Content; ?></textarea>
+                                <!-- <div id="editor1"></div> -->
+                                <textarea id="editor1" style="display: none;"><?=$doc[0]->Content; ?></textarea>
                               </div>                            
                           </div>
                       </div>
@@ -71,7 +71,7 @@
                         <p>{{ContactPersonFirstName}} - Contact Person's First Name</p>
                         <p>{{ContactPersonLastName}} - Contact Person's Last Name</p>
                         <p>{{ContactPersonPronoun}} - Contact Person's Pronoun</p>
-                        <p>{{ContactPerson3rdPerson}} - Contact Person's 3rd Person</p>  
+                        <p>{{ContactPerson3rdPerson}} - Contact Person's 3rd Person</p>                        
                         <p>{{ContactPerson}} - Company Contact Person's Full Name</p>
                         <p>{{ContactPerson_Designation}} - Designation of Contact Person</p>
                         <p>{{CompanyName}} - Name of the Participating Company</p>
@@ -79,7 +79,15 @@
                         <p>{{CompanyAddress2}} - Company Address (City, Region, Zip) </p>
                         <p>{{StudentFullName}} - Full name of Student</p>
                         <p>{{StudentFName}} - First name of Student</p>
-                        <p>{{StudentLNAme}} - Last name of Student</p>
+                        <p>{{StudentLName}} - Last name of Student</p>
+                        <p>{{StudentMobile}} - Mobile of Student</p>
+
+                        <p>{{StudentAddress}} - Student Address</p>
+                        <p>{{GuardianName}} - Student's Guardian Fullname</p>
+                        <p>{{GuardianContact}} - Guardian's Contact Number</p>
+
+
+
                         <p>{{StudentCode}} - Student Unique Number/Code </p>
                         <p>{{StudentCourse}} - Course / Program of the Student</p>
                         <p>{{StudentOJTHours}} - Number of hours required for Internship</p>
@@ -119,4 +127,10 @@
           display: none;
         }
       </style>
+
+<script>
+// Replace the <textarea id="editor1"> with a CKEditor
+// instance, using default configuration.
+CKEDITOR.replace( 'editor1' );
+</script>
 

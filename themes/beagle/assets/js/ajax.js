@@ -226,7 +226,8 @@ $(document).ready(function() {
     $("#document_reg_btn").text("Processing..");  
     var newURL = $(this).attr('action');    
     var newData = new FormData(this); 
-    newData.append('Content', $('.note-editable').html());
+    // newData.append('Content', $('.note-editable').html());
+    newData.append('Content', CKEDITOR.instances.editor1.getData());
     newData.delete('files');
     var EditMode = 0;
     for(var pair of newData.entries()) {

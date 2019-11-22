@@ -52,7 +52,7 @@
                           <div class="col-sm-12 row">
                               <div class="form-group col-sm-12">
                                 <label for="inputUserName">Content</label>
-                                <div id="editor1"></div>
+                                <textarea id="editor1"></textarea>
                               </div>                            
                           </div>
                       </div>
@@ -71,7 +71,8 @@
                         <p>{{CompanyAddress2}} - Company Address (City, Region, Zip) </p>
                         <p>{{StudentFullName}} - Full name of Student</p>
                         <p>{{StudentFName}} - First name of Student</p>
-                        <p>{{StudentLNAme}} - Last name of Student</p>
+                        <p>{{StudentLName}} - Last name of Student</p>
+                        <p>{{StudentMobile}} - Mobile of Student</p>
 
                         <p>{{StudentAddress}} - Student Address</p>
                         <p>{{GuardianName}} - Student's Guardian Fullname</p>
@@ -118,4 +119,10 @@
           display: none;
         }
       </style>
+
+<script>
+// Replace the <textarea id="editor1"> with a CKEditor
+// instance, using default configuration.
+CKEDITOR.replace( 'editor1' );
+</script>
 

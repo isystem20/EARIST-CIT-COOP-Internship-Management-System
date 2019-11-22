@@ -173,6 +173,7 @@ class StudentAccountController extends Student_Controller {
         		unset($companydata['ContactPersonLastName']);
         		unset($companydata['ContactPerson']);
         		unset($companydata['Designation']);
+        		unset($companydata['ContactPersonGender']);
         		$result = $this->com->AddCompany($companydata); 
         		$postdata['CompanyId'] = $result;		
         	}

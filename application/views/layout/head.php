@@ -44,4 +44,7 @@
     <link rel="stylesheet" type="text/css" href="<?=base_url('themes/beagle/'); ?>assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
     <link rel="stylesheet" href="<?=base_url('themes/beagle/'); ?>assets/css/app-red.css" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="<?=base_url('themes/beagle/'); ?>assets/lib/jquery.gritter/css/jquery.gritter.css"/>
+
+
+    <script src="<?=base_url();?>themes/ckeditor/ckeditor.js"></script>
   </head>
