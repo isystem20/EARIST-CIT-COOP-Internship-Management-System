@@ -15,6 +15,7 @@ class StudentController extends MY_Controller {
         $this->load->model('YearLevelModel','yearlevel');
         $this->load->model('AdvisorModel','advisors');
         $this->load->model('NationalityModel','nationality');
+        $this->load->model('RequestModel','request');
 		$this->load->model('DocumentModel','doc');
     }
     private $cou = 'tbl_courses';
@@ -75,6 +76,9 @@ class StudentController extends MY_Controller {
 		$data['yearlevels'] = $this->yearlevel->LoadMasterlist('Id,Name');
 		$data['nationality'] = $this->nationality->LoadMasterlist('Id,Name');
 		$data['advisors'] = $this->advisors->LoadMasterlist('Id,LastName,FirstName');
+
+		$data['requestList'] = $this->request->LoadStudentRequests($id);
+
 		$student_profile = $this->students->LoadSingle($id);
 		if ($student_profile == FALSE) {
 			return redirect(base_url('404'));

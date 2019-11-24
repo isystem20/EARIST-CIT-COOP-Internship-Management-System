@@ -330,6 +330,71 @@
                 </div>
               </div>
             </div>
+
+
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card card-border-color card-border-color-primary">
+                  <div class="card-header card-header-divider">Document Request Logs
+                    <!-- <span class="card-subtitle">This is the default bootstrap form layout</span> -->
+                  </div>
+                  <div class="card-body">
+
+                  <table id="table3" class="table table-striped table-hover table-fw-widget">
+                    <thead>
+                        <tr>
+                          <th>Date</th>
+                          <th>Document</th>
+                          <th>Company</th>
+                          <th>Status</th>                      
+                          <!-- <th style="width:80px;">Action</th> -->
+                        </tr>
+                    </thead>
+                      <tbody>
+
+                        <?php
+                        if (!empty($requestList)) {
+                           if ($requestList->num_rows() > 0) {
+                              foreach ($requestList->result() as $row) { ?>
+
+
+                          <tr>
+                            <td><?=$row->CreatedAt; ?></td>
+                            <td><?=$row->DocumentName; ?></td>
+                            <td><?=$row->CompanyName; ?></td>
+                            <td>
+                              <?php
+                                if ($row->Status == 1) {
+                                    echo "Pending";
+                                }
+                                elseif ($row->Status == 2) {
+                                    echo "Approved";
+                                }
+                                elseif ($row->Status == 0) {
+                                    echo "Rejected";
+                                }
+                              ?>
+                               
+                            </td>
+                          </tr>
+
+
+                        <?php
+                              }
+                           }
+                        }
+                        ?>
+
+                      </tbody>
+                  </table>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
           <?=form_close(); ?>         
         </div>
       </div>

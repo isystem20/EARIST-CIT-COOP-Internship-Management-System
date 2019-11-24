@@ -46,5 +46,5 @@
     <link rel="stylesheet" type="text/css" href="<?=base_url('themes/beagle/'); ?>assets/lib/jquery.gritter/css/jquery.gritter.css"/>
 
 
-    <script src="<?=base_url();?>themes/ckeditor/ckeditor.js"></script>
+    <script src="<?=base_url();?>themes/ckeditor-full/ckeditor.js"></script>
   </head>
