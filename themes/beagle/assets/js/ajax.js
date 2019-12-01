@@ -698,7 +698,7 @@ $(document).ready(function() {
 //REPORT SELECTION
   $('.report-opts').click(function(e) {
     e.preventDefault();
-    var recid = '';
+    var recid = $(this).data('recordid');
     var studid = $(this).data('studid');
     var docid = $(this).data('docid');
     var appid = $(this).data('appid');
@@ -707,6 +707,7 @@ $(document).ready(function() {
         'StudentId' : studid,
         'DocumentId' : docid,
         'ApplicationId' : appid,
+        'RecordId' : recid,
     }
     console.log(newData);
     $.ajax({

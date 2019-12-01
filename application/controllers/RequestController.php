@@ -90,7 +90,7 @@ class RequestController extends Student_Controller {
             return redirect(base_url('404'));
         }
         $data['form'] = $requestlist->result_array();
-            // print_r($data['content']);
+            // print_r($data['form']);
             // die();
         $this->load->view("reports/documentfile",$data);
     }
